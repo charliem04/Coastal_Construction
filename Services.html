@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Coastal Construction Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #000000;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            color: #dc2626;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #dc2626;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(45deg, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+                linear-gradient(-45deg, transparent 50%, rgba(220, 38, 38, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .page-header h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            color: #9ca3af;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            position: relative;
+        }
+
+        /* Service Detail Section */
+        .service-detail {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-detail:nth-child(even) {
+            background-color: #0a0a0a;
+        }
+
+        .service-detail:nth-child(odd) {
+            background-color: #1a1a1a;
+        }
+
+        .service-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .service-text h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #dc2626;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .service-text p {
+            font-size: 1.1rem;
+            color: #d1d5db;
+            margin-bottom: 1.5rem;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            line-height: 1.8;
+        }
+
+        .service-features {
+            margin-top: 2rem;
+        }
+
+        .service-features h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .service-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-features li {
+            font-size: 1rem;
+            color: #d1d5db;
+            margin-bottom: 0.8rem;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '▸';
+            color: #dc2626;
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #dc2626;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #000000;
+            color: #ffffff;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .cta-button:hover {
+            background-color: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            padding: 2rem;
+            text-align: center;
+            color: #6b7280;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .service-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .service-text h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <a href="coastal-construction.html" class="nav-logo"><span>COASTAL</span> CONSTRUCTION</a>
+    <ul class="nav-links">
+        <li><a href="coastal-construction.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="coastal-construction.html#about">About</a></li>
+        <li><a href="coastal-construction.html#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <h1>OUR <span style="color: #dc2626;">SERVICES</span></h1>
+    <p>Expert dirt work solutions tailored to your project needs</p>
+</section>
+
+<!-- Service 1: Site Pads -->
+<section class="service-detail">
+    <div class="service-content">
+        <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=1200&h=800&fit=crop" alt="Site Pad Construction" class="service-image">
+        <div class="service-text">
+            <h2>Site Pads</h2>
+            <p>Professional site pad construction is the foundation of any successful building project. We specialize in creating level, properly compacted pads for residential, commercial, and industrial developments throughout the Acadiana area.</p>
+            <p>Our experienced operators use state-of-the-art equipment to ensure precise grading and proper drainage, meeting all local building codes and engineering specifications. From small residential pads to large commercial developments, we deliver quality results on time and within budget.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Residential building pads</li>
+                    <li>Commercial and industrial site preparation</li>
+                    <li>Proper compaction and grading</li>
+                    <li>Drainage planning and implementation</li>
+                    <li>Code-compliant construction</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service 2: Pond Construction -->
+<section class="service-detail">
+    <div class="service-content">
+        <div class="service-text">
+            <h2>Pond Construction</h2>
+            <p>Whether you need a farm pond for livestock, an irrigation reservoir, or a recreational fishing pond, Coastal Construction Services has the expertise to bring your vision to life. We handle every aspect of pond construction from initial design to final excavation.</p>
+            <p>Our team understands Louisiana's unique soil conditions and water table challenges. We design ponds with proper depth, slope, and drainage to ensure longevity and functionality. Each pond is custom-built to meet your specific needs and property characteristics.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Farm and agricultural ponds</li>
+                    <li>Recreational fishing ponds</li>
+                    <li>Irrigation reservoirs</li>
+                    <li>Custom pond design and sizing</li>
+                    <li>Proper slope and depth engineering</li>
+                    <li>Spillway and overflow management</li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&h=800&fit=crop" alt="Pond Construction" class="service-image">
+    </div>
+</section>
+
+<!-- Service 3: Culvert Installation -->
+<section class="service-detail">
+    <div class="service-content">
+        <img src="https://images.unsplash.com/photo-1597476374736-527935be3754?w=1200&h=800&fit=crop" alt="Culvert Installation" class="service-image">
+        <div class="service-text">
+            <h2>Culvert Installation</h2>
+            <p>Proper drainage is critical in Southern Louisiana, and quality culvert installation is key to managing water flow on your property. We install culverts of all sizes for driveways, roads, and drainage systems, ensuring proper water management and preventing erosion.</p>
+            <p>Our team carefully assesses your property's drainage needs and installs culverts with the correct sizing, placement, and grade to handle Louisiana's heavy rainfall. We work with concrete, metal, and plastic culverts depending on your specific requirements and local regulations.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Driveway culvert installation</li>
+                    <li>Roadway drainage systems</li>
+                    <li>Property drainage solutions</li>
+                    <li>Proper sizing and placement</li>
+                    <li>Multiple culvert material options</li>
+                    <li>Erosion prevention</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service 4: Levee Creation -->
+<section class="service-detail">
+    <div class="service-content">
+        <div class="service-text">
+            <h2>Levee Creation</h2>
+            <p>Living in Southern Louisiana means understanding the importance of flood protection. We construct levees and earthwork structures designed to protect your property from flooding and water damage. Our levees are built to Louisiana standards and engineered for maximum protection.</p>
+            <p>From small property levees to larger agricultural flood control systems, we have the equipment and expertise to build reliable earthwork barriers. We ensure proper compaction, height, and slope to provide effective water management for your property.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Flood protection levees</li>
+                    <li>Agricultural water management</li>
+                    <li>Property boundary levees</li>
+                    <li>Proper compaction techniques</li>
+                    <li>Louisiana code compliance</li>
+                    <li>Custom height and design</li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=1200&h=800&fit=crop" alt="Levee Construction" class="service-image">
+    </div>
+</section>
+
+<!-- Service 5: Land Leveling -->
+<section class="service-detail">
+    <div class="service-content">
+        <img src="https://images.unsplash.com/photo-1588783948922-0ba0f15a4f79?w=1200&h=800&fit=crop" alt="Land Leveling" class="service-image">
+        <div class="service-text">
+            <h2>Land Leveling</h2>
+            <p>Precision land leveling is essential for proper drainage, construction preparation, and agricultural use. We use advanced GPS-guided equipment to achieve exact grades and slopes, ensuring your land is perfectly prepared for its intended purpose.</p>
+            <p>Whether you're preparing land for building, farming, or improving drainage, our land leveling services create the optimal foundation. We handle projects of all sizes, from residential lots to large agricultural fields, with the same attention to detail and precision.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>GPS-guided precision grading</li>
+                    <li>Residential lot preparation</li>
+                    <li>Agricultural field leveling</li>
+                    <li>Drainage improvement</li>
+                    <li>Construction site grading</li>
+                    <li>Erosion control planning</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service 6: Pasture Clearing -->
+<section class="service-detail">
+    <div class="service-content">
+        <div class="service-text">
+            <h2>Pasture Clearing</h2>
+            <p>Transform overgrown or wooded land into productive pasture with our comprehensive land clearing services. We remove trees, stumps, brush, and debris to create clean, usable land for livestock, farming, or development.</p>
+            <p>Our clearing process is thorough and efficient, preparing your land for immediate use. We can clear land to your exact specifications, whether you need complete clearing or selective tree removal. All debris is properly disposed of, leaving you with ready-to-use land.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Complete land clearing</li>
+                    <li>Tree and stump removal</li>
+                    <li>Brush and undergrowth clearing</li>
+                    <li>Debris removal and disposal</li>
+                    <li>Selective clearing options</li>
+                    <li>Pasture preparation</li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=1200&h=800&fit=crop" alt="Pasture Clearing" class="service-image">
+    </div>
+</section>
+
+<!-- Service 7: Bushhogging -->
+<section class="service-detail">
+    <div class="service-content">
+        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&h=800&fit=crop" alt="Bushhogging" class="service-image">
+        <div class="service-text">
+            <h2>Bushhogging</h2>
+            <p>Keep your property maintained and accessible with our heavy-duty bushhogging services. We tackle thick brush, tall grass, and overgrown vegetation that regular mowing equipment can't handle. Perfect for maintaining large properties, rights-of-way, and reclaiming overgrown land.</p>
+            <p>Our industrial-grade bushhogging equipment cuts through dense vegetation quickly and efficiently. Whether you need regular maintenance or one-time clearing of severely overgrown areas, we have the power and experience to get the job done right.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Heavy brush and vegetation cutting</li>
+                    <li>Overgrown property maintenance</li>
+                    <li>Right-of-way clearing</li>
+                    <li>Large acreage mowing</li>
+                    <li>Seasonal maintenance programs</li>
+                    <li>Fire break creation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service 8: Demolition -->
+<section class="service-detail">
+    <div class="service-content">
+        <div class="service-text">
+            <h2>Demolition</h2>
+            <p>When structures need to come down, Coastal Construction Services provides safe, efficient demolition services. We handle everything from small outbuildings to larger structures, ensuring complete removal and proper disposal of all materials.</p>
+            <p>Our demolition services include careful planning to protect surrounding structures and utilities. We handle all aspects of the demolition process including permits, safety measures, debris removal, and site cleanup, leaving you with a clean slate ready for your next project.</p>
+            <div class="service-features">
+                <h3>What We Offer:</h3>
+                <ul>
+                    <li>Building and structure demolition</li>
+                    <li>Concrete removal and breaking</li>
+                    <li>Foundation removal</li>
+                    <li>Complete debris hauling</li>
+                    <li>Site cleanup and grading</li>
+                    <li>Proper disposal and recycling</li>
+                </ul>
+            </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&h=800&fit=crop" alt="Demolition Services" class="service-image">
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <h2>READY TO GET STARTED?</h2>
+    <p>Contact us today for a free quote on your project</p>
+    <a href="tel:+13373808091" class="cta-button">Call (337) 380-8091</a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Coastal Construction Services. All rights reserved. | Serving the Acadiana area with pride.</p>
+</footer>
+</body>
+</html>
