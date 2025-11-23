@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coastal Construction Services | Acadiana's Premier Dirt Work Specialists</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
+                linear-gradient(-45deg, transparent 50%, rgba(220, 38, 38, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            z-index: 1;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .logo-red {
+            color: #dc2626;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #d1d5db;
+            margin-bottom: 2rem;
+            font-weight: normal;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        .hero-red {
+            color: #dc2626;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #9ca3af;
+            margin-bottom: 3rem;
+            font-weight: normal;
+            font-family: Arial, sans-serif;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #dc2626;
+            color: #ffffff;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .cta-button:hover {
+            background-color: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b7280;
+            margin-bottom: 4rem;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #dc2626;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            background-color: #dc2626;
+            transform: translateY(-5px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #d1d5db;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 2rem;
+            background-color: #0a0a0a;
+        }
+
+        .portfolio .section-title {
+            color: #ffffff;
+        }
+
+        .portfolio .section-subtitle {
+            color: #9ca3af;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 0;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background-color: #2a2a2a;
+            cursor: pointer;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-overlay p {
+            color: #d1d5db;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            line-height: 1.8;
+        }
+
+        .about-highlight {
+            background-color: #dc2626;
+            color: #ffffff;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .about-highlight h3 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #fca5a5;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            color: #dc2626;
+        }
+
+        .contact p {
+            font-size: 1.3rem;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+            font-family: Arial, sans-serif;
+            font-weight: normal;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-label {
+            font-size: 1rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .contact-value {
+            font-size: 1.5rem;
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+        .contact-value a {
+            color: #dc2626;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: #b91c1c;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000000;
+            padding: 2rem;
+            text-align: center;
+            color: #6b7280;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="logo">
+                <span class="logo-red">COASTAL</span> CONSTRUCTION
+            </div>
+            <p class="tagline">Southern Louisiana's Dirt Work Specialists</p>
+            <h1>BUILDING <span class="hero-red">STRONGER</span> FOUNDATIONS</h1>
+            <p>Expert dirt construction services across the Acadiana area</p>
+            <a href="#contact" class="cta-button">Get A Quote</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Our <span style="color: #dc2626;">Services</span></h2>
+        <p class="section-subtitle">Comprehensive dirt work solutions for every project</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Site Pads</h3>
+                <p>Professional pad construction for residential, commercial, and industrial projects</p>
+            </div>
+            <div class="service-card">
+                <h3>Pond Construction</h3>
+                <p>Custom pond excavation and design for agricultural and recreational use</p>
+            </div>
+            <div class="service-card">
+                <h3>Culvert Installation</h3>
+                <p>Expert drainage solutions with proper culvert sizing and placement</p>
+            </div>
+            <div class="service-card">
+                <h3>Levee Creation</h3>
+                <p>Protective earthwork structures built to Louisiana standards</p>
+            </div>
+            <div class="service-card">
+                <h3>Land Leveling</h3>
+                <p>Precision grading for optimal drainage and land preparation</p>
+            </div>
+            <div class="service-card">
+                <h3>Pasture Clearing</h3>
+                <p>Complete land clearing services for agricultural development</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">Our <span style="color: #dc2626;">Work</span></h2>
+        <p class="section-subtitle">Quality results that speak for themselves</p>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=600&fit=crop" alt="Commercial Pad Project">
+                <div class="portfolio-overlay">
+                    <h3>Commercial Pad</h3>
+                    <p>Large-scale pad preparation for industrial facility</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop" alt="Pond Excavation">
+                <div class="portfolio-overlay">
+                    <h3>Pond Excavation</h3>
+                    <p>5-acre recreational pond with proper drainage</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=800&h=600&fit=crop" alt="Levee Construction">
+                <div class="portfolio-overlay">
+                    <h3>Levee Construction</h3>
+                    <p>Flood protection levee system installation</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&h=600&fit=crop" alt="Land Clearing">
+                <div class="portfolio-overlay">
+                    <h3>Pasture Clearing</h3>
+                    <p>50-acre land clearing for agricultural use</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1597476374736-527935be3754?w=800&h=600&fit=crop" alt="Culvert Installation">
+                <div class="portfolio-overlay">
+                    <h3>Culvert System</h3>
+                    <p>Complete drainage solution for rural property</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1588783948922-0ba0f15a4f79?w=800&h=600&fit=crop" alt="Land Leveling">
+                <div class="portfolio-overlay">
+                    <h3>Land Leveling</h3>
+                    <p>Precision grading for residential development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>WHY CHOOSE <span style="color: #dc2626;">COASTAL?</span></h2>
+                <p>With deep roots in Southern Louisiana, Coastal Construction Services understands the unique challenges of working in the Acadiana area. Our expertise in dirt work has been built on years of experience handling everything from small residential projects to large commercial developments.</p>
+                <p>We combine modern equipment with traditional Louisiana work ethic to deliver results that exceed expectations. Every project is handled with precision, professionalism, and a commitment to quality that has made us a trusted name in the region.</p>
+                <p>Whether you're preparing a site, building a pond, or clearing land, we bring the expertise and equipment to get the job done right the first time.</p>
+            </div>
+            <div class="about-highlight">
+                <h3>BUILT ON EXCELLENCE</h3>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>LET'S BUILD SOMETHING</h2>
+        <p>Ready to start your project? Get in touch with us today</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-label">Call Us</div>
+                <div class="contact-value"><a href="tel:+13375551234">(337) 555-1234</a></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Email</div>
+                <div class="contact-value"><a href="mailto:info@coastalconstruction.com">info@coastalconstruction.com</a></div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-label">Service Area</div>
+                <div class="contact-value">Acadiana Region</div>
+            </div>
+        </div>
+
+        <a href="tel:+13375551234" class="cta-button">Call Now For Free Quote</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Coastal Construction Services. All rights reserved. | Serving the Acadiana area with pride.</p>
+    </footer>
+</body>
+</html>
