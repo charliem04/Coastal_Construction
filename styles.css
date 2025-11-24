@@ -24,6 +24,18 @@ nav {
     align-items: center;
 }
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
 .nav-logo {
     font-size: 1.5rem;
     font-weight: 900;
@@ -75,7 +87,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
         linear-gradient(45deg, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
         linear-gradient(-45deg, transparent 50%, rgba(220, 38, 38, 0.05) 100%);
     pointer-events: none;
@@ -84,6 +96,12 @@ nav {
 .hero-content {
     max-width: 1200px;
     z-index: 1;
+}
+
+.hero-logo {
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 2rem;
 }
 
 .logo {
@@ -160,7 +178,7 @@ nav {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
+    background:
         linear-gradient(45deg, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
         linear-gradient(-45deg, transparent 50%, rgba(220, 38, 38, 0.05) 100%);
     pointer-events: none;
@@ -565,6 +583,113 @@ nav {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* About Page Styles */
+.about-page {
+    padding: 4rem 2rem;
+    background-color: #1a1a1a;
+}
+
+.about-page-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.owner-photo-section {
+    position: sticky;
+    top: 100px;
+    background-color: #0a0a0a;
+    padding: 2rem;
+    text-align: center;
+}
+
+.owner-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    border: 4px solid #dc2626;
+}
+
+.owner-name {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #dc2626;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.owner-title {
+    font-size: 1rem;
+    color: #9ca3af;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.owner-story {
+    color: #ffffff;
+}
+
+.owner-story h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.owner-story p {
+    font-size: 1.1rem;
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    line-height: 1.8;
+}
+
+.mission-section,
+.values-section,
+.why-choose-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid #2a2a2a;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.value-item {
+    background-color: #0a0a0a;
+    padding: 2rem;
+    border-left: 4px solid #dc2626;
+}
+
+.value-item h3 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #dc2626;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.value-item p {
+    font-size: 1rem;
+    color: #d1d5db;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    line-height: 1.6;
+}
+
 /* Footer */
 footer {
     background-color: #000000;
@@ -614,6 +739,19 @@ footer {
     .nav-links {
         gap: 1rem;
         flex-wrap: wrap;
+    }
+
+    .about-page-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .owner-photo-section {
+        position: static;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
     }
 }
 
