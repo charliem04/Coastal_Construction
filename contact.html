@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Coastal Construction Services</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <div class="nav-brand">
+        <a href="coastal-construction.html">
+            <img src="images/logo-square.png" alt="Coastal Construction Logo" class="nav-logo-img">
+        </a>
+        <a href="coastal-construction.html" class="nav-logo"><span>COASTAL</span> CONSTRUCTION <span>SERVICES</span>
+            <span class="nav-subtitle">of Louisiana</span>
+        </a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="coastal-construction.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <h1>GET IN <span style="color: #dc2626;">TOUCH</span></h1>
+    <p>Let's discuss your project and bring your vision to life</p>
+</section>
+
+<!-- Contact Methods Section -->
+<section class="contact-methods">
+    <div class="contact-methods-grid">
+        <!-- Book a Call -->
+        <div class="contact-method-card">
+            <div class="contact-method-icon">📞</div>
+            <h3>BOOK A CALL</h3>
+            <p>Schedule a convenient time for a phone consultation with our team</p>
+            <a href="https://cal.com/your-username/phone-consultation" target="_blank" class="method-button" data-cal-link="your-username/phone-consultation">Book Now</a>
+        </div>
+
+        <!-- Send a Message -->
+        <div class="contact-method-card">
+            <div class="contact-method-icon">✉️</div>
+            <h3>SEND A MESSAGE</h3>
+            <p>Fill out our contact form below and we'll get back to you within 24 hours</p>
+            <a href="#contact-form" class="method-button">Send Message</a>
+        </div>
+
+        <!-- Schedule a Meeting -->
+        <div class="contact-method-card">
+            <div class="contact-method-icon">📅</div>
+            <h3>SCHEDULE A MEETING</h3>
+            <p>Book an in-person or virtual meeting to discuss your project in detail</p>
+            <a href="https://cal.com/your-username/meeting" target="_blank" class="method-button" data-cal-link="your-username/meeting">Schedule Meeting</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section" id="contact-form">
+    <div class="form-container">
+        <div class="form-header">
+            <h2>REQUEST A <span style="color: #dc2626;">QUOTE</span></h2>
+            <p>Tell us about your project and we'll get back to you with a detailed quote</p>
+        </div>
+
+        <form id="contactForm" class="contact-form" action="#" method="POST">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="(337) 123-4567">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="john.doe@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="service">Service Needed *</label>
+                <select id="service" name="service" required>
+                    <option value="">Select a service...</option>
+                    <option value="site-pads">Site Pads</option>
+                    <option value="pond-construction">Pond Construction</option>
+                    <option value="culvert-installation">Culvert Installation</option>
+                    <option value="levee-creation">Levee Creation</option>
+                    <option value="land-leveling">Land Leveling</option>
+                    <option value="material-delivery">Material Delivery</option>
+                    <option value="pasture-clearing">Pasture Clearing</option>
+                    <option value="bushhogging">Bushhogging</option>
+                    <option value="demolition">Demolition</option>
+                    <option value="multiple">Multiple Services</option>
+                    <option value="other">Other / Not Sure</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="projectDescription">Project Description *</label>
+                <textarea id="projectDescription" name="projectDescription" required rows="6" placeholder="Please describe your project needs, location, and any specific requirements..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="timeline">Project Timeline *</label>
+                <select id="timeline" name="timeline" required>
+                    <option value="">Select timeline...</option>
+                    <option value="urgent">Urgent (Within 1-2 weeks)</option>
+                    <option value="soon">Soon (Within 1 month)</option>
+                    <option value="flexible">Flexible (1-3 months)</option>
+                    <option value="planning">Planning Phase (3+ months)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Project Location</label>
+                <input type="text" id="location" name="location" placeholder="City or Parish">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-button">SUBMIT REQUEST</button>
+                <p class="form-disclaimer">We'll review your request and contact you within 24 hours</p>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Additional Info Section -->
+<section class="contact-info-section">
+    <div class="info-container">
+        <div class="info-card">
+            <h3>CONTACT INFORMATION</h3>
+            <p class="info-detail"><strong>Phone:</strong> <a href="tel:+13373808091" style="color: #dc2626; text-decoration: none;">(337) 380-8091</a></p>
+            <p class="info-detail"><strong>Email:</strong> <a href="mailto:ccsofla@yahoo.com" style="color: #dc2626; text-decoration: none;">ccsofla@yahoo.com</a></p>
+            <p class="info-detail"><strong>Service Area:</strong> Acadiana Region, LA</p>
+        </div>
+
+        <div class="info-card">
+            <h3>BUSINESS HOURS</h3>
+            <p class="info-detail">Monday - Friday: 7:00 AM - 6:00 PM</p>
+            <p class="info-detail">Saturday: 8:00 AM - 4:00 PM</p>
+            <p class="info-detail">Sunday: Emergency Services Only</p>
+        </div>
+
+        <div class="info-card">
+            <h3>RESPONSE TIME</h3>
+            <p class="info-detail">Phone Calls: Same Day</p>
+            <p class="info-detail">Email/Forms: Within 24 Hours</p>
+            <p class="info-detail">Emergency Services: Available 24/7</p>
+        </div>
+    </div>
+
+    <div class="info-container" style="margin-top: 2rem;">
+        <div class="info-card">
+            <h3>SERVICE COVERAGE</h3>
+            <p class="info-detail">Lafayette Parish</p>
+            <p class="info-detail">Acadia Parish</p>
+            <p class="info-detail">Vermilion Parish</p>
+            <p class="info-detail">St. Martin Parish</p>
+            <p class="info-detail">Iberia Parish</p>
+            <p class="info-detail">And Surrounding Areas</p>
+        </div>
+
+        <div class="info-card">
+            <h3>WHAT TO EXPECT</h3>
+            <p class="info-detail">Free project consultation</p>
+            <p class="info-detail">Detailed written estimates</p>
+            <p class="info-detail">Professional assessment</p>
+            <p class="info-detail">Timeline and cost breakdown</p>
+            <p class="info-detail">Licensed and insured service</p>
+        </div>
+
+        <div class="info-card">
+            <h3>EMERGENCY SERVICES</h3>
+            <p class="info-detail">24/7 emergency response available</p>
+            <p class="info-detail">Storm damage assistance</p>
+            <p class="info-detail">Drainage emergencies</p>
+            <p class="info-detail">Call anytime: <a href="tel:+13373808091" style="color: #dc2626; text-decoration: none;">(337) 380-8091</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.</p>
+</footer>
+
+<!-- Cal.com Embed Script -->
+<script type="text/javascript">
+    (function (C, A, L) {
+        let p = function (a, ar) {
+            a.q.push(ar);
+        };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+            let cal = C.Cal;
+            let ar = arguments;
+            if (!cal.loaded) {
+                cal.ns = {};
+                cal.q = cal.q || [];
+                d.head.appendChild(d.createElement("script")).src = A;
+                cal.loaded = true;
+            }
+            if (ar[0] === L) {
+                const api = function () {
+                    p(api, arguments);
+                };
+                const namespace = ar[1];
+                api.q = api.q || [];
+                typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar);
+                return;
+            }
+            p(cal, ar);
+        };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", {origin:"https://cal.com"});
+
+    // Optional: Configure Cal.com UI
+    Cal("ui", {
+        "styles": {"branding": {"brandColor": "#dc2626"}},
+        "hideEventTypeDetails": false
+    });
+</script>
+
+<!-- Contact Form Handler -->
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+
+        // Create email body
+        const emailBody = `
+    New Contact Form Submission from Coastal Construction Website
+
+    Contact Information:
+    --------------------
+    Name: ${data.fullName}
+    Phone: ${data.phone}
+    Email: ${data.email}
+
+    Project Details:
+    ---------------
+    Service Needed: ${data.service}
+    Timeline: ${data.timeline}
+    Location: ${data.location || 'Not specified'}
+
+    Project Description:
+    -------------------
+    ${data.projectDescription}
+
+    ---
+    This message was sent from the Coastal Construction Services contact form.
+        `.trim();
+
+        // For now, create a mailto link (you'll replace this with server-side email handling)
+        const mailtoLink = `mailto:ccsofla@yahoo.com?subject=New%20Quote%20Request%20from%20${encodeURIComponent(data.fullName)}&body=${encodeURIComponent(emailBody)}`;
+
+        // Show success message
+        alert('Thank you for your inquiry! We will contact you within 24 hours.\n\nNote: Your email client will now open to send the request.');
+
+        // Open email client
+        window.location.href = mailtoLink;
+
+        // Reset form
+        this.reset();
+    });
+
+    // Phone number formatting
+    document.getElementById('phone').addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 0) {
+            if (value.length <= 3) {
+                value = `(${value}`;
+            } else if (value.length <= 6) {
+                value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+            } else {
+                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+            }
+        }
+        e.target.value = value;
+    });
+</script>
+</body>
+</html>
