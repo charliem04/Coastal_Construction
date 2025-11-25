@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
     background-color: #1a1a1a;
@@ -31,8 +35,8 @@ nav {
 }
 
 .nav-logo-img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
 }
 
@@ -42,6 +46,18 @@ nav {
     color: #ffffff;
     text-decoration: none;
     letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.nav-subtitle {
+    font-size: 0.65rem;
+    color: #9ca3af !important;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.2rem;
 }
 
 .nav-logo span {
@@ -113,6 +129,17 @@ nav {
 
 .logo-red {
     color: #dc2626;
+}
+
+.logo-subtitle {
+    display: block;
+    font-size: 1rem;
+    color: #9ca3af;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    font-family: Arial, sans-serif;
 }
 
 .tagline {
@@ -475,6 +502,7 @@ nav {
     padding: 4rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    scroll-margin-top: 150px; /* Accounts for sticky navigation height */
 }
 
 .service-detail:nth-child(even) {
