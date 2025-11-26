@@ -1,0 +1,7 @@
+.service-features li::before {
+    content: '\25B8';
+    color: #dc2626;
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+}

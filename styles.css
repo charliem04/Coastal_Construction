@@ -26,6 +26,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .nav-brand {
@@ -635,7 +636,7 @@ nav {
 }
 
 .service-features li::before {
-    content: '▸';
+    content: '\25B8';
     color: #dc2626;
     font-weight: 900;
     position: absolute;
@@ -1024,6 +1025,78 @@ footer {
 
 /* Responsive */
 @media (max-width: 968px) {
+    nav {
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .nav-brand {
+        flex: 0 0 100%;
+        justify-content: center;
+    }
+
+    .nav-links {
+        flex: 0 0 100%;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-logo-img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-subtitle {
+        font-size: 0.55rem;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    /* Make portfolio overlays always visible on mobile */
+    .portfolio-overlay {
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 40%, transparent 100%);
+    }
+
+    .portfolio-item:hover .portfolio-overlay {
+        background: linear-gradient(to top, rgba(220,38,38,0.9) 0%, rgba(220,38,38,0.6) 40%, transparent 100%);
+    }
+
+    /* Add tap indicator for mobile */
+    .portfolio-overlay::after {
+        content: 'TAP TO LEARN MORE';
+        position: absolute;
+        bottom: 0.5rem;
+        right: 1rem;
+        font-size: 0.7rem;
+        color: rgba(220, 38, 38, 0.9);
+        font-weight: 900;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+
+    /* Add touch feedback */
+    .portfolio-item:active {
+        transform: scale(0.98);
+    }
+
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -1051,17 +1124,26 @@ footer {
         gap: 2rem;
     }
 
+    /* Force consistent image-top layout for all services on mobile */
+    .service-detail .service-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-detail .service-content .service-image {
+        order: 1;
+    }
+
+    .service-detail .service-content .service-text {
+        order: 2;
+    }
+
     .page-header h1 {
         font-size: 2.5rem;
     }
 
     .service-text h2 {
         font-size: 2rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
     }
 
     .about-page-content {
