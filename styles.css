@@ -86,7 +86,7 @@ nav {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/mainpage.JPEG') center/cover no-repeat;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -105,8 +105,8 @@ nav {
     right: 0;
     bottom: 0;
     background:
-        linear-gradient(45deg, rgba(220, 38, 38, 0.1) 0%, transparent 50%),
-        linear-gradient(-45deg, transparent 50%, rgba(220, 38, 38, 0.05) 100%);
+        linear-gradient(45deg, rgba(220, 38, 38, 0.15) 0%, transparent 50%),
+        linear-gradient(-45deg, transparent 50%, rgba(220, 38, 38, 0.1) 100%);
     pointer-events: none;
 }
 
