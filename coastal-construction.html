@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coastal Construction Services | Acadiana's Premier Dirt Work Specialists</title>
-    <meta name="description" content="Southern Louisiana's premier dirt work specialists. Site pads, pond construction, land leveling & more. Serving Acadiana for 15+ years. Free quotes: (337) 380-8091">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="images/logo-square.png">
 </head>
 <body>
 <!-- Navigation -->
@@ -132,13 +130,9 @@
         </a>
     </div>
 
-    <div style="text-align: center; margin-top: 3rem;">
+    <div class="service-cta-buttons">
         <a href="services.html" class="cta-button">View All Services</a>
-    </div>
-
-    <div class="service-area-callout">
-        <p>📍 Proudly serving <strong>Iberia Parish</strong> and the greater <strong>Acadiana region</strong></p>
-        <a href="#service-area" class="area-link">See our full coverage area →</a>
+        <a href="#service-area" class="cta-button-outline">See Our Service Area</a>
     </div>
 </section>
 
@@ -173,6 +167,73 @@
             </div>
         </div>
     </div>
+
+    <!-- Scrolling Reviews -->
+    <div class="reviews-scroll-container">
+        <div class="reviews-scroll">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Excellent work on our pond construction. Professional, on-time, and exceeded our expectations!"</p>
+                <p class="review-author">- Mike T., Lafayette</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Best dirt work company in Acadiana. They leveled our property perfectly for our new home."</p>
+                <p class="review-author">- Sarah M., New Iberia</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Great service! They cleared 5 acres for us and the price was very fair. Highly recommend!"</p>
+                <p class="review-author">- John D., Abbeville</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Professional team, quality equipment, and excellent results. Will definitely use them again."</p>
+                <p class="review-author">- Robert L., Youngsville</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"They installed our culvert perfectly. Great communication throughout the entire project."</p>
+                <p class="review-author">- Lisa K., Broussard</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Outstanding work on our site pad. These guys know what they're doing!"</p>
+                <p class="review-author">- David P., Scott</p>
+            </div>
+            <!-- Duplicate reviews for seamless loop -->
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Excellent work on our pond construction. Professional, on-time, and exceeded our expectations!"</p>
+                <p class="review-author">- Mike T., Lafayette</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Best dirt work company in Acadiana. They leveled our property perfectly for our new home."</p>
+                <p class="review-author">- Sarah M., New Iberia</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Great service! They cleared 5 acres for us and the price was very fair. Highly recommend!"</p>
+                <p class="review-author">- John D., Abbeville</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Professional team, quality equipment, and excellent results. Will definitely use them again."</p>
+                <p class="review-author">- Robert L., Youngsville</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"They installed our culvert perfectly. Great communication throughout the entire project."</p>
+                <p class="review-author">- Lisa K., Broussard</p>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Outstanding work on our site pad. These guys know what they're doing!"</p>
+                <p class="review-author">- David P., Scott</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- Service Area Map Section -->
@@ -182,28 +243,36 @@
 
     <div class="map-container">
         <div class="map-content">
-            <!-- Interactive Google Map -->
-            <div class="parishes-map">
-                <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d437076.6183968194!2d-92.08765484999999!3d30.003758049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8620a95d38b1a9e7%3A0x5c3b7d0c6c4e54b8!2sNew%20Iberia%2C%20LA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus&z=9"
-                        width="100%"
-                        height="600"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Coastal Construction Services Service Area - New Iberia, LA">
-                </iframe>
-                <div class="map-overlay-info">
-                    <div class="map-pin">📍</div>
-                    <div class="map-location-text">
-                        <strong>Based in New Iberia, LA</strong>
-                        <span>Serving Acadiana & Surrounding Parishes</span>
+            <!-- Left Column: Map + CTA -->
+            <div class="map-column">
+                <!-- Interactive Google Map -->
+                <div class="parishes-map">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d437076.6183968194!2d-92.08765484999999!3d30.003758049999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8620a95d38b1a9e7%3A0x5c3b7d0c6c4e54b8!2sNew%20Iberia%2C%20LA!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus&z=9"
+                            width="100%"
+                            height="600"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Coastal Construction Services Service Area - New Iberia, LA">
+                    </iframe>
+                    <div class="map-overlay-info">
+                        <div class="map-pin">📍</div>
+                        <div class="map-location-text">
+                            <strong>Based in New Iberia, LA</strong>
+                            <span>Serving Acadiana & Surrounding Parishes</span>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Gray CTA Box Under Map -->
+                <div class="service-area-cta">
+                    <p>Not sure if we serve your area? <a href="contact.html">Contact us</a> to find out - we may be able to help!</p>
                 </div>
             </div>
 
-            <!-- Parish List -->
+            <!-- Right Column: Parish List -->
             <div class="parishes-list">
                 <div class="parish-category">
                     <h3>PRIMARY SERVICE AREA</h3>
@@ -232,36 +301,17 @@
                     </ul>
                     <p class="service-note">We're happy to discuss projects in surrounding areas - call us to confirm availability!</p>
                 </div>
-
-                <div class="coverage-stats">
-                    <div class="coverage-stat">
-                        <div class="stat-icon">📍</div>
-                        <div class="stat-info">
-                            <div class="stat-number">30-mile</div>
-                            <div class="stat-text">Primary Radius</div>
-                        </div>
-                    </div>
-                    <div class="coverage-stat">
-                        <div class="stat-icon">🚛</div>
-                        <div class="stat-info">
-                            <div class="stat-number">50-mile</div>
-                            <div class="stat-text">Extended Service</div>
-                        </div>
-                    </div>
-                    <div class="coverage-stat">
-                        <div class="stat-icon">⏱️</div>
-                        <div class="stat-info">
-                            <div class="stat-number">Same-Day</div>
-                            <div class="stat-text">Response Available</div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <div class="service-area-cta">
-        <p>Not sure if we serve your area? <a href="contact.html">Contact us</a> to find out - we may be able to help!</p>
+</section>
+
+<!-- Transition Banner -->
+<section class="transition-banner">
+    <div class="transition-content">
+        <h3>SERVING THE ACADIANA AREA WITH PRIDE</h3>
+        <p>Professional dirt work services you can trust</p>
     </div>
 </section>
 
@@ -280,5 +330,158 @@
 <footer>
     <p>&copy; 2024 Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.</p>
 </footer>
+
+<!-- Interactive Reviews Scroll Script -->
+<script>
+    const reviewsScroll = document.querySelector('.reviews-scroll');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = Date.now();
+    let animationId;
+
+    // Mouse events
+    reviewsScroll.addEventListener('mousedown', (e) => {
+        isDown = true;
+        reviewsScroll.style.cursor = 'grabbing';
+        startX = e.pageX - reviewsScroll.offsetLeft;
+        scrollLeft = reviewsScroll.scrollLeft;
+        velocity = 0;
+        lastX = e.pageX - reviewsScroll.offsetLeft;
+        lastTime = Date.now();
+        cancelAnimationFrame(animationId);
+    });
+
+    reviewsScroll.addEventListener('mouseleave', () => {
+        if (isDown) {
+            isDown = false;
+            reviewsScroll.style.cursor = 'grab';
+            applyMomentum();
+        }
+    });
+
+    reviewsScroll.addEventListener('mouseup', () => {
+        if (isDown) {
+            isDown = false;
+            reviewsScroll.style.cursor = 'grab';
+            applyMomentum();
+        }
+    });
+
+    reviewsScroll.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+
+        const x = e.pageX - reviewsScroll.offsetLeft;
+        const currentTime = Date.now();
+        const timeDelta = currentTime - lastTime;
+
+        // Calculate velocity for momentum
+        if (timeDelta > 0) {
+            const rawVelocity = (x - lastX) / timeDelta;
+            velocity = Math.max(-3, Math.min(3, rawVelocity * 10));
+        }
+
+        // Calculate scroll distance - allow continuous movement
+        const walk = (startX - x) * 1.5; // 1.5x multiplier for responsive feel
+        const newScrollLeft = scrollLeft + walk;
+
+        // Apply scroll with speed damping
+        const currentScroll = reviewsScroll.scrollLeft;
+        const scrollDiff = newScrollLeft - currentScroll;
+        const dampedScroll = scrollDiff * 0.3; // Damping factor to limit speed
+
+        reviewsScroll.scrollLeft = currentScroll + dampedScroll;
+
+        lastX = x;
+        lastTime = currentTime;
+    });
+
+    // Touch events for mobile
+    reviewsScroll.addEventListener('touchstart', (e) => {
+        isDown = true;
+        const touch = e.touches[0];
+        startX = touch.pageX - reviewsScroll.offsetLeft;
+        scrollLeft = reviewsScroll.scrollLeft;
+        velocity = 0;
+        lastX = touch.pageX - reviewsScroll.offsetLeft;
+        lastTime = Date.now();
+        cancelAnimationFrame(animationId);
+    });
+
+    reviewsScroll.addEventListener('touchend', () => {
+        if (isDown) {
+            isDown = false;
+            applyMomentum();
+        }
+    });
+
+    reviewsScroll.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+
+        const touch = e.touches[0];
+        const x = touch.pageX - reviewsScroll.offsetLeft;
+        const currentTime = Date.now();
+        const timeDelta = currentTime - lastTime;
+
+        if (timeDelta > 0) {
+            const rawVelocity = (x - lastX) / timeDelta;
+            velocity = Math.max(-3, Math.min(3, rawVelocity * 10));
+        }
+
+        const walk = (startX - x) * 1.5;
+        const newScrollLeft = scrollLeft + walk;
+
+        const currentScroll = reviewsScroll.scrollLeft;
+        const scrollDiff = newScrollLeft - currentScroll;
+        const dampedScroll = scrollDiff * 0.3;
+
+        reviewsScroll.scrollLeft = currentScroll + dampedScroll;
+
+        lastX = x;
+        lastTime = currentTime;
+    });
+
+    // Apply momentum/inertia after release
+    function applyMomentum() {
+        if (Math.abs(velocity) > 0.1) {
+            velocity *= 0.95; // Friction
+            velocity = Math.max(-4, Math.min(4, velocity)); // Speed cap
+            reviewsScroll.scrollLeft -= velocity * 8;
+            animationId = requestAnimationFrame(applyMomentum);
+        }
+    }
+
+    // Auto-scroll functionality (slow and steady)
+    let autoScrollInterval;
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(() => {
+            if (!isDown) {
+                reviewsScroll.scrollLeft += 0.5; // Very slow auto-scroll
+
+                // Loop back when reaching the end
+                if (reviewsScroll.scrollLeft >= reviewsScroll.scrollWidth / 2) {
+                    reviewsScroll.scrollLeft = 0;
+                }
+            }
+        }, 30);
+    }
+
+    // Start auto-scroll when page loads
+    startAutoScroll();
+
+    // Pause auto-scroll on hover
+    reviewsScroll.addEventListener('mouseenter', () => {
+        clearInterval(autoScrollInterval);
+    });
+
+    reviewsScroll.addEventListener('mouseleave', () => {
+        if (!isDown) {
+            startAutoScroll();
+        }
+    });
+</script>
 </body>
 </html>
