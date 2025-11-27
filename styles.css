@@ -437,6 +437,351 @@ nav {
     text-transform: uppercase;
 }
 
+/* Service Area Callout */
+.service-area-callout {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.service-area-callout p {
+    font-size: 1.3rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.service-area-callout strong {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.area-link {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.75rem 2rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.area-link:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: translateX(5px);
+}
+
+/* Service Area Map Section */
+.service-area-map {
+    padding: 6rem 2rem;
+    background-color: #0a0a0a;
+}
+
+.map-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.map-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.parishes-map {
+    background-color: #1a1a1a;
+    padding: 0;
+    border: 2px solid #2a2a2a;
+    position: relative;
+    overflow: hidden;
+}
+
+.parishes-map iframe {
+    display: block;
+    width: 100%;
+    height: 600px;
+}
+
+.map-overlay-info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(220, 38, 38, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.map-pin {
+    font-size: 2rem;
+}
+
+.map-location-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.map-location-text strong {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.map-location-text span {
+    font-size: 0.85rem;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.louisiana-map {
+    width: 100%;
+    height: auto;
+}
+
+.parish {
+    fill: #2a2a2a;
+    stroke: #4b5563;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.parish:hover {
+    stroke: #dc2626;
+    stroke-width: 3;
+}
+
+.primary-parish {
+    fill: #dc2626;
+    stroke: #b91c1c;
+    animation: pulse-parish 2s ease-in-out infinite;
+}
+
+.primary-parish:hover {
+    fill: #b91c1c;
+}
+
+.service-parish {
+    fill: #374151;
+    stroke: #6b7280;
+}
+
+.service-parish:hover {
+    fill: #dc2626;
+    opacity: 0.8;
+}
+
+.adjacent-parish {
+    fill: #1a1a1a;
+    stroke: #4b5563;
+}
+
+.adjacent-parish:hover {
+    fill: #374151;
+}
+
+@keyframes pulse-parish {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.parish-label {
+    fill: #ffffff;
+    font-size: 14px;
+    font-weight: 900;
+    text-anchor: middle;
+    pointer-events: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.primary-label {
+    fill: #ffffff;
+    font-size: 16px;
+}
+
+.small-label {
+    font-size: 11px;
+    fill: #9ca3af;
+}
+
+.home-marker {
+    fill: #ffffff;
+    stroke: #dc2626;
+    stroke-width: 3;
+    animation: pulse-marker 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-marker {
+    0%, 100% {
+        r: 8;
+        opacity: 1;
+    }
+    50% {
+        r: 10;
+        opacity: 0.7;
+    }
+}
+
+.home-label {
+    fill: #dc2626;
+    font-size: 13px;
+    font-weight: 900;
+    text-anchor: middle;
+    letter-spacing: 1px;
+}
+
+.parishes-list {
+    color: #ffffff;
+}
+
+.parish-category {
+    background-color: #1a1a1a;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #dc2626;
+}
+
+.parish-category h3 {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #dc2626;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.parish-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.parish-category li {
+    font-size: 1rem;
+    color: #d1d5db;
+    margin-bottom: 0.8rem;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.parish-category li::before {
+    content: '✓';
+    color: #dc2626;
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+}
+
+.parish-category li strong {
+    color: #ffffff;
+    font-weight: 900;
+}
+
+.service-note {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #0a0a0a;
+    border-left: 3px solid #dc2626;
+    font-size: 0.9rem;
+    color: #9ca3af;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.coverage-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.coverage-stat {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: #0a0a0a;
+    padding: 1.5rem;
+    border: 2px solid #2a2a2a;
+    transition: all 0.3s ease;
+}
+
+.coverage-stat:hover {
+    border-color: #dc2626;
+    transform: translateX(5px);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    min-width: 50px;
+    text-align: center;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info .stat-number {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #dc2626;
+    margin-bottom: 0.3rem;
+}
+
+.stat-info .stat-text {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: Arial, sans-serif;
+}
+
+.service-area-cta {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    border: 2px solid #2a2a2a;
+}
+
+.service-area-cta p {
+    font-size: 1.2rem;
+    color: #d1d5db;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.service-area-cta a {
+    color: #dc2626;
+    text-decoration: none;
+    font-weight: 900;
+    transition: color 0.3s ease;
+}
+
+.service-area-cta a:hover {
+    color: #b91c1c;
+    text-decoration: underline;
+}
+
 /* Contact Section */
 .contact {
     padding: 6rem 2rem;
@@ -1186,6 +1531,97 @@ footer {
     .cta-button-outline {
         width: 100%;
         text-align: center;
+    }
+
+    /* Service Area Callout Mobile */
+    .service-area-callout {
+        padding: 1.5rem 1rem;
+    }
+
+    .service-area-callout p {
+        font-size: 1.1rem;
+    }
+
+    .area-link {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.5rem;
+    }
+
+    /* Service Area Map Mobile */
+    .map-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .parishes-map {
+        padding: 0;
+    }
+
+    .parishes-map iframe {
+        height: 400px;
+    }
+
+    .map-overlay-info {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 0.75rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .map-pin {
+        font-size: 1.5rem;
+    }
+
+    .map-location-text strong {
+        font-size: 0.9rem;
+    }
+
+    .map-location-text span {
+        font-size: 0.75rem;
+    }
+
+    .parish-label {
+        font-size: 10px;
+    }
+
+    .primary-label {
+        font-size: 12px;
+    }
+
+    .small-label {
+        font-size: 8px;
+    }
+
+    .home-label {
+        font-size: 10px;
+    }
+
+    .parish-category {
+        padding: 1.5rem;
+    }
+
+    .coverage-stats {
+        gap: 1rem;
+    }
+
+    .coverage-stat {
+        padding: 1rem;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
+        min-width: 40px;
+    }
+
+    .stat-info .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .stat-info .stat-text {
+        font-size: 0.8rem;
     }
 }
 
