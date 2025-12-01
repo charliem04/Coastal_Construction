@@ -84,6 +84,21 @@ nav {
     color: #dc2626;
 }
 
+.nav-links a.active {
+    color: #dc2626;
+    position: relative;
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #dc2626;
+}
+
 /* Hero Section */
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/mainpage.JPEG') center/cover no-repeat;
@@ -312,7 +327,7 @@ nav {
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1rem;
+    gap: 1.5rem;
     max-width: 1600px;
     margin: 0 auto;
 }
@@ -1382,6 +1397,9 @@ footer {
     text-transform: uppercase;
     transition: all 0.3s ease;
     letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
 }
 
 .method-button:hover {
