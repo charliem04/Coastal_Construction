@@ -332,6 +332,15 @@ nav {
     margin: 0 auto;
 }
 
+/* Large desktop - force 3 columns */
+@media (min-width: 1400px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 1800px;
+    }
+}
+
 .portfolio-item {
     position: relative;
     overflow: hidden;
@@ -556,7 +565,20 @@ nav {
 }
 
 .map-pin {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    animation: pin-pulse 2s ease-in-out infinite;
+}
+
+@keyframes pin-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9));
+    }
 }
 
 .map-location-text {
@@ -887,7 +909,8 @@ nav {
     opacity: 0.95;
 }
 
-/* Scrolling Reviews */
+/* Scrolling Reviews - TEMPORARILY DISABLED */
+/*
 .reviews-scroll-container {
     overflow: hidden;
     background-color: #ffffff;
@@ -921,15 +944,15 @@ nav {
     gap: 2rem;
     overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     cursor: grab;
     user-select: none;
     padding: 0.5rem 0;
 }
 
 .reviews-scroll::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
 }
 
 .reviews-scroll:active {
@@ -980,6 +1003,7 @@ nav {
     letter-spacing: 1px;
     margin-top: auto;
 }
+*/
 
 /* Contact Section */
 .contact {
@@ -1572,6 +1596,7 @@ footer {
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 968px) {
     nav {
         justify-content: center;
@@ -1820,7 +1845,8 @@ footer {
         font-size: 1rem;
     }
 
-    /* Scrolling Reviews Mobile */
+    /* Scrolling Reviews Mobile - TEMPORARILY DISABLED */
+    /*
     .reviews-scroll-container {
         padding: 2rem 0;
     }
@@ -1847,6 +1873,7 @@ footer {
     .review-author {
         font-size: 0.8rem;
     }
+    */
 
     .parish-label {
         font-size: 10px;

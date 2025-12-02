@@ -6,6 +6,14 @@
     left: 0;
 }
 
+.parish-category li::before {
+    content: '✓';
+    color: #dc2626;
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
