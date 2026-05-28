@@ -1,0 +1,14 @@
+{
+  "name": "Coastal Construction Services of Louisiana",
+  "short_name": "Coastal Construction",
+  "description": "Acadiana's dirt work specialists \u2014 site pads, ponds, culverts, levees, land leveling, clearing & demolition.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#dc2626",
+  "icons": [
+    { "src": "/images/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/images/logo-square.png", "sizes": "519x481", "type": "image/png" }
+  ]
+}

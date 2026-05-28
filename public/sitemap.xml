@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>https://coastalconstructionservicesofla.com/</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://coastalconstructionservicesofla.com/images/og-image.jpg</image:loc>
+            <image:title>Coastal Construction Services of Louisiana</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://coastalconstructionservicesofla.com/services.html</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://coastalconstructionservicesofla.com/images/og-image.jpg</image:loc>
+            <image:title>Coastal Construction Services of Louisiana</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://coastalconstructionservicesofla.com/contact.html</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://coastalconstructionservicesofla.com/images/og-image.jpg</image:loc>
+            <image:title>Coastal Construction Services of Louisiana</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://coastalconstructionservicesofla.com/about.html</loc>
+        <lastmod>2026-05-28</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+        <image:image>
+            <image:loc>https://coastalconstructionservicesofla.com/images/og-image.jpg</image:loc>
+            <image:title>Coastal Construction Services of Louisiana</image:title>
+        </image:image>
+    </url>
+</urlset>

@@ -1,27 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- ===================================================================
+     index.html  (homepage — see note about renaming coastal-construction.html)
+     Replace everything from <head> to </head> with the block below.
+     =================================================================== -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coastal Construction Services | Acadiana's Premier Dirt Work Specialists</title>
-    <meta name="description" content="Southern Louisiana's premier dirt work specialists. Site pads, pond construction, land leveling & more. Serving Acadiana for 15+ years. Free quotes: (337) 380-8091">
+
+    <!-- Primary meta -->
+    <title>Dirt Work &amp; Land Clearing in Acadiana, LA | Coastal Construction Services</title>
+    <meta name="description" content="Dirt work specialists serving Acadiana, LA — site pads, ponds, culverts, levees, land leveling, clearing &amp; demolition. Free quotes: (337) 380-8091">
+    <meta name="author" content="Coastal Construction Services of Louisiana">
+    <meta name="keywords" content="dirt work, site pads, pond construction, culvert installation, land leveling, land clearing, demolition, Acadiana, New Iberia, Lafayette, Louisiana">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://coastalconstructionservicesofla.com/">
+
+    <!-- Geo (local business) -->
+    <meta name="geo.region" content="US-LA">
+    <meta name="geo.placename" content="New Iberia">
+    <meta name="geo.position" content="30.0035;-91.8187">
+    <meta name="ICBM" content="30.0035, -91.8187">
+
+    <!-- Theme + icons -->
+    <meta name="theme-color" content="#dc2626">
     <link rel="icon" type="image/png" href="images/logo-square.png">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Coastal Construction Services of Louisiana">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://coastalconstructionservicesofla.com/">
+    <meta property="og:title" content="Dirt Work &amp; Land Clearing in Acadiana, LA | Coastal Construction Services">
+    <meta property="og:description" content="Acadiana&#x27;s dirt work specialists — site pads, ponds, culverts, land leveling, clearing &amp; demolition. Free quotes: (337) 380-8091">
+    <meta property="og:image" content="https://coastalconstructionservicesofla.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Coastal Construction Services of Louisiana — Acadiana dirt work specialists, (337) 380-8091">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dirt Work &amp; Land Clearing in Acadiana, LA | Coastal Construction Services">
+    <meta name="twitter:description" content="Acadiana&#x27;s dirt work specialists — site pads, ponds, culverts, land leveling, clearing &amp; demolition. Free quotes: (337) 380-8091">
+    <meta name="twitter:image" content="https://coastalconstructionservicesofla.com/images/og-image.jpg">
+    <meta name="twitter:image:alt" content="Coastal Construction Services of Louisiana logo and phone number">
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- LocalBusiness structured data -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "GeneralContractor",
+            "@id": "https://coastalconstructionservicesofla.com/#business",
+            "name": "Coastal Construction Services of Louisiana",
+            "image": "https://coastalconstructionservicesofla.com/images/og-image.jpg",
+            "logo": "https://coastalconstructionservicesofla.com/images/logo-square.png",
+            "url": "https://coastalconstructionservicesofla.com/",
+            "telephone": "+1-337-380-8091",
+            "email": "ccsofla@yahoo.com",
+            "priceRange": "$$",
+            "description": "Family-owned dirt work and excavation company serving the Acadiana region of Louisiana since 2014. Site pads, pond construction, culvert installation, levee creation, land leveling, material delivery, pasture clearing, bushhogging and demolition.",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "New Iberia",
+                "addressRegion": "LA",
+                "addressCountry": "US"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 30.0035,
+                "longitude": -91.8187
+            },
+            "areaServed": [
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Iberia Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Lafayette Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Acadia Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Vermilion Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "St. Martin Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "St. Landry Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Evangeline Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "Jefferson Davis Parish"
+                },
+                {
+                    "@type": "AdministrativeArea",
+                    "name": "St. Mary Parish"
+                }
+            ],
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday"
+                    ],
+                    "opens": "07:00",
+                    "closes": "18:00"
+                }
+            ],
+            "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Dirt Work Services",
+                "itemListElement": [
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Site Pads"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Pond Construction"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Culvert Installation"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Levee Creation"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Land Leveling"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Material Delivery"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Pasture Clearing"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Bushhogging"
+                        }
+                    },
+                    {
+                        "@type": "Offer",
+                        "itemOffered": {
+                            "@type": "Service",
+                            "name": "Demolition"
+                        }
+                    }
+                ]
+            }
+        }
+    </script>
 </head>
 <body>
 <!-- Navigation -->
 <nav>
     <div class="nav-brand">
-        <a href="coastal-construction.html">
+        <a href="index.html">
             <img src="images/logo-square.png" alt="Coastal Construction Logo" class="nav-logo-img">
         </a>
-        <a href="coastal-construction.html" class="nav-logo">
+        <a href="index.html" class="nav-logo">
             <span>COASTAL</span> CONSTRUCTION <span>SERVICES</span>
             <span class="nav-subtitle">of Louisiana</span>
         </a>
     </div>
     <ul class="nav-links">
-        <li><a href="coastal-construction.html" class="active">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="services.html">Services</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -333,7 +523,7 @@
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2024 Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.</p>
+    <p>&copy; <span id="year">2026</span> Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.</p>
 </footer>
 
 <!-- TEMPORARILY DISABLED - Interactive Reviews Scroll Script -->

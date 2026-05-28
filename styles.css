@@ -1930,3 +1930,73 @@ footer {
         font-size: 1.2rem;
     }
 }
+
+/* ============================================================
+   ACCESSIBILITY & MOTION
+   Paste this block at the very END of styles.css.
+   (Checklist §7 — skip link, focus rings, reduced motion)
+   ============================================================ */
+
+/* Skip-to-content link — must be the first focusable element on
+   each page. The matching HTML goes in just after <body>:
+   <a class="skip-link" href="#main">Skip to content</a>
+   ...and the main content of each page gets wrapped in
+   <main id="main"> ... </main>                                   */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2000;
+    background-color: #dc2626;
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+}
+
+/* Visible keyboard focus. Default ring is brand red (reads on the
+   dark + white sections). On red surfaces we switch to white so the
+   ring never disappears against its own background.               */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #dc2626;
+    outline-offset: 2px;
+}
+
+.cta-button:focus-visible,
+.cta-button-secondary:focus-visible,
+.submit-button:focus-visible,
+.method-button:focus-visible,
+.about-highlight a:focus-visible,
+.cta-section a:focus-visible,
+.transition-banner a:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* Respect users who ask the OS to reduce motion: kill the pulses,
+   hovers, transitions, and smooth-scroll.                          */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
