@@ -524,6 +524,72 @@
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
 <script>
+    window.addEventListener('load', function() {
+        const grid = document.querySelector('.portfolio-grid');
+        if (!grid) return;
+
+        const items = Array.from(grid.children);
+        if (!items.length) return;
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const noObserver = !('IntersectionObserver' in window);
+
+        function revealAll() {
+            items.forEach(item => item.classList.add('row-visible'));
+        }
+
+        if (reducedMotion || noObserver) {
+            revealAll();
+            return;
+        }
+
+        function groupByRow() {
+            const rows = new Map();
+            items.forEach(item => {
+                const top = Math.round(item.offsetTop);
+                if (!rows.has(top)) rows.set(top, []);
+                rows.get(top).push(item);
+            });
+            return Array.from(rows.values());
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            // Sort entries by vertical position so they reveal top-to-bottom
+            // when multiple cross the threshold in the same callback (common on mobile).
+            const visible = entries
+                .filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+            visible.forEach((entry, i) => {
+                setTimeout(() => {
+                    const row = entry.target._rowItems;
+                    row.forEach(item => item.classList.add('row-visible'));
+                }, i * 120); // 120ms stagger between rows revealed in the same batch
+                obs.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.05
+        });
+
+        const rows = groupByRow();
+        rows.forEach(row => {
+            const trigger = row[0];
+            trigger._rowItems = row;
+            observer.observe(trigger);
+        });
+
+        // Safety net.
+        setTimeout(() => {
+            items.forEach(item => {
+                if (!item.classList.contains('row-visible')) {
+                    item.classList.add('row-visible');
+                }
+            });
+        }, 5000);
+    });
+</script>
+
+<script>
     const reviewsScroll = document.querySelector('.reviews-scroll');
     let isDown = false;
     let startX;

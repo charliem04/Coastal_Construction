@@ -295,5 +295,64 @@
     <p>&copy; <span id="year">2026</span> Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.</p>
 </footer>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<script>
+    window.addEventListener('load', function() {
+        const sections = Array.from(document.querySelectorAll('.service-detail'));
+        if (!sections.length) return;
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const noObserver = !('IntersectionObserver' in window);
+
+        function revealAll() {
+            sections.forEach(s => s.classList.add('row-visible'));
+        }
+
+        if (reducedMotion || noObserver) {
+            revealAll();
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('row-visible');
+                obs.unobserve(entry.target);
+            });
+        }, {
+            rootMargin: '0px 0px -15% 0px',
+            threshold: 0.1
+        });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Fallback: the last sections on the page can't always scroll high enough
+        // to cross the rootMargin trigger line (the page bottom is reached first).
+        // When the user is within ~200px of the page bottom, reveal anything still hidden.
+        function checkNearBottom() {
+            const scrollPos = window.innerHeight + window.scrollY;
+            const pageHeight = document.documentElement.scrollHeight;
+            if (pageHeight - scrollPos < 200) {
+                sections.forEach(s => {
+                    if (!s.classList.contains('row-visible')) {
+                        s.classList.add('row-visible');
+                    }
+                });
+                window.removeEventListener('scroll', checkNearBottom);
+            }
+        }
+        window.addEventListener('scroll', checkNearBottom, { passive: true });
+        checkNearBottom(); // also check on load in case the page is short
+
+        // Safety net.
+        setTimeout(() => {
+            sections.forEach(s => {
+                if (!s.classList.contains('row-visible')) {
+                    s.classList.add('row-visible');
+                }
+            });
+        }, 5000);
+    });
+</script>
 </body>
 </html>
