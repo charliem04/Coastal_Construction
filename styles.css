@@ -1845,8 +1845,6 @@ footer {
         font-size: 1rem;
     }
 
-    /* Scrolling Reviews Mobile - TEMPORARILY DISABLED */
-    /*
     .reviews-scroll-container {
         padding: 2rem 0;
     }
@@ -1873,7 +1871,6 @@ footer {
     .review-author {
         font-size: 0.8rem;
     }
-    */
 
     .parish-label {
         font-size: 10px;
