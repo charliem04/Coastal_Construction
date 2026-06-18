@@ -97,6 +97,15 @@ nav {
     right: 0;
     height: 3px;
     background-color: #dc2626;
+    transform: scaleX(0);
+    transform-origin: center;
+    animation: nav-underline-expand 0.35s ease-out forwards;
+}
+
+@keyframes nav-underline-expand {
+    to {
+        transform: scaleX(1);
+    }
 }
 
 /* Hero Section */
@@ -198,6 +207,7 @@ nav {
     text-transform: uppercase;
     transition: all 0.3s ease;
     letter-spacing: 2px;
+    text-indent: 2px; /* compensates for trailing letter-spacing on last char */
 }
 
 .cta-button:hover {
@@ -1782,6 +1792,7 @@ footer {
     .service-cta-buttons .cta-button,
     .service-cta-buttons .cta-button-outline {
         width: 100%;
+        text-align: center;
     }
 
     /* Service Area Callout Mobile */
