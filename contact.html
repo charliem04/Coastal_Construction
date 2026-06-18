@@ -228,7 +228,7 @@
             <h3>RESPONSE TIME</h3>
             <p class="info-detail">Phone Calls: Same Day</p>
             <p class="info-detail">Email/Forms: Within 24 Hours</p>
-            
+
         </div>
     </div>
 
@@ -253,11 +253,13 @@
         </div>
 
         <div class="info-card">
-            <h3>EMERGENCY SERVICES</h3>
-            <p class="info-detail">24/7 emergency response available</p>
-            <p class="info-detail">Storm damage assistance</p>
-            <p class="info-detail">Drainage emergencies</p>
-            <p class="info-detail">Call anytime: <a href="tel:+13373808091" style="color: #dc2626; text-decoration: none;">(337) 380-8091</a></p>
+            <h3>EQUIPMENT &amp; CAPABILITIES</h3>
+            <p class="info-detail">Excavators &amp; bulldozers</p>
+            <p class="info-detail">Dump trucks &amp; haul trailers</p>
+            <p class="info-detail">GPS-guided land leveling</p>
+            <p class="info-detail">Heavy-duty bushhogs</p>
+            <p class="info-detail">Skid steers &amp; compact loaders</p>
+            <p class="info-detail">Fully licensed &amp; insured</p>
         </div>
     </div>
 </section>
@@ -307,66 +309,95 @@
     });
 </script>
 
-<!-- Contact Form Handler -->
+<!-- Contact Form Handler — Web3Forms AJAX submit -->
 <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    (function () {
+        const form     = document.getElementById('contactForm');
+        const status   = document.getElementById('formStatus');
+        const submit   = form.querySelector('.submit-button');
+        const ENDPOINT = 'https://api.web3forms.com/submit';
 
-        // Get form data
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
-
-        // Create email body
-        const emailBody = `
-    New Contact Form Submission from Coastal Construction Website
-
-    Contact Information:
-    --------------------
-    Name: ${data.fullName}
-    Phone: ${data.phone}
-    Email: ${data.email}
-
-    Project Details:
-    ---------------
-    Service Needed: ${data.service}
-    Timeline: ${data.timeline}
-    Location: ${data.location || 'Not specified'}
-
-    Project Description:
-    -------------------
-    ${data.projectDescription}
-
-    ---
-    This message was sent from the Coastal Construction Services contact form.
-        `.trim();
-
-        // For now, create a mailto link (you'll replace this with server-side email handling)
-        const mailtoLink = `mailto:ccsofla@yahoo.com?subject=New%20Quote%20Request%20from%20${encodeURIComponent(data.fullName)}&body=${encodeURIComponent(emailBody)}`;
-
-        // Show success message
-        alert('Thank you for your inquiry! We will contact you within 24 hours.\n\nNote: Your email client will now open to send the request.');
-
-        // Open email client
-        window.location.href = mailtoLink;
-
-        // Reset form
-        this.reset();
-    });
-
-    // Phone number formatting
-    document.getElementById('phone').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 0) {
-            if (value.length <= 3) {
-                value = `(${value}`;
-            } else if (value.length <= 6) {
-                value = `(${value.slice(0,3)}) ${value.slice(3)}`;
-            } else {
-                value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
-            }
+        function setStatus(state, message) {
+            status.className = 'form-status form-status--' + state;
+            status.textContent = message;
         }
-        e.target.value = value;
-    });
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Honeypot — if a bot checked the hidden box, silently "succeed" and bail.
+            if (form.botcheck && form.botcheck.checked) {
+                setStatus('success', 'Thanks — we got your request and will be in touch soon.');
+                form.reset();
+                return;
+            }
+
+            // Build the payload. FormData → plain object → JSON keeps Web3Forms happy
+            // and lets us add a nicely formatted "message" field for the email body.
+            const data = Object.fromEntries(new FormData(form));
+
+            data.message = [
+                'New quote request from the Coastal Construction website',
+                '',
+                'CONTACT',
+                '-------',
+                'Name:    ' + (data.fullName || ''),
+                'Phone:   ' + (data.phone    || ''),
+                'Email:   ' + (data.email    || ''),
+                '',
+                'PROJECT',
+                '-------',
+                'Service:  ' + (data.service  || ''),
+                'Timeline: ' + (data.timeline || ''),
+                'Location: ' + (data.location || 'Not specified'),
+                '',
+                'Details:',
+                (data.projectDescription || '(none provided)')
+            ].join('\n');
+
+            // UI: sending state
+            submit.disabled = true;
+            const originalLabel = submit.textContent;
+            submit.textContent = 'SENDING…';
+            setStatus('sending', 'Sending your request…');
+
+            try {
+                const res = await fetch(ENDPOINT, {
+                    method:  'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept':       'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await res.json().catch(() => ({}));
+
+                if (res.ok && result.success) {
+                    setStatus('success', '✓ Thanks — we got your request and will be in touch within 24 hours. For emergencies, call (337) 380-8091.');
+                    form.reset();
+                    // Scroll status into view so the confirmation is visible after reset
+                    status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    setStatus('error', (result && result.message) || 'Something went wrong sending your request. Please call us at (337) 380-8091 or email ccsofla@yahoo.com.');
+                }
+            } catch (err) {
+                setStatus('error', 'Network error — please check your connection and try again, or call us at (337) 380-8091.');
+            } finally {
+                submit.disabled = false;
+                submit.textContent = originalLabel;
+            }
+        });
+
+        // Phone number auto-formatting: (337) 380-8091
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '').slice(0, 10);
+            if (value.length === 0)      { e.target.value = ''; return; }
+            if (value.length <= 3)       { e.target.value = '(' + value; return; }
+            if (value.length <= 6)       { e.target.value = '(' + value.slice(0, 3) + ') ' + value.slice(3); return; }
+            e.target.value = '(' + value.slice(0, 3) + ') ' + value.slice(3, 6) + '-' + value.slice(6, 10);
+        });
+    })();
 </script>
 </body>
 </html>

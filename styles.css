@@ -1995,3 +1995,46 @@ textarea:focus-visible {
         scroll-behavior: auto !important;
     }
 }
+
+/* ============================================================
+   CONTACT FORM — STATUS MESSAGES
+   Append to the end of styles.css. Used by the Web3Forms
+   submit handler in contact.html to show sending / success /
+   error feedback inline under the submit button.
+   ============================================================ */
+
+.form-status {
+    margin-top: 1.25rem;
+    padding: 1rem 1.25rem;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: left;
+    border-left: 4px solid transparent;
+    display: none; /* hidden until a state class is added */
+}
+
+.form-status--sending,
+.form-status--success,
+.form-status--error {
+    display: block;
+}
+
+.form-status--sending {
+    background-color: #1a1a1a;
+    color: #d1d5db;
+    border-left-color: #9ca3af;
+}
+
+.form-status--success {
+    background-color: rgba(34, 197, 94, 0.12);
+    color: #ffffff;
+    border-left-color: #22c55e;
+}
+
+.form-status--error {
+    background-color: rgba(220, 38, 38, 0.15);
+    color: #ffffff;
+    border-left-color: #dc2626;
+}
