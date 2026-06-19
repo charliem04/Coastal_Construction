@@ -48,8 +48,76 @@
     <meta name="twitter:image:alt" content="Coastal Construction Services of Louisiana logo and phone number">
 
     <link rel="stylesheet" href="styles.css">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Do you charge for estimates?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No — all project estimates are free. We'll come out, look at the site, and give you a written quote at no cost."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What parishes do you serve?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Our primary service area is Iberia, Lafayette, Acadia, Vermilion, and St. Martin parishes. We also handle projects in St. Landry, Evangeline, Jeff Davis, and St. Mary parishes — call to confirm we cover your location."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How quickly can you start a project?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It depends on the season and our current workload, but most projects can be scheduled within 1–3 weeks of an accepted quote. Emergency situations are handled as quickly as we can get equipment on site."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Are you licensed and insured?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes — we're fully licensed and insured for all the dirt work services we provide. Documentation is available on request."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I need a permit for my project?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "It depends on the parish, the scope of work, and whether you're near drainage or in a regulated zone. Ponds, levees, and culverts often require permits. We can guide you on what's typically needed, but you'll need to check with your parish for the final word."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How is pricing determined?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Most jobs are priced based on scope, access, material volume, and equipment time. We give you a written estimate before any work starts so there are no surprises."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do you handle small residential jobs or only commercial?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Both. We do everything from a single residential pad or driveway culvert to large commercial site prep. No job is too small."
+                    }
+                }
+            ]
+        }
+    </script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
 <!-- Navigation -->
 <nav>
     <div class="nav-brand">
@@ -68,201 +136,248 @@
     </ul>
 </nav>
 
-<!-- Page Header -->
-<section class="page-header">
-    <h1>GET IN <span style="color: #dc2626;">TOUCH</span></h1>
-    <p>Let's discuss your project and bring your vision to life</p>
-</section>
+<main id="main">
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>GET IN <span style="color: #dc2626;">TOUCH</span></h1>
+        <p>Let's discuss your project and bring your vision to life</p>
+    </section>
 
-<!-- Contact Methods Section -->
-<section class="contact-methods">
-    <div class="contact-methods-grid">
-        <!-- Book a Call -->
-        <div class="contact-method-card">
-            <div class="contact-method-icon">📞</div>
-            <h3>BOOK A CALL</h3>
-            <p>Schedule a convenient time for a phone consultation with our team</p>
-            <button class="method-button" data-cal-link="coastal-construction-services/phone-consultation" data-cal-config='{"layout":"month_view"}'>Book Now</button>
-        </div>
-
-        <!-- Send a Message -->
-        <div class="contact-method-card">
-            <div class="contact-method-icon">✉️</div>
-            <h3>SEND A MESSAGE</h3>
-            <p>Fill out our contact form below and we'll get back to you within 24 hours</p>
-            <a href="#contact-form" class="method-button">Send Message</a>
-        </div>
-
-        <!-- Schedule a Meeting -->
-        <div class="contact-method-card">
-            <div class="contact-method-icon">📅</div>
-            <h3>SCHEDULE A MEETING</h3>
-            <p>Book an in-person or virtual meeting to discuss your project in detail</p>
-            <button class="method-button" data-cal-link="coastal-construction-services/meeting" data-cal-config='{"layout":"month_view"}'>Schedule Meeting</button>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Form Section -->
-<!-- =====================================================================
-     REQUEST A QUOTE form  —  ported from the React/Tailwind version to
-     pure HTML and restyled to match Coastal Construction's design system
-     (reuses your existing .contact-form / .form-group / .form-row classes).
-
-     Web3Forms access key is already wired in. Leads go to the inbox tied
-     to that key. No backend, no build step.
-
-     HOW TO APPLY (contact.html):
-       1. Replace the existing  <section class="contact-form-section" ...>...</section>
-          with the SECTION block below.
-       2. Replace the old "Contact Form Handler" <script> with the SCRIPT block below.
-       3. Add the small CSS block to styles.css (once).
-     This supersedes the earlier contact-form-web3forms.html.
-     ===================================================================== -->
-
-
-<!-- ----- SECTION (replace the whole contact-form-section) ---------------- -->
-<section class="contact-form-section" id="contact-form">
-    <div class="form-container">
-        <div class="form-header">
-            <h2>REQUEST A <span style="color: #dc2626;">QUOTE</span></h2>
-            <p>Fill out the form below and we'll get back to you within 24 hours.</p>
-        </div>
-
-        <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-
-            <!-- Web3Forms config -->
-            <input type="hidden" name="access_key" value="d6b5e151-646d-43cd-8c0c-52bd92ed4fb9">
-            <input type="hidden" name="subject" value="New Quote Request — Coastal Construction Website">
-            <input type="hidden" name="from_name" value="Coastal Construction Website">
-            <!-- Honeypot: hidden from people, catches bots -->
-            <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="fullName">Full Name *</label>
-                    <input type="text" id="fullName" name="fullName" required maxlength="100" placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required maxlength="254" placeholder="john.doe@email.com">
-                </div>
+    <!-- Contact Methods Section -->
+    <section class="contact-methods">
+        <div class="contact-methods-grid">
+            <!-- Book a Call -->
+            <div class="contact-method-card">
+                <div class="contact-method-icon">📞</div>
+                <h3>BOOK A CALL</h3>
+                <p>Schedule a convenient time for a phone consultation with our team</p>
+                <button class="method-button" data-cal-link="coastal-construction-services/phone-consultation" data-cal-config='{"layout":"month_view"}'>Book Now</button>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="phone">Phone Number *</label>
-                    <input type="tel" id="phone" name="phone" required maxlength="30" placeholder="(337) 123-4567">
-                </div>
-                <div class="form-group">
-                    <label for="service">Service Needed *</label>
-                    <select id="service" name="service" required>
-                        <option value="">Select a service...</option>
-                        <option value="Site Pads">Site Pads</option>
-                        <option value="Pond Construction">Pond Construction</option>
-                        <option value="Culvert Installation">Culvert Installation</option>
-                        <option value="Levee Creation">Levee Creation</option>
-                        <option value="Land Leveling">Land Leveling</option>
-                        <option value="Material Delivery">Material Delivery</option>
-                        <option value="Pasture Clearing">Pasture Clearing</option>
-                        <option value="Bushhogging">Bushhogging</option>
-                        <option value="Demolition">Demolition</option>
-                        <option value="Multiple Services">Multiple Services</option>
-                        <option value="Other / Not Sure">Other / Not Sure</option>
-                    </select>
-                </div>
+            <!-- Send a Message -->
+            <div class="contact-method-card">
+                <div class="contact-method-icon">✉️</div>
+                <h3>SEND A MESSAGE</h3>
+                <p>Fill out our contact form below and we'll get back to you within 24 hours</p>
+                <a href="#contact-form" class="method-button">Send Message</a>
             </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="timeline">When Do You Need Service? *</label>
-                    <select id="timeline" name="timeline" required>
-                        <option value="">Select timeline...</option>
-                        <option value="Emergency - ASAP">Emergency - ASAP</option>
-                        <option value="Urgent (1-2 weeks)">Urgent (Within 1-2 weeks)</option>
-                        <option value="Soon (within 1 month)">Soon (Within 1 month)</option>
-                        <option value="Flexible (1-3 months)">Flexible (1-3 months)</option>
-                        <option value="Just planning ahead">Just Planning Ahead</option>
-                    </select>
+            <!-- Schedule a Meeting -->
+            <div class="contact-method-card">
+                <div class="contact-method-icon">📅</div>
+                <h3>SCHEDULE A MEETING</h3>
+                <p>Book an in-person or virtual meeting to discuss your project in detail</p>
+                <button class="method-button" data-cal-link="coastal-construction-services/meeting" data-cal-config='{"layout":"month_view"}'>Schedule Meeting</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <!-- =====================================================================
+         REQUEST A QUOTE form  —  ported from the React/Tailwind version to
+         pure HTML and restyled to match Coastal Construction's design system
+         (reuses your existing .contact-form / .form-group / .form-row classes).
+
+         Web3Forms access key is already wired in. Leads go to the inbox tied
+         to that key. No backend, no build step.
+
+         HOW TO APPLY (contact.html):
+           1. Replace the existing  <section class="contact-form-section" ...>...</section>
+              with the SECTION block below.
+           2. Replace the old "Contact Form Handler" <script> with the SCRIPT block below.
+           3. Add the small CSS block to styles.css (once).
+         This supersedes the earlier contact-form-web3forms.html.
+         ===================================================================== -->
+
+
+    <!-- ----- SECTION (replace the whole contact-form-section) ---------------- -->
+    <section class="contact-form-section" id="contact-form">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>REQUEST A <span style="color: #dc2626;">QUOTE</span></h2>
+                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+
+            <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+                <!-- Web3Forms config -->
+                <input type="hidden" name="access_key" value="d6b5e151-646d-43cd-8c0c-52bd92ed4fb9">
+                <input type="hidden" name="subject" value="New Quote Request — Coastal Construction Website">
+                <input type="hidden" name="from_name" value="Coastal Construction Website">
+                <!-- Honeypot: hidden from people, catches bots -->
+                <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required maxlength="100" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required maxlength="254" placeholder="john.doe@email.com">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="location">Project Location</label>
-                    <input type="text" id="location" name="location" maxlength="100" placeholder="City or Parish">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required maxlength="30" placeholder="(337) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Needed *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service...</option>
+                            <option value="Site Pads">Site Pads</option>
+                            <option value="Pond Construction">Pond Construction</option>
+                            <option value="Culvert Installation">Culvert Installation</option>
+                            <option value="Levee Creation">Levee Creation</option>
+                            <option value="Land Leveling">Land Leveling</option>
+                            <option value="Material Delivery">Material Delivery</option>
+                            <option value="Pasture Clearing">Pasture Clearing</option>
+                            <option value="Bushhogging">Bushhogging</option>
+                            <option value="Demolition">Demolition</option>
+                            <option value="Multiple Services">Multiple Services</option>
+                            <option value="Other / Not Sure">Other / Not Sure</option>
+                        </select>
+                    </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="timeline">When Do You Need Service? *</label>
+                        <select id="timeline" name="timeline" required>
+                            <option value="">Select timeline...</option>
+                            <option value="Emergency - ASAP">Emergency - ASAP</option>
+                            <option value="Urgent (1-2 weeks)">Urgent (Within 1-2 weeks)</option>
+                            <option value="Soon (within 1 month)">Soon (Within 1 month)</option>
+                            <option value="Flexible (1-3 months)">Flexible (1-3 months)</option>
+                            <option value="Just planning ahead">Just Planning Ahead</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Project Location</label>
+                        <input type="text" id="location" name="location" maxlength="100" placeholder="City or Parish">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectDescription">Additional Details</label>
+                    <textarea id="projectDescription" name="projectDescription" rows="5" maxlength="2000"
+                              placeholder="Tell us about your project, access, and any specific requirements..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">SUBMIT REQUEST</button>
+                    <p class="form-disclaimer">We'll review your request and contact you within 24 hours</p>
+                    <!-- Inline confirmation / error (aria-live announces it to screen readers) -->
+                    <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Additional Info Section -->
+    <section class="contact-info-section">
+        <div class="info-container">
+            <div class="info-card">
+                <h3>CONTACT INFORMATION</h3>
+                <p class="info-detail"><strong>Phone:</strong> <a href="tel:+13373808091" style="color: #dc2626; text-decoration: none;">(337) 380-8091</a></p>
+                <p class="info-detail"><strong>Email:</strong> <a href="mailto:ccsofla@yahoo.com" style="color: #dc2626; text-decoration: none;">ccsofla@yahoo.com</a></p>
+                <p class="info-detail"><strong>Service Area:</strong> Acadiana Region, LA</p>
             </div>
 
-            <div class="form-group">
-                <label for="projectDescription">Additional Details</label>
-                <textarea id="projectDescription" name="projectDescription" rows="5" maxlength="2000"
-                          placeholder="Tell us about your project, access, and any specific requirements..."></textarea>
+            <div class="info-card">
+                <h3>BUSINESS HOURS</h3>
+                <p class="info-detail">Monday - Friday: 7:00 AM - 6:00 PM</p>
+                <p class="info-detail">Saturday: N/A</p>
+                <p class="info-detail">Sunday: N/A</p>
             </div>
 
-            <div class="form-actions">
-                <button type="submit" class="submit-button">SUBMIT REQUEST</button>
-                <p class="form-disclaimer">We'll review your request and contact you within 24 hours</p>
-                <!-- Inline confirmation / error (aria-live announces it to screen readers) -->
-                <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+            <div class="info-card">
+                <h3>RESPONSE TIME</h3>
+                <p class="info-detail">Phone Calls: Same Day</p>
+                <p class="info-detail">Email/Forms: Within 24 Hours</p>
+
             </div>
-        </form>
-    </div>
-</section>
-
-<!-- Additional Info Section -->
-<section class="contact-info-section">
-    <div class="info-container">
-        <div class="info-card">
-            <h3>CONTACT INFORMATION</h3>
-            <p class="info-detail"><strong>Phone:</strong> <a href="tel:+13373808091" style="color: #dc2626; text-decoration: none;">(337) 380-8091</a></p>
-            <p class="info-detail"><strong>Email:</strong> <a href="mailto:ccsofla@yahoo.com" style="color: #dc2626; text-decoration: none;">ccsofla@yahoo.com</a></p>
-            <p class="info-detail"><strong>Service Area:</strong> Acadiana Region, LA</p>
         </div>
 
-        <div class="info-card">
-            <h3>BUSINESS HOURS</h3>
-            <p class="info-detail">Monday - Friday: 7:00 AM - 6:00 PM</p>
-            <p class="info-detail">Saturday: N/A</p>
-            <p class="info-detail">Sunday: N/A</p>
-        </div>
+        <div class="info-container" style="margin-top: 2rem;">
+            <div class="info-card">
+                <h3>SERVICE COVERAGE</h3>
+                <p class="info-detail">Lafayette Parish</p>
+                <p class="info-detail">Acadia Parish</p>
+                <p class="info-detail">Vermilion Parish</p>
+                <p class="info-detail">St. Martin Parish</p>
+                <p class="info-detail">Iberia Parish</p>
+                <p class="info-detail">And Surrounding Areas</p>
+            </div>
 
-        <div class="info-card">
-            <h3>RESPONSE TIME</h3>
-            <p class="info-detail">Phone Calls: Same Day</p>
-            <p class="info-detail">Email/Forms: Within 24 Hours</p>
+            <div class="info-card">
+                <h3>WHAT TO EXPECT</h3>
+                <p class="info-detail">Free project consultation</p>
+                <p class="info-detail">Detailed written estimates</p>
+                <p class="info-detail">Professional assessment</p>
+                <p class="info-detail">Timeline and cost breakdown</p>
+                <p class="info-detail">Licensed and insured service</p>
+            </div>
 
+            <div class="info-card">
+                <h3>EQUIPMENT &amp; CAPABILITIES</h3>
+                <p class="info-detail">Excavators &amp; bulldozers</p>
+                <p class="info-detail">Dump trucks &amp; haul trailers</p>
+                <p class="info-detail">GPS-guided land leveling</p>
+                <p class="info-detail">Heavy-duty bushhogs</p>
+                <p class="info-detail">Skid steers &amp; compact loaders</p>
+                <p class="info-detail">Fully licensed &amp; insured</p>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="info-container" style="margin-top: 2rem;">
-        <div class="info-card">
-            <h3>SERVICE COVERAGE</h3>
-            <p class="info-detail">Lafayette Parish</p>
-            <p class="info-detail">Acadia Parish</p>
-            <p class="info-detail">Vermilion Parish</p>
-            <p class="info-detail">St. Martin Parish</p>
-            <p class="info-detail">Iberia Parish</p>
-            <p class="info-detail">And Surrounding Areas</p>
-        </div>
+    <!-- FAQ Section -->
+    <section class="contact-info-section" style="background-color: #1a1a1a;">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>FREQUENTLY ASKED <span style="color: #dc2626;">QUESTIONS</span></h2>
+                <p>Quick answers to what folks usually want to know before calling</p>
+            </div>
 
-        <div class="info-card">
-            <h3>WHAT TO EXPECT</h3>
-            <p class="info-detail">Free project consultation</p>
-            <p class="info-detail">Detailed written estimates</p>
-            <p class="info-detail">Professional assessment</p>
-            <p class="info-detail">Timeline and cost breakdown</p>
-            <p class="info-detail">Licensed and insured service</p>
-        </div>
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>Do you charge for estimates?</h3>
+                <p class="info-detail">No — all project estimates are free. We'll come out, look at the site, and give you a written quote at no cost.</p>
+            </div>
 
-        <div class="info-card">
-            <h3>EQUIPMENT &amp; CAPABILITIES</h3>
-            <p class="info-detail">Excavators &amp; bulldozers</p>
-            <p class="info-detail">Dump trucks &amp; haul trailers</p>
-            <p class="info-detail">GPS-guided land leveling</p>
-            <p class="info-detail">Heavy-duty bushhogs</p>
-            <p class="info-detail">Skid steers &amp; compact loaders</p>
-            <p class="info-detail">Fully licensed &amp; insured</p>
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>What parishes do you serve?</h3>
+                <p class="info-detail">Our primary service area is Iberia, Lafayette, Acadia, Vermilion, and St. Martin parishes. We also handle projects in St. Landry, Evangeline, Jeff Davis, and St. Mary parishes — call to confirm we cover your location.</p>
+            </div>
+
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>How quickly can you start a project?</h3>
+                <p class="info-detail">It depends on the season and our current workload, but most projects can be scheduled within 1–3 weeks of an accepted quote. Emergency situations are handled as quickly as we can get equipment on site.</p>
+            </div>
+
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>Are you licensed and insured?</h3>
+                <p class="info-detail">Yes — we're fully licensed and insured for all the dirt work services we provide. Documentation is available on request.</p>
+            </div>
+
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>Do I need a permit for my project?</h3>
+                <p class="info-detail">It depends on the parish, the scope of work, and whether you're near drainage or in a regulated zone. Ponds, levees, and culverts often require permits. We can guide you on what's typically needed, but you'll need to check with your parish for the final word.</p>
+            </div>
+
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>How is pricing determined?</h3>
+                <p class="info-detail">Most jobs are priced based on scope, access, material volume, and equipment time. We give you a written estimate before any work starts so there are no surprises.</p>
+            </div>
+
+            <div class="info-card" style="margin-bottom: 1.5rem; text-align: left;">
+                <h3>Do you handle small residential jobs or only commercial?</h3>
+                <p class="info-detail">Both. We do everything from a single residential pad or driveway culvert to large commercial site prep. No job is too small.</p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
 <!-- Footer -->
 <footer>
