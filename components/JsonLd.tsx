@@ -14,8 +14,8 @@
  *
  * Built only from client.config.ts and content/ — nothing interpolated
  * from a URL, form or API — which is what makes dangerouslySetInnerHTML
- * safe here (scripts/csp.mjs relies on it). Reviews are deliberately
- * left out: see content/reviews.ts.
+ * safe here (scripts/csp.mjs relies on it). Reviews (and an
+ * AggregateRating) come later, from Google: see content/reviews.ts.
  */
 import { client } from "@/client.config";
 import { allParishes } from "@/content/serviceAreas";
@@ -55,11 +55,12 @@ export function JsonLd({ page }: { page: PageKey }) {
     founder: { "@id": ids.founder },
     address: {
       "@type": "PostalAddress",
+      streetAddress: client.address.street,
+      postalCode: client.address.postalCode,
       addressLocality: client.address.city,
       addressRegion: client.address.region,
       addressCountry: client.address.country,
     },
-    geo: { "@type": "GeoCoordinates", latitude: client.geo.latitude, longitude: client.geo.longitude },
     areaServed: allParishes.map((name) => ({ "@type": "AdministrativeArea", name: `${name}, Louisiana` })),
     openingHoursSpecification: client.hours.map((h) => ({
       "@type": "OpeningHoursSpecification",

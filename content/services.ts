@@ -18,13 +18,10 @@
  *  only drift was alt text (the home cards said "Site Pads", the services
  *  page "Site Pad Construction", etc.) — both are kept, per page.
  *
- *  TODO(charlie): two claims to confirm with the client, both carried
- *  over as written —
- *    · Land leveling says "GPS-guided equipment" in its copy but "Laser
- *      precision grading" in its list. Which (or both) is the rig?
- *    · Site pads say pads meet "all local building codes and engineering
- *      specifications" and are "code-compliant"; levees are "built to
- *      Louisiana standards". Fine if true; worth a yes from the owner.
+ *  Confirmed with the owner, Nov 2026: the land-leveling rig is laser-
+ *  guided (the old copy said "GPS-guided" in two places; now "laser-
+ *  guided", matching the "Laser precision grading" bullet), and the
+ *  code-compliance claims for site pads and levees stand.
  * ════════════════════════════════════════════════════════════════════
  */
 import type { Service } from "./types";
@@ -134,7 +131,7 @@ export const services: Service[] = [
     name: "Land Leveling",
     blurb: "Precision grading and preparation",
     body: [
-      "Precision land leveling is essential for proper drainage, construction preparation, and agricultural use. We use advanced GPS-guided equipment to achieve exact grades and slopes, ensuring your land is perfectly prepared for its intended purpose.",
+      "Precision land leveling is essential for proper drainage, construction preparation, and agricultural use. We use advanced laser-guided equipment to achieve exact grades and slopes, ensuring your land is perfectly prepared for its intended purpose.",
       "Whether you're preparing land for building, farming, or improving drainage, our land leveling services create the optimal foundation. We handle projects of all sizes, from residential lots to large agricultural fields, with the same attention to detail and precision.",
     ],
     features: [
@@ -150,7 +147,7 @@ export const services: Service[] = [
     inDropdown: true,
     schema: {
       name: "Land Leveling",
-      description: "GPS-guided precision land leveling for construction, agriculture, and drainage improvement.",
+      description: "Laser-guided precision land leveling for construction, agriculture, and drainage improvement.",
     },
   },
   {

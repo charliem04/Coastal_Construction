@@ -81,6 +81,10 @@ export default function ContactPage() {
               <strong>{info.contact.email}</strong> <a href={`mailto:${client.email}`}>{client.email}</a>
             </p>
             <p className="info-detail">
+              <strong>{info.contact.address}</strong> {client.address.street}, {client.address.city},{" "}
+              {client.address.region} {client.address.postalCode}
+            </p>
+            <p className="info-detail">
               <strong>{info.contact.area}</strong> {info.contact.areaValue}
             </p>
           </div>

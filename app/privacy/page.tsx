@@ -9,8 +9,9 @@ import { phoneDisplay, phoneHref } from "@/lib/phone";
  * Web3Forms and emailed to the office; Cal.com for booking; a Google Maps
  * embed; no cookies or analytics of our own.
  *
- * TODO(charlie): a plain-language starting point, not legal advice —
- * have the client read and approve it before launch.
+ * Approved by the client, Nov 2026. Update it whenever the site starts
+ * collecting anything new. (Google reviews, when added, are fetched at
+ * build time and collect nothing from visitors.)
  */
 
 export const metadata: Metadata = {

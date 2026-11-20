@@ -31,10 +31,8 @@ export const client = {
   copyrightYear: 2026,
 
   /**
-   * TODO(charlie): the old site says 2014 in three places (about page
-   * copy, about title, home JSON-LD) but "15+ Years Experience" in the
-   * home stats — 2014 is 12 years. Both are kept as written; one of them
-   * is wrong, or "15+" counts the owner's years before founding.
+   * Founded 2014. "15+ Years Experience" in the home stats is the
+   * owner's experience, which predates the company (confirmed Nov 2026).
    */
   foundingYear: 2014,
 
@@ -122,19 +120,24 @@ export const client = {
   email: "ccsofla@yahoo.com",
 
   /**
-   * Home base. The old site gives a town, not a street — so schema
-   * carries a locality only, and the page never shows an address.
-   * TODO(charlie): if there's a yard or office customers can visit, its
-   * street address (and a Google Business Profile link) would
-   * strengthen local search noticeably.
+   * The business address (confirmed Nov 2026). Shown on the contact page
+   * and in the structured data. Keep it identical to the Google Business
+   * Profile, letter for letter — that consistency is what local search
+   * rewards.
+   *
+   * The old site's geo coordinates (30.0035, -91.8187) were the centre
+   * of New Iberia, not this address, so they were dropped rather than
+   * published as if they were the yard. Search engines geocode the
+   * street address themselves.
    */
   address: {
+    street: "5303 Old LA 25, Lot 2",
     city: "New Iberia",
     region: "LA",
+    regionName: "Louisiana",
+    postalCode: "70560",
     country: "US",
   },
-  /** From the old geo meta tags and JSON-LD: central New Iberia. */
-  geo: { latitude: 30.0035, longitude: -91.8187 },
 
   /** Contact page's "Business Hours" card, and the schema. */
   hours: [
@@ -219,17 +222,14 @@ export const client = {
       ],
       highlightHeading: "BUILT ON EXCELLENCE",
       /**
-       * TODO(charlie): confirm each figure with the owner.
-       *   500+ Projects     — unverified.
-       *   100% Satisfaction — unverifiable as written.
-       *   15+ Years         — founded 2014 (see foundingYear).
-       *   24/7 Support      — hours are Mon–Fri 7–6, Sat/Sun "N/A".
+       * Confirmed by the owner, Nov 2026. "24/7 Support" was removed: the
+       * business keeps Mon–Fri 7–6 hours. With three figures the last one
+       * sits centred under the first two (app/globals.css, .stats).
        */
       stats: [
         { number: "500+", label: "Projects" },
         { number: "100%", label: "Satisfaction" },
         { number: "15+", label: "Years Experience" },
-        { number: "24/7", label: "Support" },
       ],
       reviewsLabel: "Customer reviews",
     },
@@ -368,6 +368,7 @@ export const client = {
         title: "CONTACT INFORMATION",
         phone: "Phone:",
         email: "Email:",
+        address: "Address:",
         area: "Service Area:",
         areaValue: "Acadiana Region, LA",
       },
@@ -393,12 +394,12 @@ export const client = {
       },
       equipment: {
         title: "EQUIPMENT & CAPABILITIES",
-        // TODO(charlie): confirm the equipment list and "Fully licensed &
-        // insured" (see content/faqs.ts) with the owner.
+        // Equipment confirmed Nov 2026 (the leveling rig is laser-guided,
+        // not GPS). TODO(charlie): "Fully licensed & insured" — see content/faqs.ts.
         lines: [
           "Excavators & bulldozers",
           "Dump trucks & haul trailers",
-          "GPS-guided land leveling",
+          "Laser-guided land leveling",
           "Heavy-duty bushhogs",
           "Skid steers & compact loaders",
           "Fully licensed & insured",

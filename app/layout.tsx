@@ -23,8 +23,6 @@ export const metadata: Metadata = {
   other: {
     "geo.region": `US-${client.address.region}`,
     "geo.placename": client.address.city,
-    "geo.position": `${client.geo.latitude};${client.geo.longitude}`,
-    ICBM: `${client.geo.latitude}, ${client.geo.longitude}`,
   },
 };
 

@@ -1,46 +1,23 @@
 /**
  * The review ribbon under "Why choose Coastal?" on the home page.
  *
- * Moved verbatim from index.html, where the six were written out twice
- * so the ribbon could loop (components/Reviews renders the list twice
- * instead). The hand-copied second set had drifted in one place —
- * Robert L.'s "Professional work" became "Professional team" — the first
- * spelling is kept.
+ * Empty on purpose: the placeholder testimonials that were here are gone
+ * (Nov 2026, at the owner's request), and components/Reviews renders
+ * nothing for an empty list, so the ribbon is simply absent.
  *
- * TODO(charlie): these need confirming as real customer reviews before
- * launch — the TODO list still has "reviews from previous customers"
- * open, which suggests these are placeholders. Published testimonials
- * that aren't real are an FTC problem (16 CFR Part 465, in force since
- * Oct 2024), not just a style one. They are deliberately NOT in the
- * structured data. If they aren't real, delete the records and the
- * ribbon disappears on its own (Reviews renders nothing for an empty
- * list).
+ * NEXT: fill this from the business's Google reviews. Plan:
+ *   · a Google Places API (New) key in .env.local (GOOGLE_PLACES_KEY —
+ *     no NEXT_PUBLIC_ prefix, so it stays on the build machine) and the
+ *     Business Profile's place ID in client.config.ts;
+ *   · fetch the reviews AT BUILD TIME (a small script before `next build`,
+ *     like scripts/images.mjs) and write them into this list, so the
+ *     visitor's browser never calls Google and the CSP stays as it is;
+ *   · show each review's author and rating as Google returns them, link
+ *     to the Google listing (Google's attribution rules require it), and
+ *     only then add AggregateRating to the structured data.
+ * The ribbon's look and behaviour (components/Reviews, .review-card in
+ * app/globals.css) is kept for that.
  */
 import type { Review } from "./types";
 
-export const reviews: Review[] = [
-  {
-    quote: "Excellent work on our pond construction. Professional, on-time, and exceeded our expectations!",
-    author: "Mike T., Lafayette",
-  },
-  {
-    quote: "Best dirt work company in Acadiana. They leveled our property perfectly for our new home.",
-    author: "Sarah M., New Iberia",
-  },
-  {
-    quote: "Great service! They cleared 5 acres for us and the price was very fair. Highly recommend!",
-    author: "John D., Abbeville",
-  },
-  {
-    quote: "Professional work, quality equipment, and excellent results. Will definitely use them again.",
-    author: "Robert L., Youngsville",
-  },
-  {
-    quote: "They installed our culvert perfectly. Great communication throughout the entire project.",
-    author: "Lisa K., Broussard",
-  },
-  {
-    quote: "Outstanding work on our site pad. These guys know what they're doing!",
-    author: "David P., Scott",
-  },
-];
+export const reviews: Review[] = [];
