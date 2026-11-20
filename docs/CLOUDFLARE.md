@@ -7,18 +7,27 @@ over from the current live site.
 
 | File | What it does |
 | --- | --- |
-| `wrangler.jsonc` | Worker `coastal-construction`, static assets from `./out`, no script. `html_handling: auto-trailing-slash` serves `/services` from `services.html`; `not_found_handling: 404-page` serves `404.html` with a 404 status. workers.dev and preview URLs on, observability on. No routes or custom domains: attaching the domain is a deliberate dashboard step (below). |
+| `wrangler.jsonc` | Worker `coastalconstructionofla`, the one already attached to the domain. Static assets from `./out`, no script. `html_handling: auto-trailing-slash` serves `/services` from `services.html`; `not_found_handling: 404-page` serves `404.html` with a 404 status. workers.dev and preview URLs on, observability on. No routes or custom domains in the file, so a deploy never adds or moves one. |
 | `public/_headers` | `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, HSTS (1 year, no `includeSubDomains`/`preload`), COOP. Long immutable cache on `/_next/static/*`, 30 days on `/images/*`. `X-Robots-Tag: noindex` on `*.workers.dev` so previews are never indexed. |
 | `scripts/csp.mjs` | Appends the Content-Security-Policy to `out/_headers` on every build and fails the build on drift. |
 | `public/_redirects` | 301s from the old `.html` URLs, the old OG image path and `site.webmanifest`. |
 
 ## Zone `coastalconstructionservicesofla.com` (account charliem04work, Free plan)
 
-The live site today is the Worker **`coastalconstructionofla`** (the old
-static HTML, last deployed June 2026), attached to the apex as a Workers
-custom domain. This rebuild is a separate Worker, `coastal-construction`
-(preview: https://coastal-construction.charliem04work.workers.dev), so
-nothing here has touched production.
+The site is the Worker **`coastalconstructionofla`**, attached to the apex
+as a Workers custom domain. Production today is still the old static HTML
+(version `f864d3ba`, v21, deployed 19 June 2026). The rebuild is uploaded
+to the same Worker as a *version*, not deployed:
+
+- Preview: https://6ea6b085-coastalconstructionofla.charliem04work.workers.dev
+  (version `6ea6b085`). Each `npm run preview:deploy` makes a new one.
+
+Going live is deploying a version of this Worker; the domain never moves.
+
+A temporary Worker, `coastal-construction`
+(https://coastal-construction.charliem04work.workers.dev), was used for the
+first preview. Delete it after go-live (Workers & Pages → it → Settings →
+Delete).
 
 ### Done (20 Nov 2026, verified from outside)
 
@@ -70,17 +79,21 @@ Left as they were, deliberately:
    `https://cloudflareinsights.com` to `connect-src` in `scripts/csp.mjs`,
    or the build will (correctly) fail.
 
-### Cut-over (once the preview is approved)
+### Go-live (once the preview is approved)
 
-1. `npm run deploy` (updates `coastal-construction`).
-2. Workers & Pages → `coastalconstructionofla` → Settings → Domains &
-   Routes → remove `coastalconstructionservicesofla.com`; then
-   `coastal-construction` → add it. Seconds of downtime between the two,
-   so do it at a quiet hour. `www` needs nothing: the redirect rule covers it.
-3. Purge the cache (Caching → Purge everything).
-4. Check: `/`, `/services`, `/about`, `/contact` return 200;
+1. `npm run deploy`. This builds and deploys the new site as the next
+   version of `coastalconstructionofla`; the domain stays attached, so
+   there is no downtime. (Or promote an approved preview version as is:
+   `npx wrangler@4 versions deploy <version-id>@100%`.)
+2. Purge the cache (Caching → Purge everything).
+3. Check: `/`, `/services`, `/about`, `/contact` return 200;
    `/services.html` 301s to `/services`; `/nope` returns 404; response
-   headers include the CSP.
-5. Search Console: submit `https://coastalconstructionservicesofla.com/sitemap.xml`
+   headers include the CSP. `www` needs nothing: the redirect rule covers it.
+4. Search Console: submit `https://coastalconstructionservicesofla.com/sitemap.xml`
    and request indexing for the four pages (the URLs drop `.html`).
-6. After a week on the new Worker, delete `coastalconstructionofla`.
+5. Delete the temporary `coastal-construction` Worker.
+
+**Rollback** (if anything is wrong): `npx wrangler@4 rollback f864d3ba-4b66-4db2-836e-bae45bb3ded6`
+puts the old site back in seconds. Or use Workers & Pages →
+`coastalconstructionofla` → Deployments → the 19 June deployment →
+Rollback.

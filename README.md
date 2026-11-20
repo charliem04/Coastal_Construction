@@ -22,7 +22,7 @@ npm run dev                  # http://localhost:3000
 | `npm run typecheck`      | TypeScript check only                                                |
 | `npm run preview`        | Builds and updates a named **preview** (stable URL); production untouched |
 | `npm run preview:deploy` | Builds and uploads a **preview** version; production untouched       |
-| `npm run deploy`         | Builds and publishes the Worker (see docs/CLOUDFLARE.md first)       |
+| `npm run deploy`         | Builds and **replaces the live site** (see docs/CLOUDFLARE.md first) |
 
 `npm run build` fails on purpose when:
 
