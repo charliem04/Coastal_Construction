@@ -40,8 +40,9 @@ touch `docs/` or `*.md` files.
 
 `NEXT_PUBLIC_WEB3FORMS_KEY` is a build variable on both triggers (Workers &
 Pages → `coastalconstructionofla` → Settings → Build → Variables and
-secrets). When the key is rotated, change it there on **both** triggers and
-push (or retry the latest `main` build). If it's ever missing,
+secrets). It is a public key and isn't rotated; if it ever changes (say, a
+new inbox), change it there on **both** triggers and push (or retry the
+latest `main` build). If it's ever missing,
 `npm run build` stops at `scripts/env-check.mjs` instead of shipping a form
 with nowhere to send.
 
@@ -85,11 +86,12 @@ Left as they were, deliberately:
    | 2371 | 13 | 2 (SHA-256) | `75A795DB0B85EEE0E6289B747248E846045C4D41375B8795EB0910EA3F71F98B` |
 
    Cloudflare flips the status from *pending* to *active* once it sees it.
-2. **Web3Forms key.** Create a new access key for ccsofla@yahoo.com, put it
-   in `.env.local`, rebuild, then delete the old key (it is in this repo's
-   git history).
-3. **Search Console:** submit `https://coastalconstructionservicesofla.com/sitemap.xml`
-   and request indexing for the four pages (the URLs drop `.html`).
+2. **Search Console.** The sitemap was submitted in June and last read on
+   12 Nov, before go-live, so Google still holds the old `.html` URLs
+   (they 301 to the new ones). Re-submit
+   `https://coastalconstructionservicesofla.com/sitemap.xml` to prompt a
+   fresh read, and use URL Inspection → Request indexing on `/`,
+   `/services`, `/about` and `/contact`.
 
 ### Analytics
 

@@ -17,9 +17,9 @@
  *  It used to sit in contact.html. Now it is NEXT_PUBLIC_WEB3FORMS_KEY
  *  in .env.local (see .env.example) and is compiled into the page's
  *  JavaScript at build time. That is by design on Web3Forms' side — the
- *  key names a destination inbox and grants no account access — but it
- *  no longer lives in git, and the old one should be rotated from the
- *  Web3Forms dashboard since it is in the repo's history.
+ *  key names a destination inbox and grants no account access, so it
+ *  is public and is not rotated. It lives in the environment (and in
+ *  Cloudflare's build variables) so that each build says where it sends.
  *
  *  ── FAILURE IS LOUD ─────────────────────────────────────────────────
  *
