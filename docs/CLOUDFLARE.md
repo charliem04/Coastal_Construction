@@ -12,32 +12,52 @@ cut over from the current live site.
 | `scripts/csp.mjs` | Appends the Content-Security-Policy to `out/_headers` on every build and fails the build on drift. |
 | `public/_redirects` | 301s from the old `.html` URLs, the old OG image path and `site.webmanifest`. |
 
-## In the dashboard (to do)
+## Live domain today (public audit, 20 Nov 2026)
 
-The live site is on Cloudflare (nameservers `*.ns.cloudflare.com`), but it
-isn't a Pages project or a Worker on the account wrangler is signed into, so
-it may be on another account. Find where it's served from first.
+What anyone can see from outside, checked without account access:
+
+| Check | Today | Want |
+| --- | --- | --- |
+| Nameservers | Cloudflare (`eugene`, `jo`) | ✓ |
+| Registrar | Namecheap (MX and SPF use its email forwarding) | — |
+| HTTP → HTTPS | 301 | ✓ |
+| HTTP/3 | on | ✓ |
+| TLS 1.0 / 1.1 | **accepted** | refused (minimum TLS 1.2) |
+| `www` | **doesn't resolve** | 301 to the apex |
+| DNSSEC | **off** (no DS record) | on |
+| DMARC | **none** | a policy (below) |
+| Security headers on the live site | **none** | set by this repo after cut-over |
+| Google Search Console | verified (TXT record present) | ✓ |
+| Email | MX → Namecheap forwarding (`eforward*.registrar-servers.com`), SPF `include:spf.efwd.registrar-servers.com ~all` | keep |
+
+The live site isn't a Pages project or a Worker on the account wrangler is
+signed into (charliem04work), so the zone may be on another account. Find
+it first; everything below is done in that zone.
+
+## In the dashboard (to do)
 
 **Before cut-over**
 
 1. **Web3Forms key.** Create a new access key for ccsofla@yahoo.com, put it
    in `.env.local`, rebuild, then delete the old key (it's in this repo's git
    history).
-2. **DNS: `www`.** `www.coastalconstructionservicesofla.com` doesn't resolve
-   today. Add it as a custom domain on the Worker (or a proxied record) and a
-   Redirect Rule `www` → apex (301, keep path and query).
-3. **SSL/TLS.** Mode *Full (strict)*; *Always Use HTTPS* on; *Automatic
-   HTTPS Rewrites* on; minimum TLS 1.2; TLS 1.3 on. Leave edge HSTS off: the
-   site sends its own header.
-4. **DNSSEC.** Enable it (DNS → Settings), and add the DS record at the
-   registrar if the registrar isn't Cloudflare.
-5. **Email anti-spoofing.** The business uses a Yahoo address, so the domain
-   sends no mail. Publish these so nobody can send as it:
-   - `TXT @` → `v=spf1 -all`
-   - `TXT _dmarc` → `v=DMARC1; p=reject; adkim=s; aspf=s`
-   - `TXT *._domainkey` → `v=DKIM1; p=`
+2. **DNS: `www`.** Add it as a custom domain on the Worker (or a proxied
+   `CNAME www → coastalconstructionservicesofla.com`) and a Redirect Rule
+   `www` → apex (301, keep path and query).
+3. **SSL/TLS.** Edge Certificates → *Minimum TLS Version* **1.2** (the one
+   real gap today); keep *Always Use HTTPS* and TLS 1.3 on; turn on
+   *Automatic HTTPS Rewrites*. Leave edge HSTS off: the site sends its own.
+4. **DNSSEC.** DNS → Settings → Enable DNSSEC, then add the DS record
+   Cloudflare shows in Namecheap (Domain List → Manage → Advanced DNS →
+   DNSSEC). Do the Namecheap half the same day, or validation fails.
+5. **Email: keep the forwarding, add DMARC.** The domain *does* receive
+   mail through Namecheap's email forwarding, so leave the MX records and
+   the SPF record exactly as they are. Add only:
+   - `TXT _dmarc` → `v=DMARC1; p=none; rua=mailto:ccsofla@yahoo.com`
 
-   Skip this if anyone plans to send mail from the domain.
+   Watch the reports for a few weeks; if nothing legitimate sends as the
+   domain, tighten to `p=quarantine`. (If the forwarding is ever retired,
+   replace SPF with `v=spf1 -all` and set `p=reject`.)
 6. **Security.** *Bot Fight Mode* on; Security Level *Medium*; the free
    Managed Ruleset is on by default (leave it). Nothing here needs Turnstile.
 7. **Analytics: decision needed.** The site runs no analytics (TODO item 8).
