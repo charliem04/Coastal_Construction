@@ -7,7 +7,7 @@ import { phoneDisplay, phoneHref } from "@/lib/phone";
  * New page: the quote form collects personal data, so the site needs a
  * notice. It describes what the site actually does — one form, posted to
  * Web3Forms and emailed to the office; Cal.com for booking; a Google Maps
- * embed; no cookies or analytics of our own.
+ * embed; Cloudflare Web Analytics (cookieless); no cookies of our own.
  *
  * Approved by the client, Nov 2026. Update it whenever the site starts
  * collecting anything new. (Google reviews, when added, are fetched at
@@ -59,10 +59,12 @@ export default function Privacy() {
 
           <h2 className={h2}>Cookies and third parties</h2>
           <p className={p}>
-            This website sets no cookies of its own and runs no analytics or advertising trackers. The service-area
-            map on the home page is embedded from Google Maps, and the scheduler from Cal.com; each may set its own
-            cookies when it loads. Our hosting provider, Cloudflare, keeps standard server logs (such as IP
-            addresses) to deliver and protect the site.
+            This website sets no cookies of its own and runs no advertising trackers. We use Cloudflare Web
+            Analytics to count visits and measure how quickly pages load; it sets no cookies, does not track you
+            across other websites, and gives us only totals, not information about individual visitors. The
+            service-area map on the home page is embedded from Google Maps, and the scheduler from Cal.com; each may
+            set its own cookies when it loads. Our hosting provider, Cloudflare, keeps standard server logs (such as
+            IP addresses) to deliver and protect the site.
           </p>
 
           <h2 className={h2}>Your choices</h2>

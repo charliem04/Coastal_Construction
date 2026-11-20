@@ -101,7 +101,10 @@ export function buildCsp(provider) {
   return [
     "default-src 'self'",
     // See the header comment for why 'unsafe-inline' is here.
-    `script-src 'self' 'unsafe-inline'${list(p["script-src"])}`,
+    // static.cloudflareinsights.com: the Cloudflare Web Analytics beacon,
+    // which Cloudflare injects into the HTML at the edge (it isn't in out/).
+    // Cookieless; on for this zone since June 2026, kept at go-live.
+    `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com${list(p["script-src"])}`,
     // React, Framer Motion and Cal.com's embed write style attributes.
     "style-src 'self' 'unsafe-inline'",
     // data: for inlined SVG. Every photo is served from /images.
@@ -110,7 +113,9 @@ export function buildCsp(provider) {
     "font-src 'self'",
     // The quote form posts here from the browser (lib/submitContact.ts).
     // When the form provider switches to Haptic Forms, its endpoint goes here.
-    `connect-src 'self' https://api.web3forms.com${list(p["connect-src"])}`,
+    // cloudflareinsights.com: where the analytics beacon reports page views
+    // and Core Web Vitals.
+    `connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com${list(p["connect-src"])}`,
     // Google Maps: the service-area map on the home page.
     `frame-src https://www.google.com${list(p["frame-src"])}`,
     "frame-ancestors 'none'",

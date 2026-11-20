@@ -88,28 +88,15 @@ Left as they were, deliberately:
 2. **Web3Forms key.** Create a new access key for ccsofla@yahoo.com, put it
    in `.env.local`, rebuild, then delete the old key (it is in this repo's
    git history).
-3. **Analytics: decision needed.** The site runs no analytics (TODO item 8).
-   Cloudflare Web Analytics is cookieless and needs no consent banner. If
-   it is wanted, turn it on for the Worker and add
-   `https://static.cloudflareinsights.com` to `script-src` and
-   `https://cloudflareinsights.com` to `connect-src` in `scripts/csp.mjs`,
-   or the build will (correctly) fail.
-
-### Go-live (once the preview is approved)
-
-1. `npm run deploy`. This builds and deploys the new site as the next
-   version of `coastalconstructionofla`; the domain stays attached, so
-   there is no downtime. (Or promote an approved preview version as is:
-   `npx wrangler@4 versions deploy <version-id>@100%`.)
-2. Purge the cache (Caching → Purge everything).
-3. Check: `/`, `/services`, `/about`, `/contact` return 200;
-   `/services.html` 301s to `/services`; `/nope` returns 404; response
-   headers include the CSP. `www` needs nothing: the redirect rule covers it.
-4. Search Console: submit `https://coastalconstructionservicesofla.com/sitemap.xml`
+3. **Search Console:** submit `https://coastalconstructionservicesofla.com/sitemap.xml`
    and request indexing for the four pages (the URLs drop `.html`).
-5. Delete the temporary `coastal-construction` Worker.
 
-**Rollback** (if anything is wrong): `npx wrangler@4 rollback f864d3ba-4b66-4db2-836e-bae45bb3ded6`
-puts the old site back in seconds. Or use Workers & Pages →
-`coastalconstructionofla` → Deployments → the 19 June deployment →
-Rollback.
+### Analytics
+
+Cloudflare Web Analytics (cookieless, no consent banner needed) has been
+auto-installed on this zone since 17 June 2026: Cloudflare injects its
+beacon into every page at the edge. The CSP allows it
+(`static.cloudflareinsights.com` in `script-src`, `cloudflareinsights.com`
+in `connect-src`), and the privacy notice says so. Stats are under
+Analytics & Logs → Web Analytics. To turn it off, disable the site there
+and remove both origins from `scripts/csp.mjs`.
