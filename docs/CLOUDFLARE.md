@@ -15,19 +15,16 @@ over from the current live site.
 ## Zone `coastalconstructionservicesofla.com` (account charliem04work, Free plan)
 
 The site is the Worker **`coastalconstructionofla`**, attached to the apex
-as a Workers custom domain. Production today is still the old static HTML
-(version `f864d3ba`, v21, deployed 19 June 2026). The rebuild is uploaded
-to the same Worker as a *version*, not deployed:
+as a Workers custom domain. **The rebuild went live on 20 Nov 2026**
+(version `5bdad834`, built by Cloudflare from `main` at `cc9772b`). Deploys
+replace the Worker's version; the domain never moves.
 
-- Preview: https://6ea6b085-coastalconstructionofla.charliem04work.workers.dev
-  (version `6ea6b085`). Each `npm run preview:deploy` makes a new one.
+**Rollback** to the old static site (version `f864d3ba`, 19 June 2026):
+`npx wrangler@4 rollback f864d3ba-4b66-4db2-836e-bae45bb3ded6`, or Workers &
+Pages → `coastalconstructionofla` → Deployments → Rollback.
 
-Going live is deploying a version of this Worker; the domain never moves.
-
-A temporary Worker, `coastal-construction`
-(https://coastal-construction.charliem04work.workers.dev), was used for the
-first preview. Delete it after go-live (Workers & Pages → it → Settings →
-Delete).
+The temporary `coastal-construction` Worker used for the first preview has
+been deleted.
 
 ### Git builds (Workers Builds, connected to charliem04/Coastal_Construction)
 
@@ -35,22 +32,18 @@ Pushes build and deploy on Cloudflare automatically:
 
 | Trigger | Branches | Build | Deploy |
 | --- | --- | --- | --- |
-| Deploy default branch | `main` | **empty, to be set to `npm run build`** | `npx wrangler deploy`: **goes live** |
-| Deploy non-production branches | all except `main` | `npm run build` | `npx wrangler versions upload`: preview URL only |
+| Deploy default branch | `main` | `npm run build` | `npx wrangler deploy`: **goes live** |
+| Deploy non-production branches | all except `main` | `npm run build` | `npx wrangler versions upload`: preview URL only (see the build log) |
 
-So **merging to `main` is going live.** Until the steps below are done, the
-production trigger has no build command and every `main` build fails
-before deploying anything, which keeps the old site up.
+So **merging to `main` is going live.** Both triggers skip pushes that only
+touch `docs/` or `*.md` files.
 
-To arm production, in this order:
-
-1. Add `NEXT_PUBLIC_WEB3FORMS_KEY` as a **secret** build variable on
-   *both* triggers (Workers & Pages → `coastalconstructionofla` → Settings
-   → Build → Variables and secrets). Without it `npm run build` stops at
-   `scripts/env-check.mjs` rather than ship a form with nowhere to send.
-2. Make sure `main` contains `scripts/env-check.mjs` (commit `f2724c7`).
-3. Set the production trigger's build command to `npm run build`. The next
-   push to `main` deploys the new site.
+`NEXT_PUBLIC_WEB3FORMS_KEY` is a build variable on both triggers (Workers &
+Pages → `coastalconstructionofla` → Settings → Build → Variables and
+secrets). When the key is rotated, change it there on **both** triggers and
+push (or retry the latest `main` build). If it's ever missing,
+`npm run build` stops at `scripts/env-check.mjs` instead of shipping a form
+with nowhere to send.
 
 ### Done (20 Nov 2026, verified from outside)
 
