@@ -1,7 +1,11 @@
 {
   // Static assets only — no Worker script, no backend.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "coastal-construction",
+  // The Worker that already serves coastalconstructionservicesofla.com
+  // (attached as a custom domain in the dashboard). `npm run deploy`
+  // replaces the live site; `npm run preview:deploy` uploads a version
+  // with its own preview URL and leaves the live site alone.
+  "name": "coastalconstructionofla",
   "compatibility_date": "2026-11-01",
   "assets": {
     // Next's static export (`npm run build`).
@@ -11,8 +15,9 @@
     // Unknown paths get out/404.html with a 404 status.
     "not_found_handling": "404-page"
   },
-  // workers.dev gives every upload a preview URL; production is only
-  // ever the custom domain, attached in the dashboard (see docs/CLOUDFLARE.md).
+  // workers.dev gives every uploaded version a preview URL. Production is
+  // the custom domain, attached in the dashboard (see docs/CLOUDFLARE.md);
+  // no routes here, so a deploy can never add or move a domain.
   "workers_dev": true,
   "preview_urls": true,
   // Enables `wrangler preview`: a shareable preview URL that never
