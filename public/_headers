@@ -1,0 +1,27 @@
+# Static headers for Workers static assets. scripts/csp.mjs appends the
+# Content-Security-Policy to the copy in out/ after every build.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  # HTTPS only from the first visit on. No includeSubDomains/preload:
+  # that would bind every subdomain, which is the domain owner's call.
+  Strict-Transport-Security: max-age=31536000
+  # Pages opened from here can't reach back into this window.
+  # (same-origin-allow-popups so Cal.com's popup flows keep working.)
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+# Hashed build assets never change under the same name.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Photos are renamed when replaced (scripts/images.mjs), so a month is safe.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+# Preview deployments (*.workers.dev) must not be indexed.
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
+https://:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
