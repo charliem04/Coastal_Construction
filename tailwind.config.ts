@@ -33,6 +33,20 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
+    // Tailwind's size utilities also set a line-height. The old site set
+    // line-height once (1.6, on body) and let everything inherit it, so
+    // these sizes inherit too — otherwise every list and card drifts.
+    fontSize: {
+      xs: ["0.75rem", { lineHeight: "inherit" }],
+      sm: ["0.875rem", { lineHeight: "inherit" }],
+      base: ["1rem", { lineHeight: "inherit" }],
+      lg: ["1.125rem", { lineHeight: "inherit" }],
+      xl: ["1.25rem", { lineHeight: "inherit" }],
+      "2xl": ["1.5rem", { lineHeight: "inherit" }],
+      "3xl": ["1.875rem", { lineHeight: "inherit" }],
+      "4xl": ["2.25rem", { lineHeight: "inherit" }],
+      "5xl": ["3rem", { lineHeight: "inherit" }],
+    },
     extend: {
       colors: {
         brand: { DEFAULT: "#dc2626", dark: "#b91c1c", light: "#fca5a5" },

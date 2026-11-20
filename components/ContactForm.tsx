@@ -203,7 +203,7 @@ export function ContactForm() {
           aria-busy={state === "sending"}
         >
           {state === "sending" && (
-            <span aria-hidden="true" className="size-5 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+            <span aria-hidden="true" className="mr-3 inline-block size-4 animate-spin rounded-full border-2 border-white/40 border-t-white align-[-0.1em]" />
           )}
           {state === "sending" ? f.sending : f.submit}
         </button>

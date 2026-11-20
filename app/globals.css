@@ -28,9 +28,21 @@
     line-height: 1.6;
   }
 
-  /* Tailwind's reset makes images block-level; the old reset didn't.
-     Only the hero logo relied on inline centring, so it opts back in
-     (.hero-logo) rather than changing every image. */
+  /* Tailwind's reset makes images block-level and middle-aligned; the
+     old site left them inline on the baseline, and its spacing (the nav
+     bar's height, the gap under the hero logo) depends on that. */
+  img {
+    display: inline;
+    vertical-align: baseline;
+  }
+  /* Likewise form controls: the browser default line-height, not the
+     body's 1.6 that Tailwind's reset makes them inherit. */
+  button,
+  input,
+  select,
+  textarea {
+    line-height: normal;
+  }
 
   /* Visible keyboard focus: brand red on dark and white grounds. */
   a:focus-visible,
@@ -153,6 +165,11 @@
     @apply inline-block cursor-pointer border-none bg-brand px-8 py-4 font-display text-base uppercase text-white no-underline transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark;
     letter-spacing: 1px;
   }
+  /* The <button> ones (Cal.com) had the browser's normal line-height; the
+     <a> one inherits 1.6. Only visible when the label wraps on a phone. */
+  button.method-button {
+    line-height: normal;
+  }
   .method-button:hover {
     box-shadow: 0 5px 15px rgb(220 38 38 / 0.4);
   }
@@ -195,7 +212,7 @@
     @apply relative z-[1] max-w-content;
   }
   .hero-logo {
-    @apply mx-auto mb-8 h-auto max-w-[300px];
+    @apply mb-8 h-auto max-w-[300px];
   }
   .logo {
     @apply mb-4 text-5xl;
@@ -206,15 +223,15 @@
     @apply mt-2 block font-body text-base font-semibold uppercase text-gray-400;
     letter-spacing: 3px;
   }
-  .tagline {
-    @apply mb-8 font-body text-2xl font-normal text-gray-300;
+  /* The old .tagline rule (1.5rem, gray-300) never applied: .hero p
+     outranked it. This is what actually rendered. */
+  .tagline,
+  .hero-sub {
+    @apply mb-12 font-body text-[1.3rem] font-normal text-gray-400;
   }
   .hero h1 {
     @apply mb-6 text-d-hero uppercase;
     letter-spacing: 3px;
-  }
-  .hero-sub {
-    @apply mb-12 font-body text-[1.3rem] font-normal text-gray-400;
   }
 
   /* ── Page header (services, about, contact, 404) ────────────────── */
@@ -595,8 +612,9 @@
     letter-spacing: 1px;
     line-height: 1.6;
   }
+  /* mb-6: the old .owner-story p margin reached these too. */
   .value-item p {
-    @apply mb-0 font-body text-base font-normal text-gray-300;
+    @apply mb-6 font-body text-base font-normal text-gray-300;
     line-height: 1.6;
   }
 
@@ -661,6 +679,7 @@
   .form-group select,
   .form-group textarea {
     @apply w-full border-2 border-surface-800 bg-surface-900 p-4 font-body text-base text-white transition-colors duration-300 ease-site;
+    line-height: normal; /* form controls did not inherit the body line-height */
   }
   .form-group input:focus,
   .form-group select:focus,
@@ -680,8 +699,9 @@
   .form-actions {
     @apply mt-8 text-center;
   }
+  /* Arial and normal line-height: the browser default the old button had. */
   .submit-button {
-    @apply inline-flex cursor-pointer items-center justify-center gap-3 border-none bg-brand px-16 py-6 text-[1.2rem] font-black uppercase text-white transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark disabled:cursor-progress disabled:bg-brand-dark;
+    @apply inline-block font-body leading-[normal] cursor-pointer border-none bg-brand px-16 py-6 text-[1.2rem] font-black uppercase text-white transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark disabled:cursor-progress disabled:bg-brand-dark;
     letter-spacing: 2px;
   }
   .submit-button:hover {
@@ -927,9 +947,6 @@
     }
     .logo {
       @apply text-[2rem];
-    }
-    .tagline {
-      @apply text-[1.2rem];
     }
   }
 }
