@@ -18,7 +18,7 @@ export function Hero() {
       <Image {...photo("hero-dirt-work")} alt="" className="hero-photo" sizes="100vw" priority />
       <div className="hero-scrim" aria-hidden="true" />
       <div className="hero-content">
-        <Image {...photo("logo")} alt={h.logoAlt} className="hero-logo" sizes="300px" priority />
+        <Image {...photo("logo")} alt={h.logoAlt} className="hero-logo" sizes="300px" loading="eager" />
         <div className="logo">
           <Highlight text={h.wordmark} />
           <span className="logo-subtitle">{h.subtitle}</span>

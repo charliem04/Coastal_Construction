@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { client } from "@/client.config";
 import { services } from "@/content/services";
 import { photo } from "@/lib/photo";
+import { DeferredImage } from "./DeferredImage";
 import { Highlight } from "./Highlight";
 import { Reveal } from "./Reveal";
 
@@ -22,8 +22,8 @@ export function ServiceCards() {
           <Reveal key={svc.slug}>
             <Link href={`/services#${svc.slug}`} className="block text-inherit no-underline">
               <div className="portfolio-item">
-                <Image
-                  {...photo(svc.photo)}
+                <DeferredImage
+                  {...photo(`${svc.photo}-card`)}
                   alt={svc.alt.card}
                   sizes="(max-width: 968px) 100vw, (min-width: 1400px) 33vw, 50vw"
                 />

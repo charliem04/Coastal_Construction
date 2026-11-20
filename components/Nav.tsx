@@ -20,7 +20,7 @@ export function Nav() {
     <nav className="site-nav" aria-label="Primary">
       <div className="nav-brand">
         <Link href="/">
-          <Image {...photo("logo")} alt={client.nav.logoAlt} className="nav-logo-img" sizes="100px" priority />
+          <Image {...photo("logo")} alt={client.nav.logoAlt} className="nav-logo-img" sizes="100px" />
         </Link>
         <Link href="/" className="nav-logo">
           {/* Direct children of the flex column, as the old markup was, so

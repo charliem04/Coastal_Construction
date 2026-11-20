@@ -7,11 +7,11 @@
  *   <Image {...photo("pond-construction")} alt="…" sizes="…" />
  */
 import manifest from "@/content/imageManifest.json";
-import type { PhotoName } from "@/content/types";
+import type { CardPhotoName, PhotoName } from "@/content/types";
 
 type Entry = { width: number; height: number; widths: number[] };
 
-export function photo(name: PhotoName) {
+export function photo(name: PhotoName | CardPhotoName) {
   const entry = (manifest as Record<string, Entry>)[name];
   if (!entry) {
     throw new Error(`[photo] "${name}" is not in content/imageManifest.json — run \`npm run images\`.`);

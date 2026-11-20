@@ -33,14 +33,19 @@ const OUT = "public/images";
 const MANIFEST = "content/imageManifest.json";
 
 /**
- * The cuts a photo can have. Must match deviceSizes + imageSizes in
- * next.config.mjs. Each photo lists the ones it needs: only the
+ * Each photo lists the widths it needs; lib/imageLoader.ts serves the
+ * smallest cut at least as wide as the browser asks for. Only the
  * full-screen hero needs 1600; a service photo never shows wider than
- * ~650 CSS px, so 960 covers a 2x laptop and a
- * 3x phone closely enough for a photo of dirt work.
+ * ~650 CSS px, so 960 covers a 2x laptop and a 3x phone closely enough
+ * for a photo of dirt work.
+ *
+ * `card: true` also cuts a 4:3 centre crop (`<name>-card`) for the home
+ * page's cards. The card box is 4:3 and object-fit: cover crops the
+ * centre anyway, so this is the same picture without downloading the
+ * half of a portrait photo the card never shows.
  */
-const ALL_WIDTHS = [320, 640, 960, 1600];
-const PHOTO_WIDTHS = [640, 960];
+const PHOTO_WIDTHS = [960];
+const CARD_WIDTHS = [480, 800];
 
 /** Largest single cut allowed, bytes. */
 const BUDGET = 420 * 1024;
@@ -54,16 +59,17 @@ const TOTAL_BUDGET = 3 * 1024 * 1024;
  * demolition2) are not shipped.
  */
 const PHOTOS = [
-  { src: "mainpage.JPEG", out: "hero-dirt-work", widths: [640, 960, 1600], quality: 58 },
-  { src: "sitepads.JPEG", out: "site-pad-construction" },
-  { src: "pond.png", out: "pond-construction" },
-  { src: "culvert2.JPEG", out: "culvert-installation" },
-  { src: "levee.png", out: "levee-construction" },
-  { src: "landleveling2.JPEG", out: "land-leveling" },
-  { src: "materialdelivery.JPEG", out: "material-delivery" },
-  { src: "pastureclearing.JPEG", out: "pasture-clearing" },
-  { src: "bushhogging.JPEG", out: "bushhogging" },
-  { src: "demolition.png", out: "demolition" },
+  // Under a 60% black scrim: detail is invisible, so quality can drop a lot.
+  { src: "mainpage.JPEG", out: "hero-dirt-work", widths: [640, 960, 1600], quality: 38 },
+  { src: "sitepads.JPEG", out: "site-pad-construction", card: true },
+  { src: "pond.png", out: "pond-construction", card: true },
+  { src: "culvert2.JPEG", out: "culvert-installation", card: true },
+  { src: "levee.png", out: "levee-construction", card: true },
+  { src: "landleveling2.JPEG", out: "land-leveling", card: true },
+  { src: "materialdelivery.JPEG", out: "material-delivery", card: true },
+  { src: "pastureclearing.JPEG", out: "pasture-clearing", card: true },
+  { src: "bushhogging.JPEG", out: "bushhogging", card: true },
+  { src: "demolition.png", out: "demolition", card: true },
   // The owner's portrait: a touch more quality, it's a face.
   // Shown at most ~330 CSS px square.
   { src: "CCSofLA_Owner.png", out: "owner-kevin-meyers", widths: [320, 640], quality: 86 },
@@ -79,7 +85,6 @@ function check() {
 
   for (const [name, entry] of Object.entries(manifest ?? {})) {
     for (const w of entry.widths) {
-      if (!ALL_WIDTHS.includes(w)) problems.push(`${name}: ${w}w is not in next.config.mjs sizes`);
       const f = join(OUT, `${name}-${w}.webp`);
       if (!existsSync(f)) problems.push(`missing ${f}`);
       else if (statSync(f).size > BUDGET) problems.push(`${f} is ${(statSync(f).size / 1024).toFixed(0)} KB (budget ${BUDGET / 1024} KB)`);
@@ -144,6 +149,20 @@ async function convert() {
     // and aspect ratios are computed from.
     const w = Math.min(srcW, widths[widths.length - 1]);
     manifest[p.out] = { width: w, height: Math.round((srcH / srcW) * w), widths };
+
+    if (p.card) {
+      for (const cw of CARD_WIDTHS) {
+        const file = join(OUT, `${p.out}-card-${cw}.webp`);
+        await base
+          .clone()
+          .resize({ width: cw, height: Math.round((cw * 3) / 4), fit: "cover", position: "centre" })
+          .webp({ quality: p.quality ?? 62, effort: 6, smartSubsample: true })
+          .toFile(file);
+        after += statSync(file).size;
+      }
+      const cw = CARD_WIDTHS[CARD_WIDTHS.length - 1];
+      manifest[`${p.out}-card`] = { width: cw, height: Math.round((cw * 3) / 4), widths: CARD_WIDTHS };
+    }
     console.log(`[images] ${p.src} → ${p.out} (${srcW}×${srcH})`);
   }
 

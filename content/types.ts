@@ -27,6 +27,9 @@ export type PhotoName =
   | "owner-kevin-meyers"
   | "logo";
 
+/** A service photo's 4:3 centre crop, cut for the home page's cards. */
+export type CardPhotoName = `${PhotoName}-card`;
+
 /**
  * One service. The home page's cards, the services page and the contact
  * form's dropdown all map over the same list (content/services.ts), so
