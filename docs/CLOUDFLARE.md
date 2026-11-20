@@ -29,6 +29,29 @@ A temporary Worker, `coastal-construction`
 first preview. Delete it after go-live (Workers & Pages → it → Settings →
 Delete).
 
+### Git builds (Workers Builds, connected to charliem04/Coastal_Construction)
+
+Pushes build and deploy on Cloudflare automatically:
+
+| Trigger | Branches | Build | Deploy |
+| --- | --- | --- | --- |
+| Deploy default branch | `main` | **empty, to be set to `npm run build`** | `npx wrangler deploy`: **goes live** |
+| Deploy non-production branches | all except `main` | `npm run build` | `npx wrangler versions upload`: preview URL only |
+
+So **merging to `main` is going live.** Until the steps below are done, the
+production trigger has no build command and every `main` build fails
+before deploying anything, which keeps the old site up.
+
+To arm production, in this order:
+
+1. Add `NEXT_PUBLIC_WEB3FORMS_KEY` as a **secret** build variable on
+   *both* triggers (Workers & Pages → `coastalconstructionofla` → Settings
+   → Build → Variables and secrets). Without it `npm run build` stops at
+   `scripts/env-check.mjs` rather than ship a form with nowhere to send.
+2. Make sure `main` contains `scripts/env-check.mjs` (commit `f2724c7`).
+3. Set the production trigger's build command to `npm run build`. The next
+   push to `main` deploys the new site.
+
 ### Done (20 Nov 2026, verified from outside)
 
 | Setting | Was | Now |
