@@ -1,0 +1,22 @@
+{
+  // Static assets only — no Worker script, no backend.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "coastal-construction",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    // Next's static export (`npm run build`).
+    "directory": "./out",
+    // /services serves out/services.html; /services.html redirects to it.
+    "html_handling": "auto-trailing-slash",
+    // Unknown paths get out/404.html with a 404 status.
+    "not_found_handling": "404-page"
+  },
+  // workers.dev gives every upload a preview URL; production is only
+  // ever the custom domain, attached in the dashboard (see docs/CLOUDFLARE.md).
+  "workers_dev": true,
+  "preview_urls": true,
+  // Enables `wrangler preview`: a shareable preview URL that never
+  // touches production.
+  "previews": {},
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,24 @@
+# Dependencies — installed from package-lock.json, never committed
+node_modules/
+
+# Build output
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local environment — .env.example documents what goes here
+.env*.local
+
+# Original camera files for `npm run images` (see scripts/images.mjs).
+# Kept out of git: the repo ships only the compressed WebP output.
+images-src/
+
+# Editor / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Cloudflare local state
+.wrangler/

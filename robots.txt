@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /.idea/
-Disallow: /docs/
-
-Sitemap: https://coastalconstructionservicesofla.com/sitemap.xml

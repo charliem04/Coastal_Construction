@@ -1,0 +1,162 @@
+{
+  "hero-dirt-work": {
+    "width": 1536,
+    "height": 2048,
+    "widths": [
+      640,
+      960,
+      1600
+    ]
+  },
+  "site-pad-construction": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      960
+    ]
+  },
+  "site-pad-construction-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "pond-construction": {
+    "width": 960,
+    "height": 959,
+    "widths": [
+      960
+    ]
+  },
+  "pond-construction-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "culvert-installation": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      960
+    ]
+  },
+  "culvert-installation-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "levee-construction": {
+    "width": 960,
+    "height": 909,
+    "widths": [
+      960
+    ]
+  },
+  "levee-construction-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "land-leveling": {
+    "width": 960,
+    "height": 720,
+    "widths": [
+      960
+    ]
+  },
+  "land-leveling-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "material-delivery": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      960
+    ]
+  },
+  "material-delivery-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "pasture-clearing": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      960
+    ]
+  },
+  "pasture-clearing-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "bushhogging": {
+    "width": 960,
+    "height": 1280,
+    "widths": [
+      960
+    ]
+  },
+  "bushhogging-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "demolition": {
+    "width": 960,
+    "height": 823,
+    "widths": [
+      960
+    ]
+  },
+  "demolition-card": {
+    "width": 800,
+    "height": 600,
+    "widths": [
+      480,
+      800
+    ]
+  },
+  "owner-kevin-meyers": {
+    "width": 640,
+    "height": 671,
+    "widths": [
+      320,
+      640
+    ]
+  },
+  "logo": {
+    "width": 519,
+    "height": 481,
+    "widths": [
+      320,
+      640
+    ]
+  }
+}
