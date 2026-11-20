@@ -1,7 +1,7 @@
 # Cloudflare setup
 
-What the repo configures, what has to be set in the dashboard, and how to
-cut over from the current live site.
+What the repo configures, what has been set on the zone, and how to cut
+over from the current live site.
 
 ## In the repo (done)
 
@@ -12,70 +12,75 @@ cut over from the current live site.
 | `scripts/csp.mjs` | Appends the Content-Security-Policy to `out/_headers` on every build and fails the build on drift. |
 | `public/_redirects` | 301s from the old `.html` URLs, the old OG image path and `site.webmanifest`. |
 
-## Live domain today (public audit, 20 Nov 2026)
+## Zone `coastalconstructionservicesofla.com` (account charliem04work, Free plan)
 
-What anyone can see from outside, checked without account access:
+The live site today is the Worker **`coastalconstructionofla`** (the old
+static HTML, last deployed June 2026), attached to the apex as a Workers
+custom domain. This rebuild is a separate Worker, `coastal-construction`
+(preview: https://coastal-construction.charliem04work.workers.dev), so
+nothing here has touched production.
 
-| Check | Today | Want |
+### Done (20 Nov 2026, verified from outside)
+
+| Setting | Was | Now |
 | --- | --- | --- |
-| Nameservers | Cloudflare (`eugene`, `jo`) | ✓ |
-| Registrar | Namecheap (MX and SPF use its email forwarding) | — |
-| HTTP → HTTPS | 301 | ✓ |
-| HTTP/3 | on | ✓ |
-| TLS 1.0 / 1.1 | **accepted** | refused (minimum TLS 1.2) |
-| `www` | **doesn't resolve** | 301 to the apex |
-| DNSSEC | **off** (no DS record) | on |
-| DMARC | **none** | a policy (below) |
-| Security headers on the live site | **none** | set by this repo after cut-over |
-| Google Search Console | verified (TXT record present) | ✓ |
-| Email | MX → Namecheap forwarding (`eforward*.registrar-servers.com`), SPF `include:spf.efwd.registrar-servers.com ~all` | keep |
+| Minimum TLS version | 1.0 | **1.2** (TLS 1.0/1.1 now refused) |
+| SSL mode | Full | **Full (strict)** |
+| Bot Fight Mode (+ JS detections) | off | **on** |
+| `www` | no DNS record (the existing "Redirect from WWW to root" rule never fired) | **proxied `AAAA www → 100::` placeholder**; `www` now 301s to the apex, keeping the path |
+| DMARC | none | **`v=DMARC1; p=quarantine; adkim=r; aspf=r`** |
+| DNSSEC | disabled | **pending**: Cloudflare is signing; the DS record must be added at Namecheap (below) |
 
-The live site isn't a Pages project or a Worker on the account wrangler is
-signed into (charliem04work), so the zone may be on another account. Find
-it first; everything below is done in that zone.
+Left as they were, deliberately:
 
-## In the dashboard (to do)
+- **Email.** MX → Namecheap forwarding (`eforward1–5.registrar-servers.com`)
+  and SPF `include:spf.efwd.registrar-servers.com ~all` are untouched: the
+  domain receives mail that way. DMARC is `quarantine`, not `reject`,
+  because nothing sends *as* the domain today. If the client ever does
+  (a Google Workspace or Zoho mailbox, say), add that sender to SPF first.
+  There is no `rua` reporting address: aggregate reports are daily XML
+  emails and the only inbox is the client's. Turn on Email → DMARC
+  Management in the dashboard to collect them at a Cloudflare address.
+- Always Use HTTPS, Automatic HTTPS Rewrites, TLS 1.3, HTTP/3, Brotli:
+  already on. Security Level: Medium.
+- Edge HSTS: off. The new site sends its own header (`public/_headers`);
+  enabling it at the edge too would duplicate it.
+- AI crawlers: the zone's Cloudflare-managed robots.txt already disallows
+  AI training. It is prepended to the site's own robots.txt and does not
+  affect search engines.
+- Google Search Console: already verified (TXT record).
 
-**Before cut-over**
+### To do
 
-1. **Web3Forms key.** Create a new access key for ccsofla@yahoo.com, put it
-   in `.env.local`, rebuild, then delete the old key (it's in this repo's git
-   history).
-2. **DNS: `www`.** Add it as a custom domain on the Worker (or a proxied
-   `CNAME www → coastalconstructionservicesofla.com`) and a Redirect Rule
-   `www` → apex (301, keep path and query).
-3. **SSL/TLS.** Edge Certificates → *Minimum TLS Version* **1.2** (the one
-   real gap today); keep *Always Use HTTPS* and TLS 1.3 on; turn on
-   *Automatic HTTPS Rewrites*. Leave edge HSTS off: the site sends its own.
-4. **DNSSEC.** DNS → Settings → Enable DNSSEC, then add the DS record
-   Cloudflare shows in Namecheap (Domain List → Manage → Advanced DNS →
-   DNSSEC). Do the Namecheap half the same day, or validation fails.
-5. **Email: keep the forwarding, add DMARC.** The domain *does* receive
-   mail through Namecheap's email forwarding, so leave the MX records and
-   the SPF record exactly as they are. Add only:
-   - `TXT _dmarc` → `v=DMARC1; p=none; rua=mailto:ccsofla@yahoo.com`
+1. **DNSSEC at Namecheap (within a day or two).** Namecheap → Domain List →
+   Manage → Advanced DNS → DNSSEC → add:
 
-   Watch the reports for a few weeks; if nothing legitimate sends as the
-   domain, tighten to `p=quarantine`. (If the forwarding is ever retired,
-   replace SPF with `v=spf1 -all` and set `p=reject`.)
-6. **Security.** *Bot Fight Mode* on; Security Level *Medium*; the free
-   Managed Ruleset is on by default (leave it). Nothing here needs Turnstile.
-7. **Analytics: decision needed.** The site runs no analytics (TODO item 8).
+   | Key Tag | Algorithm | Digest Type | Digest |
+   | --- | --- | --- | --- |
+   | 2371 | 13 | 2 (SHA-256) | `75A795DB0B85EEE0E6289B747248E846045C4D41375B8795EB0910EA3F71F98B` |
+
+   Cloudflare flips the status from *pending* to *active* once it sees it.
+2. **Web3Forms key.** Create a new access key for ccsofla@yahoo.com, put it
+   in `.env.local`, rebuild, then delete the old key (it is in this repo's
+   git history).
+3. **Analytics: decision needed.** The site runs no analytics (TODO item 8).
    Cloudflare Web Analytics is cookieless and needs no consent banner. If
-   it's wanted, turn it on for the Worker and add
+   it is wanted, turn it on for the Worker and add
    `https://static.cloudflareinsights.com` to `script-src` and
    `https://cloudflareinsights.com` to `connect-src` in `scripts/csp.mjs`,
    or the build will (correctly) fail.
 
-**Cut-over** (once the preview is approved)
+### Cut-over (once the preview is approved)
 
-1. `npm run deploy`.
-2. Workers & Pages → `coastal-construction` → Settings → Domains & Routes →
-   add `coastalconstructionservicesofla.com` (and `www`). Remove the domain
-   from whatever serves it now first.
+1. `npm run deploy` (updates `coastal-construction`).
+2. Workers & Pages → `coastalconstructionofla` → Settings → Domains &
+   Routes → remove `coastalconstructionservicesofla.com`; then
+   `coastal-construction` → add it. Seconds of downtime between the two,
+   so do it at a quiet hour. `www` needs nothing: the redirect rule covers it.
 3. Purge the cache (Caching → Purge everything).
-4. Check: `/`, `/services`, `/about`, `/contact` return 200; `/services.html`
-   301s to `/services`; `/nope` returns 404; response headers include the CSP.
+4. Check: `/`, `/services`, `/about`, `/contact` return 200;
+   `/services.html` 301s to `/services`; `/nope` returns 404; response
+   headers include the CSP.
 5. Search Console: submit `https://coastalconstructionservicesofla.com/sitemap.xml`
    and request indexing for the four pages (the URLs drop `.html`).
-6. Once traffic is on the new Worker, retire the old deployment.
+6. After a week on the new Worker, delete `coastalconstructionofla`.
