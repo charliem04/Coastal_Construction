@@ -190,19 +190,33 @@ export const client = {
     ],
     skip: "Skip to content",
   },
+  /** The fixed bar on phones and tablets (components/MobileCallBar). */
+  mobileBar: {
+    call: "Call",
+    quote: "Get a Quote",
+  },
+  /** The numbered labels above major sections (components/survey). */
+  markers: {
+    services: "Services",
+    process: "How We Work",
+    why: "Why Coastal",
+    area: "Coverage",
+  },
   footer: {
     /** "© {year} …" — the year is the build year. */
     line: "Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.",
     privacy: "Privacy Policy",
+    quote: "Get a Quote",
+    contactHeading: "Contact",
+    hoursHeading: "Hours",
+    servicesHeading: "Services",
+    areaHeading: "Service Area",
   },
 
   // ── Home ──────────────────────────────────────────────────────────
   home: {
     hero: {
       logoAlt: "Coastal Construction Services Logo",
-      wordmark: "[COASTAL] CONSTRUCTION [SERVICES]",
-      subtitle: "of Louisiana",
-      tagline: "Southern Louisiana's Dirt Work Specialists",
       headline: "BUILDING [STRONGER] FOUNDATIONS",
       subhead: "Expert dirt construction services across the area of Acadiana",
       cta: "Get A Quote",
@@ -212,6 +226,25 @@ export const client = {
       subtitle: "Comprehensive dirt work solutions for every project",
       viewAll: "View All Services",
       seeArea: "See Our Service Area",
+    },
+    /** New copy for the owner's review before launch. */
+    process: {
+      title: "HOW WE [WORK]",
+      subtitle: "A straightforward process from first look to finished ground",
+      steps: [
+        { title: "Assess", body: "We review your property, project goals, and site conditions." },
+        { title: "Clear", body: "We remove brush, debris, or structures to prepare the work area." },
+        { title: "Grade", body: "We shape and level the ground with drainage in mind." },
+        { title: "Finish", body: "We complete the site so it is ready for what comes next." },
+      ],
+    },
+    /** Shown only once content/projects.ts has real photo pairs. */
+    beforeAfter: {
+      title: "BEFORE & [AFTER]",
+      subtitle: "Real results from real job sites",
+      before: "Before",
+      after: "After",
+      sliderLabel: "Compare before and after",
     },
     whyChoose: {
       heading: "WHY CHOOSE [COASTAL?]",
@@ -346,19 +379,16 @@ export const client = {
     methods: {
       /** Cal.com event "phone-consultation" (booking.events[0]). */
       call: {
-        icon: "📞",
         title: "BOOK A CALL",
         body: "Schedule a convenient time for a phone consultation with our team",
       },
       message: {
-        icon: "✉️",
         title: "SEND A MESSAGE",
         body: "Fill out our contact form below and we'll get back to you within 24 hours",
         cta: "Send Message",
       },
       /** Cal.com event "meeting" (booking.events[1]). */
       meeting: {
-        icon: "📅",
         title: "SCHEDULE A MEETING",
         body: "Book an in-person or virtual meeting to discuss your project in detail",
       },
@@ -463,7 +493,7 @@ export const client = {
 
   // ── 404 ───────────────────────────────────────────────────────────
   notFound: {
-    heading: "4[0]4",
+    heading: "You've Hit [Unmarked Ground]",
     body: "That page got cleared off the lot. Let's get you back on solid ground.",
     ctaHeading: "WHERE TO NEXT?",
     ctaBody: "Here are the pages most folks are looking for",

@@ -1,10 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { anton, barlowCondensed } from "./fonts";
 import { client } from "@/client.config";
 import { CalEmbed } from "@/components/CalEmbed";
 import { Footer } from "@/components/Footer";
+import { MobileCallBar } from "@/components/MobileCallBar";
 import { Nav } from "@/components/Nav";
+import { PageTransition } from "@/components/PageTransition";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 export const metadata: Metadata = {
   metadataBase: new URL(client.siteUrl),
@@ -30,6 +34,7 @@ export const viewport: Viewport = {
   themeColor: client.themeColor,
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 /**
@@ -38,7 +43,7 @@ export const viewport: Viewport = {
  */
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-US">
+    <html lang="en-US" className={`${anton.variable} ${barlowCondensed.variable}`}>
       <head>
         {/*
           Scroll reveals server-render their hidden state inline. Without
@@ -53,9 +58,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#main">
           {client.nav.skip}
         </a>
+        <ScrollProgress />
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <MobileCallBar />
+        <PageTransition />
         {/* Cal.com's embed loader — fetched only on a page with a booking button. */}
         <CalEmbed />
       </body>

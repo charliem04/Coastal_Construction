@@ -22,11 +22,10 @@ import type { Config } from "tailwindcss";
  *   gray-400 (#9ca3af) for subtitles, gray-500 (#6b7280) for the footer.
  *
  * ── TYPE ────────────────────────────────────────────────────────────
- * Two system stacks, no web fonts (nothing to download, nothing to
- * shift on load):
- *   display  Arial Black — headings, nav, buttons, labels. Always
- *            uppercase, tracked out 1–3px. That uppercase red-word heading
- *            is the site's one visual signature; see components/Highlight.
+ * Two self-hosted fonts (app/fonts.ts) and one system stack:
+ *   display  Anton: headlines, section headings, stats. That uppercase
+ *            red-word heading is the site's visual signature.
+ *   label    Barlow Condensed: buttons, nav, small labels.
  *   body     Arial — running text.
  * ────────────────────────────────────────────────────────────────────
  */
@@ -54,7 +53,8 @@ const config: Config = {
         success: "#22c55e",
       },
       fontFamily: {
-        display: ["'Arial Black'", "'Arial Bold'", "Gadget", "sans-serif"],
+        display: ["var(--font-anton)", "'Arial Black'", "'Arial Bold'", "Gadget", "sans-serif"],
+        label: ["var(--font-barlow)", "'Arial Narrow'", "Arial", "sans-serif"],
         body: ["Arial", "Helvetica", "sans-serif"],
       },
       fontSize: {

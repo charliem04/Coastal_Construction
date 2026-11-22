@@ -2,22 +2,30 @@ import Link from "next/link";
 import { client } from "@/client.config";
 import { serviceAreaTiers } from "@/content/serviceAreas";
 import { Highlight } from "./Highlight";
+import { PinIcon } from "./icons";
+import { Reveal } from "./Reveal";
+import { SectionMarker } from "./survey/SectionMarker";
+import { SurveyFrame } from "./survey/SurveyFrame";
 
 const a = client.home.serviceArea;
 
 /** Home page: the map, the "not sure?" box under it, and the parish tiers. */
 export function ServiceArea() {
   return (
-    <section className="service-area-map" id="service-area">
-      <h2 className="section-title">
-        <Highlight text={a.title} />
-      </h2>
-      <p className="section-subtitle">{a.subtitle}</p>
+    <section className="service-area-map band-contours" id="service-area">
+      <Reveal>
+        <SectionMarker index="04" label={client.markers.area} />
+        <h2 className="section-title">
+          <Highlight text={a.title} />
+        </h2>
+        <p className="section-subtitle">{a.subtitle}</p>
+      </Reveal>
 
       <div className="map-container">
         <div className="map-content">
           <div className="map-column">
-            <div className="parishes-map">
+            <SurveyFrame>
+              <div className="parishes-map">
               <iframe
                 src={a.mapSrc}
                 width="100%"
@@ -28,15 +36,14 @@ export function ServiceArea() {
                 title={a.mapTitle}
               />
               <div className="map-overlay-info">
-                <div className="map-pin" aria-hidden="true">
-                  📍
-                </div>
+                <PinIcon className="map-pin" />
                 <div className="map-location-text">
                   <strong>{a.based}</strong>
                   <span>{a.serving}</span>
                 </div>
               </div>
             </div>
+            </SurveyFrame>
             <div className="service-area-cta">
               <p>
                 {a.ctaBefore}

@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
+import { CornerBrackets } from "@/components/survey/CornerBrackets";
 import { photo } from "@/lib/photo";
 import { pageMetadata } from "@/lib/seo";
 
@@ -24,12 +25,15 @@ export default function ServicesPage() {
 
       {services.map((s, i) => {
         const image = (
-          <Image
+          <div className="service-photo has-brackets">
+            <CornerBrackets />
+            <Image
             {...photo(s.photo)}
             alt={s.alt.detail}
             className="service-image"
             sizes="(max-width: 968px) 100vw, 650px"
           />
+          </div>
         );
         return (
           <Reveal
@@ -48,8 +52,12 @@ export default function ServicesPage() {
                 <div className="service-features">
                   <h3>{p.featuresHeading}</h3>
                   <ul>
-                    {s.features.map((f) => (
-                      <li key={f}>{f}</li>
+                    {s.features.map((f, n) => (
+                      <li key={f}>
+                        <Reveal as="div" className="inline" delay={n * 0.05}>
+                          {f}
+                        </Reveal>
+                      </li>
                     ))}
                   </ul>
                 </div>

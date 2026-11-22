@@ -4,6 +4,8 @@ import { CtaBand } from "@/components/CtaBand";
 import { Highlight } from "@/components/Highlight";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
+import { Reveal } from "@/components/Reveal";
+import { CornerBrackets } from "@/components/survey/CornerBrackets";
 import { photo } from "@/lib/photo";
 import { pageMetadata } from "@/lib/seo";
 
@@ -21,13 +23,16 @@ export default function AboutPage() {
       <section className="about-page">
         <div className="about-page-content">
           <div className="owner-photo-section">
-            <Image
-              {...photo("owner-kevin-meyers")}
+            <div className="owner-photo-frame has-brackets">
+              <CornerBrackets />
+              <Image
+                {...photo("owner-kevin-meyers")}
               alt={a.ownerAlt}
               className="owner-photo"
               sizes="(max-width: 968px) 100vw, 286px"
               priority
-            />
+              />
+            </div>
             <h2 className="owner-name">{client.owner.name}</h2>
             <p className="owner-title">{client.owner.title}</p>
           </div>
@@ -54,11 +59,13 @@ export default function AboutPage() {
                 <Highlight text={a.values.heading} />
               </h2>
               <div className="values-grid">
-                {a.values.items.map((v) => (
-                  <div key={v.title} className="value-item">
-                    <h3>{v.title}</h3>
-                    <p>{v.body}</p>
-                  </div>
+                {a.values.items.map((v, n) => (
+                  <Reveal key={v.title} className="h-full" delay={n * 0.09}>
+                    <div className="value-item h-full">
+                      <h3>{v.title}</h3>
+                      <p>{v.body}</p>
+                    </div>
+                  </Reveal>
                 ))}
               </div>
             </div>

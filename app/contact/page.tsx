@@ -4,8 +4,10 @@ import { faqs } from "@/content/faqs";
 import { BookingButton } from "@/components/BookingButton";
 import { ContactForm } from "@/components/ContactForm";
 import { Highlight } from "@/components/Highlight";
+import { CalendarIcon, MailIcon, PhoneIcon } from "@/components/icons";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
+import { Reveal } from "@/components/Reveal";
 import { phoneDisplay, phoneHref } from "@/lib/phone";
 import { pageMetadata } from "@/lib/seo";
 
@@ -28,18 +30,14 @@ export default function ContactPage() {
       <section className="contact-methods">
         <div className="contact-methods-grid">
           <div className="contact-method-card">
-            <div className="contact-method-icon" aria-hidden="true">
-              {c.methods.call.icon}
-            </div>
+            <PhoneIcon className="contact-method-icon" />
             <h2>{c.methods.call.title}</h2>
             <p>{c.methods.call.body}</p>
             <BookingButton event={events[0]?.id ?? ""} />
           </div>
 
           <div className="contact-method-card">
-            <div className="contact-method-icon" aria-hidden="true">
-              {c.methods.message.icon}
-            </div>
+            <MailIcon className="contact-method-icon" />
             <h2>{c.methods.message.title}</h2>
             <p>{c.methods.message.body}</p>
             <a href="#contact-form" className="method-button">
@@ -48,9 +46,7 @@ export default function ContactPage() {
           </div>
 
           <div className="contact-method-card">
-            <div className="contact-method-icon" aria-hidden="true">
-              {c.methods.meeting.icon}
-            </div>
+            <CalendarIcon className="contact-method-icon" />
             <h2>{c.methods.meeting.title}</h2>
             <p>{c.methods.meeting.body}</p>
             <BookingButton event={events[1]?.id ?? ""} />
@@ -121,13 +117,15 @@ export default function ContactPage() {
 
 function InfoCard({ title, lines }: { title: string; lines: readonly string[] }) {
   return (
-    <div className="info-card">
-      <h3>{title}</h3>
+    <Reveal className="h-full">
+      <div className="info-card h-full">
+        <h3>{title}</h3>
       {lines.map((l) => (
         <p key={l} className="info-detail">
           {l}
         </p>
       ))}
     </div>
+    </Reveal>
   );
 }
