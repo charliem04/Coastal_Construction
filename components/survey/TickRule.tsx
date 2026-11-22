@@ -11,8 +11,8 @@ export function TickRule({ className = "" }: { className?: string }) {
         aria-hidden="true"
         data-reveal=""
         className={`tick-rule ${className}`}
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
+        initial={{ "--draw": 0 } as never}
+        whileInView={{ "--draw": 1 } as never}
         viewport={{ once: true }}
         transition={{ duration: 1.3, ease: [...reveal.ease] }}
       />

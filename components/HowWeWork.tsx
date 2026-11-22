@@ -18,20 +18,22 @@ export function HowWeWork() {
         </h2>
         <p className="section-subtitle">{p.subtitle}</p>
       </Reveal>
-      <ol className="process-steps">
+      <div className="process-track">
         <TickRule className="process-line" />
-        {p.steps.map((step, i) => (
-          <li key={step.title}>
-            <Reveal delay={i * motionTiming.stagger}>
-              <span className="process-stake" aria-hidden="true">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </Reveal>
-          </li>
-        ))}
-      </ol>
+        <ol className="process-steps">
+          {p.steps.map((step, i) => (
+            <li key={step.title}>
+              <Reveal delay={i * motionTiming.stagger}>
+                <span className="process-stake" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </div>
     </section>
   );
 }
