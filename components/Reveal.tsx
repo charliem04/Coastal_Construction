@@ -17,9 +17,11 @@ type Props = {
   className?: string;
   as?: "div" | "section";
   id?: string;
+  /** Seconds to wait after entering view, for staggered siblings. */
+  delay?: number;
 };
 
-export function Reveal({ children, className, as = "div", id }: Props) {
+export function Reveal({ children, className, as = "div", id, delay = 0 }: Props) {
   const M = as === "section" ? m.section : m.div;
   return (
     <LazyMotion features={domAnimation} strict>
@@ -30,7 +32,7 @@ export function Reveal({ children, className, as = "div", id }: Props) {
         initial={{ opacity: 0, y: reveal.rise }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={reveal.viewport}
-        transition={{ duration: reveal.duration, ease: reveal.ease }}
+        transition={{ duration: reveal.duration, ease: [...reveal.ease], delay }}
       >
         {children}
       </M>
