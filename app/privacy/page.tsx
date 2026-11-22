@@ -67,6 +67,13 @@ export default function Privacy() {
             IP addresses) to deliver and protect the site.
           </p>
 
+          <h2 className={h2}>Property lookup</h2>
+          <p className={p}>
+            If you use Check Your Land, your browser sends the address or coordinates you enter directly to OpenStreetMap,
+            then sends the resulting map point to FEMA and the U.S. Department of Agriculture to retrieve public records.
+            Coastal does not receive or store that search. Those services handle requests under their own policies.
+          </p>
+
           <h2 className={h2}>Your choices</h2>
           <p className={p}>
             To ask what we hold about you, or to have it corrected or deleted, email{" "}

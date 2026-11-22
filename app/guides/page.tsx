@@ -13,6 +13,12 @@ const crumbs = [
   { name: "Guides", path: "/guides" },
 ];
 
+const tools = [
+  { href: "/check-your-land", label: "Check Your Land", note: "Flood zone and soil lookup" },
+  { href: "/buying-land-checklist", label: "Buying Land Checklist", note: "What to check before you buy" },
+  { href: "/hurricane-prep", label: "Hurricane Prep", note: "Live outlook and property checklist" },
+];
+
 export const metadata = contentMetadata({ title, description, path: "/guides" });
 
 export default function GuidesPage() {
@@ -25,6 +31,10 @@ export default function GuidesPage() {
       <Breadcrumbs crumbs={crumbs} />
       <div className="content-page">
         <div className="content-wrap">
+          <section className="guide-index">
+            <h2>Free Property Tools</h2>
+            <LinkGrid links={tools} />
+          </section>
           {guideCategories.map((category) => (
             <section key={category} className="guide-index">
               <h2>{category}</h2>

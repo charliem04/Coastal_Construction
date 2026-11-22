@@ -2409,6 +2409,230 @@
     @apply underline underline-offset-4 hover:text-white;
     color: theme("colors.brand.light");
   }
+  .land-tool {
+    @apply border border-surface-800 bg-surface-900 p-5;
+  }
+  .land-form label {
+    @apply mb-2 block font-label text-lg uppercase text-white;
+    letter-spacing: 0.04em;
+  }
+  .land-form > div {
+    @apply flex gap-2;
+  }
+  .land-form input {
+    @apply min-h-12 min-w-0 flex-1 border border-gray-500 bg-surface-950 px-4 font-body text-base text-white;
+    caret-color: theme("colors.brand.light");
+  }
+  .land-form input::placeholder {
+    @apply text-gray-400;
+  }
+  .land-form button,
+  .checklist-progress button {
+    @apply cursor-pointer border-none bg-brand px-6 font-label text-lg uppercase text-white;
+    letter-spacing: 0.04em;
+    transition: background-color 0.15s, transform 0.1s;
+  }
+  .land-form button {
+    @apply min-h-12 whitespace-nowrap;
+  }
+  .land-form button:hover:not(:disabled),
+  .checklist-progress button:hover:not(:disabled) {
+    @apply bg-brand-dark;
+  }
+  .land-form button:active:not(:disabled),
+  .checklist-progress button:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .land-form button:disabled,
+  .checklist-progress button:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .land-form p {
+    @apply m-0 mt-2 font-body text-sm text-gray-300;
+  }
+  .land-status {
+    @apply m-0 mt-4 border-l-2 border-brand bg-surface-950 px-4 py-3 font-body text-base text-gray-100;
+  }
+  .land-results {
+    @apply mt-6 border-t border-surface-800 pt-5;
+  }
+  #main .land-results h3 {
+    @apply m-0 text-2xl text-white;
+    outline: none;
+  }
+  .land-point {
+    @apply m-0 mt-1 break-words font-body text-sm text-gray-300;
+  }
+  .land-grid {
+    @apply mt-4 grid gap-4;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .land-card {
+    @apply border border-surface-800 bg-surface-950 p-4 font-body text-base text-gray-200;
+    border-top: 3px solid #6b7280;
+  }
+  .land-card[data-risk="high"] {
+    border-top-color: theme("colors.brand.DEFAULT");
+  }
+  .land-card[data-risk="moderate"] {
+    border-top-color: #f59e0b;
+  }
+  .land-card[data-risk="low"] {
+    border-top-color: #4ade80;
+  }
+  #main .land-card h4 {
+    @apply m-0 font-label text-base uppercase text-gray-300;
+    letter-spacing: 0.04em;
+  }
+  .land-card p {
+    @apply m-0 mt-2;
+  }
+  .land-card .land-value {
+    @apply mt-1 font-display text-3xl uppercase leading-tight text-white;
+  }
+  .land-card .land-label {
+    @apply mt-1 font-label text-lg text-white;
+  }
+  .land-card dl {
+    @apply m-0 mt-3 flex flex-col gap-3;
+  }
+  .land-card dt {
+    @apply font-label text-base text-white;
+  }
+  .land-card dd {
+    @apply m-0 text-sm text-gray-300;
+  }
+  .land-card a,
+  .tropical-panel a,
+  .guide-note a {
+    @apply underline underline-offset-2;
+    color: theme("colors.brand.light");
+  }
+  .land-caution {
+    @apply m-0 mt-4 font-body text-sm text-gray-300;
+  }
+  .checklist-progress {
+    @apply sticky z-10 mb-4 flex items-center gap-4 border border-surface-800 bg-surface-900 px-4 py-2;
+    top: var(--nav-offset);
+  }
+  .checklist-progress p {
+    @apply m-0 whitespace-nowrap font-label text-base uppercase text-white;
+    font-variant-numeric: tabular-nums;
+  }
+  .checklist-progress > div {
+    @apply h-1 min-w-0 flex-1 overflow-hidden bg-surface-800;
+  }
+  .checklist-progress i {
+    @apply block h-full w-full bg-brand;
+    transform-origin: left;
+    transition: transform 0.2s ease-out;
+  }
+  .checklist-progress button {
+    @apply min-h-11 bg-surface-950 px-4 text-base;
+  }
+  .checklist-groups {
+    @apply grid gap-4;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .checklist-groups section {
+    @apply border border-surface-800 bg-surface-900 p-4;
+  }
+  #main .checklist-groups h3 {
+    @apply m-0 text-2xl text-white;
+  }
+  .checklist-groups p {
+    @apply m-0 mt-1 font-body text-sm text-gray-300;
+  }
+  .checklist-groups ul {
+    @apply m-0 mt-3 list-none p-0;
+  }
+  .checklist-groups label {
+    @apply flex min-h-11 cursor-pointer items-start gap-3 py-2 font-body text-base text-gray-100;
+  }
+  .checklist-groups input {
+    @apply mt-1 h-5 w-5 shrink-0 cursor-pointer;
+    accent-color: theme("colors.brand.DEFAULT");
+  }
+  .checklist-groups input:checked + span {
+    @apply text-gray-400 line-through;
+  }
+  .tropical-panel {
+    @apply m-0 max-w-[900px] border border-surface-800 bg-surface-900;
+  }
+  .tropical-alert {
+    @apply flex flex-wrap items-baseline justify-between gap-2 border-b border-surface-800 px-4 py-3 font-body text-base text-gray-200;
+  }
+  .tropical-alert strong {
+    @apply font-label text-lg uppercase text-white;
+  }
+  .tropical-alert[data-active="true"] {
+    background: rgb(220 38 38 / 0.14);
+    box-shadow: inset 3px 0 0 theme("colors.brand.DEFAULT");
+  }
+  .tropical-panel img {
+    @apply block h-auto w-full;
+  }
+  .tropical-fallback {
+    @apply m-0 p-6 text-center font-body text-gray-200;
+  }
+  .tropical-panel figcaption {
+    @apply border-t border-surface-800 px-4 py-3 font-body text-sm text-gray-300;
+  }
+  .calc-tool {
+    @apply grid border border-surface-800 bg-surface-900;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  }
+  .calc-tool form {
+    @apply grid gap-4 p-5;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .calc-tool label > span {
+    @apply mb-1 block font-label text-base text-gray-200;
+  }
+  .calc-tool label > div {
+    @apply flex items-center border border-gray-500 bg-surface-950;
+  }
+  .calc-tool input {
+    @apply min-h-12 w-full min-w-0 border-none bg-transparent px-3 font-body text-lg text-white;
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-tool label small {
+    @apply px-3 font-label text-sm text-gray-300;
+  }
+  .calc-result {
+    @apply flex flex-col justify-center border-l border-surface-800 bg-surface-950 p-5 font-body text-gray-200;
+  }
+  .calc-result > span {
+    @apply font-label text-base uppercase text-gray-300;
+  }
+  .calc-result strong {
+    @apply font-display text-5xl font-normal leading-tight text-white;
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-result small {
+    @apply text-base;
+  }
+  .calc-note {
+    @apply mt-4;
+  }
+  @media (max-width: 767px) {
+    .land-grid,
+    .checklist-groups,
+    .calc-tool {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .calc-result {
+      @apply border-l-0 border-t;
+    }
+  }
+  @media (max-width: 480px) {
+    .land-form > div {
+      @apply flex-col;
+    }
+    .calc-tool form {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
   .radar-layout {
     @apply grid items-stretch gap-5;
     grid-template-columns: minmax(0, 720px) minmax(280px, 1fr);
