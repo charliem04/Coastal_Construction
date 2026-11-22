@@ -7,11 +7,16 @@
  */
 export const motionEase = [0.2, 0.8, 0.2, 1] as const;
 
+/** The laser level: quick off the mark, quick to settle. */
+export const laserEase = [0.65, 0, 0.35, 1] as const;
+
 export const motionTiming = {
   /** Seconds between siblings in a staggered entrance. */
   stagger: 0.09,
   /** Hover and focus responses. */
   hover: 0.3,
+  /** One pass of the laser ruler. */
+  laser: 1.2,
 } as const;
 
 export const reveal = {

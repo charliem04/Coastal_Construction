@@ -8,10 +8,10 @@
  */
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useCallback, useEffect, useRef } from "react";
-import { DIG_LAYERS, digProgress, layerOffset, layerPath, seamProgress } from "@/lib/digProgress";
+import { BAND_COLORS, DIG_LAYERS, bandProgress, digProgress, layerOffset, layerPath, seamProgress } from "@/lib/digProgress";
 import { useStillness } from "@/lib/useStillness";
 
-export function ExcavationDivider() {
+export function ExcavationDivider({ variant = "hero" }: { variant?: "hero" | "band" }) {
   const root = useRef<HTMLDivElement>(null);
   const seam = useRef<HTMLDivElement>(null);
   const paths = useRef<(SVGPathElement | null)[]>([]);
@@ -26,8 +26,14 @@ export function ExcavationDivider() {
   }, []);
 
   const update = useCallback(
-    (y: number) => apply(digProgress(y, root.current?.parentElement?.offsetHeight ?? 0)),
-    [apply]
+    (y: number) => {
+      const el = root.current;
+      if (!el) return;
+      if (variant === "hero") return apply(digProgress(y, el.parentElement?.offsetHeight ?? 0));
+      const remaining = document.documentElement.scrollHeight - window.innerHeight - y;
+      apply(bandProgress(el.getBoundingClientRect().top, window.innerHeight, remaining));
+    },
+    [apply, variant]
   );
 
   useMotionValueEvent(scrollY, "change", (y) => {
@@ -47,11 +53,11 @@ export function ExcavationDivider() {
       <svg viewBox="0 0 1600 220" preserveAspectRatio="none">
         {DIG_LAYERS.map((layer, i) => (
           <path
-            key={layer.color}
+            key={layer.base}
             ref={(el) => {
               paths.current[i] = el;
             }}
-            fill={layer.color}
+            fill={variant === "band" ? BAND_COLORS[i] : layer.color}
             d={layerPath(i)}
           />
         ))}

@@ -20,8 +20,8 @@ test("the map frame is fully drawn when it cannot animate", () => {
 
 test("tick rules draw through an axis-independent value", () => {
   assert.match(read("components/survey/TickRule.tsx"), /"--draw": 0/);
-  assert.match(css, /\.tick-rule \{[\s\S]*?transform: scaleX\(var\(--draw, 1\)\);/);
-  assert.match(css, /\.process-line \{[\s\S]*?transform: scaleY\(var\(--draw, 1\)\);/);
+  assert.match(css, /\.laser-ticks \{[\s\S]*?var\(--draw, 1\)/);
+  assert.match(css, /\.process-line \.laser-ticks \{[\s\S]*?var\(--draw, 1\)/);
 });
 
 test("the process list contains only list items", () => {

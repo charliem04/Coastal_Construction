@@ -6,7 +6,7 @@ import { services } from "@/content/services";
 import { footerHours } from "@/lib/footerLinks";
 import { phoneDisplay, phoneHref } from "@/lib/phone";
 import { photo } from "@/lib/photo";
-import { TickRule } from "./survey/TickRule";
+import { BladeEdge } from "./survey/BladeEdge";
 
 const f = client.footer;
 /** Home base plus the core parishes; the home page has the full list. */
@@ -21,7 +21,7 @@ export function Footer() {
   const { street, city, region, postalCode } = client.address;
   return (
     <footer className="site-footer">
-      <TickRule className="footer-ticks" />
+      <BladeEdge />
       <div className="footer-grid">
         <div className="footer-brand">
           <Image {...photo("logo")} alt="" className="footer-logo" sizes="140px" />
