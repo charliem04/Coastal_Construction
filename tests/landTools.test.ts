@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { calculators, calculatorAssumptions } from "../content/calculators.ts";
 import { landChecklist } from "../content/landChecklist.ts";
+import { serviceToolLinks, siteTools, toolsForService } from "../content/tools.ts";
 import { fillYards, padYards, pondVolume, withAssumptions } from "../lib/calculators.ts";
 import { hydricMeaning, parseCoordinates, readFlood, readSoil, soilQuery } from "../lib/landLookup.ts";
 
@@ -55,4 +56,14 @@ test("calculator math", () => {
 test("calculators stay hidden with no invented owner numbers", () => {
   assert.ok(calculators.every((c) => !c.published));
   assert.deepEqual(calculatorAssumptions, { truckYards: null, compactionPercent: null });
+});
+
+test("the public tools are linked from the footer, home page, and every service", () => {
+  assert.match(read("components/Footer.tsx"), /siteTools\.map/);
+  assert.match(read("app/page.tsx"), /links=\{siteTools\}/);
+  assert.match(read("app/services/[slug]/page.tsx"), /toolsForService\(s\.slug\)/);
+  const slugs = [...read("content/services.ts").matchAll(/slug: "([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(Object.keys(serviceToolLinks).sort(), [...slugs].sort());
+  for (const slug of slugs) assert.equal(toolsForService(slug).length, 2, slug);
+  assert.ok(siteTools.every((tool) => !tool.href.startsWith("/calculators")));
 });

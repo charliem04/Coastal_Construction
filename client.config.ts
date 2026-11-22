@@ -217,6 +217,7 @@ export const client = {
     hoursHeading: "Hours",
     servicesHeading: "Services",
     areaHeading: "Service Area",
+    toolsHeading: "Free Tools",
   },
 
   // ── Home ──────────────────────────────────────────────────────────

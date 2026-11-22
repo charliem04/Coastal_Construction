@@ -2409,6 +2409,35 @@
     @apply underline underline-offset-4 hover:text-white;
     color: theme("colors.brand.light");
   }
+  .home-tools {
+    @apply bg-surface-950 px-8 py-20 text-white;
+  }
+  .home-tools > * {
+    @apply mx-auto max-w-content;
+  }
+  .home-tools h2 {
+    @apply m-0 text-d-1 uppercase;
+    letter-spacing: 2px;
+  }
+  .home-tools p {
+    @apply mb-8 mt-2 max-w-[62ch] font-body text-lg text-gray-300;
+  }
+  .home-tools .link-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  @media (max-width: 968px) {
+    .home-tools .link-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 560px) {
+    .home-tools {
+      @apply px-5 py-14;
+    }
+    .home-tools .link-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
   .land-tool {
     @apply border border-surface-800 bg-surface-900 p-5;
   }

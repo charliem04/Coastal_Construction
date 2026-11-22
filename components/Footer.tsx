@@ -3,6 +3,7 @@ import Link from "next/link";
 import { client } from "@/client.config";
 import { serviceAreaTiers } from "@/content/serviceAreas";
 import { services } from "@/content/services";
+import { siteTools } from "@/content/tools";
 import { footerHours } from "@/lib/footerLinks";
 import { phoneDisplay, phoneHref } from "@/lib/phone";
 import { photo } from "@/lib/photo";
@@ -61,16 +62,30 @@ export function Footer() {
           </ul>
         </nav>
 
-        <nav className="footer-column" aria-label={f.areaHeading}>
-          <h2>{f.areaHeading}</h2>
-          <ul>
-            {parishes.map((p) => (
-              <li key={p.name}>
-                <Link href="/#service-area">{p.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="footer-column">
+          <nav aria-label={f.areaHeading}>
+            <h2>{f.areaHeading}</h2>
+            <ul>
+              {parishes.map((p) => (
+                <li key={p.name}>
+                  <Link href="/#service-area">{p.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <nav className="mt-6" aria-label={f.toolsHeading}>
+            <h2>{f.toolsHeading}</h2>
+            <ul>
+              {siteTools.map((tool) => (
+                <li key={tool.href}>
+                  <Link href={tool.href} prefetch={false}>
+                    {tool.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
 
       <div className="footer-legal">

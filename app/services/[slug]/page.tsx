@@ -8,6 +8,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { guide } from "@/content/guides";
 import { serviceDetail, serviceDetails } from "@/content/serviceDetails";
 import { services } from "@/content/services";
+import { toolsForService } from "@/content/tools";
 import { photo } from "@/lib/photo";
 import { contentMetadata } from "@/lib/seo";
 
@@ -100,6 +101,10 @@ export default function ServicePage({ params }: Props) {
           <section className="content-section">
             <h2>{s.name} Questions</h2>
             <QaList items={d.faqs} />
+          </section>
+          <section className="content-section">
+            <h2>Plan Your Project</h2>
+            <LinkGrid links={toolsForService(s.slug)} />
           </section>
           <section className="content-section">
             <h2>Helpful Guides</h2>
