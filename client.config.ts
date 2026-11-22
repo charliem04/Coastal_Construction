@@ -201,6 +201,11 @@ export const client = {
     /** "© {year} …" — the year is the build year. */
     line: "Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.",
     privacy: "Privacy Policy",
+    quote: "Get a Quote",
+    contactHeading: "Contact",
+    hoursHeading: "Hours",
+    servicesHeading: "Services",
+    areaHeading: "Service Area",
   },
 
   // ── Home ──────────────────────────────────────────────────────────
@@ -350,19 +355,16 @@ export const client = {
     methods: {
       /** Cal.com event "phone-consultation" (booking.events[0]). */
       call: {
-        icon: "📞",
         title: "BOOK A CALL",
         body: "Schedule a convenient time for a phone consultation with our team",
       },
       message: {
-        icon: "✉️",
         title: "SEND A MESSAGE",
         body: "Fill out our contact form below and we'll get back to you within 24 hours",
         cta: "Send Message",
       },
       /** Cal.com event "meeting" (booking.events[1]). */
       meeting: {
-        icon: "📅",
         title: "SCHEDULE A MEETING",
         body: "Book an in-person or virtual meeting to discuss your project in detail",
       },

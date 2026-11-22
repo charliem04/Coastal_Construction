@@ -2,6 +2,7 @@ import Link from "next/link";
 import { client } from "@/client.config";
 import { serviceAreaTiers } from "@/content/serviceAreas";
 import { Highlight } from "./Highlight";
+import { PinIcon } from "./icons";
 import { Reveal } from "./Reveal";
 import { SectionMarker } from "./survey/SectionMarker";
 import { SurveyFrame } from "./survey/SurveyFrame";
@@ -35,9 +36,7 @@ export function ServiceArea() {
                 title={a.mapTitle}
               />
               <div className="map-overlay-info">
-                <div className="map-pin" aria-hidden="true">
-                  📍
-                </div>
+                <PinIcon className="map-pin" />
                 <div className="map-location-text">
                   <strong>{a.based}</strong>
                   <span>{a.serving}</span>
