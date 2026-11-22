@@ -1043,13 +1043,6 @@
   .dig-divider svg {
     @apply absolute inset-0 h-full w-full;
   }
-  .dig-seam {
-    @apply absolute bottom-0 left-0 right-0 h-[11px];
-    background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.32) 0 1px, transparent 1px 24px);
-    border-bottom: 2px solid theme("colors.brand.DEFAULT");
-    transform: scaleX(0);
-    transform-origin: left;
-  }
 }
 
 /* ── Nav: fixed flow height, condensing bar, scroll progress ────────── */
@@ -1854,8 +1847,25 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .tick-rule {
+    .tick-rule:not(.dig-laser) {
       --draw: 1 !important;
     }
+  }
+}
+
+/* The laser under the dirt: scroll moves it as the last soil clears. */
+@layer components {
+  .tick-rule.dig-laser {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 8px;
+    z-index: 1;
+  }
+  .dig-laser .laser-head {
+    bottom: -13px;
+    width: 28px;
+    height: 28px;
+    margin-left: -14px;
   }
 }
