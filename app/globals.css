@@ -29,7 +29,7 @@
   }
 
   body {
-    @apply bg-surface-900 font-display text-white;
+    @apply bg-surface-900 font-label text-white;
     line-height: 1.6;
   }
 
@@ -82,7 +82,7 @@
 @layer components {
   /* ── Skip link ──────────────────────────────────────────────────── */
   .skip-link {
-    @apply absolute top-0 z-[2000] bg-brand px-6 py-4 font-display uppercase tracking-label text-white no-underline;
+    @apply absolute top-0 z-[2000] bg-brand px-6 py-4 font-label uppercase tracking-label text-white no-underline;
     left: -9999px;
   }
   .skip-link:focus {
@@ -167,7 +167,7 @@
     box-shadow: 0 10px 30px rgb(220 38 38 / 0.4);
   }
   .method-button {
-    @apply inline-block cursor-pointer border-none bg-brand px-8 py-4 font-display text-base uppercase text-white no-underline transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark;
+    @apply inline-block cursor-pointer border-none bg-brand px-8 py-4 font-label text-base uppercase text-white no-underline transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark;
     letter-spacing: 1px;
   }
   /* The <button> ones (Cal.com) had the browser's normal line-height; the
@@ -1363,7 +1363,7 @@
     letter-spacing: 1px;
   }
   .footer-column h2 {
-    @apply mb-3 font-display text-sm uppercase text-white;
+    @apply mb-3 font-label text-base uppercase text-white;
     letter-spacing: 2px;
   }
   .footer-column,
@@ -1424,7 +1424,7 @@
     }
     .mobile-call,
     .mobile-quote {
-      @apply flex h-14 items-center justify-center gap-2 font-display text-sm uppercase text-white no-underline;
+      @apply flex h-14 items-center justify-center gap-2 font-label text-lg uppercase text-white no-underline;
       letter-spacing: 1px;
     }
     .mobile-call {
@@ -1466,7 +1466,7 @@
     @apply absolute left-0 right-0 top-[23px];
   }
   .process-stake {
-    @apply relative z-[1] mb-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand bg-black font-display text-base text-white;
+    @apply relative z-[1] mb-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand bg-black font-label text-lg text-white;
   }
   .process-steps h3 {
     @apply mb-2 text-xl uppercase text-white;
@@ -1518,7 +1518,7 @@
     outline-offset: 2px;
   }
   .before-after figcaption {
-    @apply mt-3 font-display text-base uppercase text-white;
+    @apply mt-3 font-label text-lg uppercase text-white;
   }
   .before-after figcaption span {
     @apply ml-2 font-body text-sm font-normal normal-case text-gray-400;
@@ -1559,6 +1559,121 @@
     }
     .process-stake {
       left: -76px;
+    }
+  }
+}
+
+/* ── Type: Anton for the big type, Barlow Condensed for the small ───── */
+@layer base {
+  html {
+    font-synthesis: none;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  dd {
+    @apply font-display;
+    font-weight: 400;
+  }
+}
+@layer components {
+  /* The id outranks the older per-heading tracking without !important. */
+  #main :is(h1, h2, h3, h4) {
+    letter-spacing: 0.025em;
+    line-height: 1.12;
+  }
+  .nav-logo {
+    @apply font-display;
+    letter-spacing: 0.04em;
+  }
+  .nav-subtitle {
+    @apply font-label;
+  }
+  .nav-links a {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+  .section-marker {
+    @apply font-label text-sm;
+    letter-spacing: 0.18em;
+  }
+  #main .hero h1 {
+    font-size: clamp(2.9rem, 8.4vw, 7rem);
+    line-height: 1.03;
+  }
+  #main .page-header h1 {
+    font-size: clamp(2.9rem, 7vw, 5.5rem);
+  }
+  #main .section-title,
+  #main .about-text h2,
+  #main .contact h2,
+  #main .cta-section h2,
+  #main .owner-story h2,
+  #main .form-header h2,
+  #main .service-text h2 {
+    font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  }
+  #main .about-highlight h3 {
+    font-size: 2.4rem;
+  }
+  .section-title {
+    @apply mb-3;
+  }
+  .stat-number {
+    font-size: 3.6rem;
+    line-height: 1.08;
+  }
+  .stat-label {
+    @apply font-label text-base;
+    letter-spacing: 0.08em;
+  }
+  #main .service-card-body h3,
+  #main .process-steps h3 {
+    font-size: 1.55rem;
+  }
+  .cta-button,
+  .cta-button-outline,
+  .cta-button-secondary {
+    @apply px-10 py-4 font-label;
+    font-size: 1.45rem;
+    letter-spacing: 0.08em;
+  }
+  .method-button,
+  .submit-button {
+    @apply font-label;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+  }
+  .footer-name {
+    font-size: 1.2rem;
+  }
+  .site-footer .footer-phone {
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+  }
+  .footer-column h2 {
+    letter-spacing: 0.14em;
+  }
+  .mobile-call,
+  .mobile-quote {
+    letter-spacing: 0.08em;
+  }
+  @media (max-width: 968px) {
+    .site-nav .nav-logo {
+      font-size: 1rem;
+    }
+    .site-nav .nav-links a {
+      font-size: 0.98rem;
+    }
+    .cta-button,
+    .cta-button-outline,
+    .cta-button-secondary {
+      @apply px-7 py-3.5;
+      font-size: 1.25rem;
+    }
+    .stat-number {
+      font-size: 3rem;
     }
   }
 }

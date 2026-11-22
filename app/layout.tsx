@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
+import { anton, barlowCondensed } from "./fonts";
 import { client } from "@/client.config";
 import { CalEmbed } from "@/components/CalEmbed";
 import { Footer } from "@/components/Footer";
@@ -41,7 +42,7 @@ export const viewport: Viewport = {
  */
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-US">
+    <html lang="en-US" className={`${anton.variable} ${barlowCondensed.variable}`}>
       <head>
         {/*
           Scroll reveals server-render their hidden state inline. Without
