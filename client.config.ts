@@ -180,11 +180,16 @@ export const client = {
   nav: {
     logoAlt: "Coastal Construction Logo",
     /** The wordmark beside the logo. [Word] is red. */
-    wordmark: "[COASTAL] CONSTRUCTION [SERVICES]",
-    subtitle: "of Louisiana",
+    wordmark: "[COASTAL] CONSTRUCTION",
+    subtitle: "Services of Louisiana",
+    showServices: "Show services",
+    servicesLabel: "Services",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
     links: [
       { href: "/", label: "Home" },
       { href: "/services", label: "Services" },
+      { href: "/guides", label: "Guides" },
       { href: "/about", label: "About" },
       { href: "/contact", label: "Contact" },
     ],
@@ -206,6 +211,7 @@ export const client = {
     /** "© {year} …" — the year is the build year. */
     line: "Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.",
     privacy: "Privacy Policy",
+    guides: "Answer Guides",
     quote: "Get a Quote",
     contactHeading: "Contact",
     hoursHeading: "Hours",
@@ -299,6 +305,7 @@ export const client = {
     heading: "OUR [SERVICES]",
     subtitle: "Expert dirt work solutions tailored to your project needs",
     jumpLabel: "Jump to a service",
+    learnMore: "View full service details",
     featuresHeading: "What We Offer:",
     cta: {
       heading: "READY TO GET STARTED?",

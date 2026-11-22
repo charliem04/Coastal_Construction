@@ -53,7 +53,9 @@ export function Footer() {
           <ul className="footer-services">
             {services.map((s) => (
               <li key={s.slug}>
-                <Link href={`/services#${s.slug}`}>{s.name}</Link>
+                <Link href={`/services/${s.slug}`} prefetch={false}>
+                  {s.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -75,7 +77,10 @@ export function Footer() {
         <p>
           &copy; {year} {f.line}
         </p>
-        <Link href="/privacy">{f.privacy}</Link>
+        <span className="footer-legal-links">
+          <Link href="/guides">{f.guides}</Link>
+          <Link href="/privacy">{f.privacy}</Link>
+        </span>
       </div>
     </footer>
   );

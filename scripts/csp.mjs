@@ -74,6 +74,24 @@ const LINK_ONLY = new Set([
   "https://schema.org", // JSON-LD @context
   "https://coastalconstructionservicesofla.com", // our canonical / og URLs
   "https://www.google.com", // also a frame (map) — see frame-src
+  // Outbound source links in the answer guides (content/guides.ts).
+  "https://extension.msstate.edu",
+  "https://www.aces.edu",
+  "https://www.extension.purdue.edu",
+  "https://www.nrcs.usda.gov",
+  "https://www.fema.gov",
+  "https://fema.gov",
+  "https://legis.la.gov",
+  "https://lslbc.louisiana.gov",
+  "https://www.lslbc.louisiana.gov",
+  "https://deq.louisiana.gov",
+  "https://www.ldaf.la.gov",
+  "https://www.dnr.louisiana.gov",
+  "https://soilseries.sc.egov.usda.gov",
+  "https://websoilsurvey.nrcs.usda.gov",
+  "https://www.frontiersin.org",
+  "https://iberiaparishgovernment.com",
+  "https://www.breauxbridgela.net",
   // Framework strings baked into React/Next error messages.
   "https://nextjs.org",
   "https://react.dev",

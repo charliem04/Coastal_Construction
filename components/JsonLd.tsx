@@ -28,18 +28,18 @@ type PageKey = keyof typeof client.pages;
 const PATHS: Record<PageKey, string> = { home: "/", services: "/services", about: "/about", contact: "/contact" };
 const CRUMB: Record<PageKey, string> = { home: "Home", services: "Services", about: "About", contact: "Contact" };
 
-function ld(data: object) {
+export function ld(data: object) {
   // `<` escaped so a string can never close the <script> element.
   return { __html: JSON.stringify(data).replace(/</g, "\u003c") };
 }
 
-export function JsonLd({ page }: { page: PageKey }) {
-  const root = `${client.siteUrl}/`;
-  const abs = (path: string) => (path === "/" ? root : `${client.siteUrl}${path}`);
-  const url = abs(PATHS[page]);
-  const ids = { business: `${root}#business`, website: `${root}#website`, page: `${url}#webpage`, founder: `${root}#founder` };
-  const meta = client.pages[page];
+const root = `${client.siteUrl}/`;
+export const abs = (path: string) => (path === "/" ? root : `${client.siteUrl}${path}`);
+const siteIds = { business: `${root}#business`, website: `${root}#website`, founder: `${root}#founder` };
 
+/** The nodes every page shares: the business, website, and founder. */
+export function siteNodes() {
+  const ids = siteIds;
   const business = {
     "@type": "GeneralContractor",
     "@id": ids.business,
@@ -73,7 +73,7 @@ export function JsonLd({ page }: { page: PageKey }) {
       name: "Dirt Work Services",
       itemListElement: services.map((s) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: s.name, url: `${abs("/services")}#${s.slug}` },
+        itemOffered: { "@type": "Service", name: s.name, url: abs(`/services/${s.slug}`) },
       })),
     },
     ...(Object.values(client.socials).some(Boolean) ? { sameAs: Object.values(client.socials).filter(Boolean) } : {}),
@@ -87,6 +87,21 @@ export function JsonLd({ page }: { page: PageKey }) {
     inLanguage: "en-US",
     publisher: { "@id": ids.business },
   };
+  const founder = {
+    "@type": "Person",
+    "@id": ids.founder,
+    name: client.owner.name,
+    jobTitle: client.owner.title,
+    worksFor: { "@id": ids.business },
+  };
+  return { business, website, founder, ids };
+}
+
+export function JsonLd({ page }: { page: PageKey }) {
+  const url = abs(PATHS[page]);
+  const { business, website, founder, ids: shared } = siteNodes();
+  const ids = { ...shared, page: `${url}#webpage` };
+  const meta = client.pages[page];
 
   const webpage = {
     "@type": page === "about" ? "AboutPage" : page === "contact" ? "ContactPage" : "WebPage",
@@ -115,27 +130,18 @@ export function JsonLd({ page }: { page: PageKey }) {
     for (const s of services) {
       extras.push({
         "@type": "Service",
-        "@id": `${url}#${s.slug}`,
+        "@id": `${abs(`/services/${s.slug}`)}#service`,
         name: s.schema.name,
         serviceType: s.name,
         description: s.schema.description,
         provider: { "@id": ids.business },
         areaServed: { "@type": "State", name: "Louisiana" },
-        url: `${url}#${s.slug}`,
+        url: abs(`/services/${s.slug}`),
         image: abs(`/images/${s.photo}-960.webp`),
       });
     }
   }
-  {
-    // The founder, on every page: the business node points to this entry.
-    extras.push({
-      "@type": "Person",
-      "@id": ids.founder,
-      name: client.owner.name,
-      jobTitle: client.owner.title,
-      worksFor: { "@id": ids.business },
-    });
-  }
+  extras.push(founder);
   if (page === "contact") {
     extras.push({
       "@type": "FAQPage",

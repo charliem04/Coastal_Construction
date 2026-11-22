@@ -51,7 +51,7 @@ test("the services page has jump links to all services", () => {
 });
 
 test("small controls have usable targets", () => {
-  assert.match(css, /\.site-nav \.nav-links a \{[\s\S]*?min-height: 32px;/);
+  assert.match(css, /\.site-nav \.nav-links a \{[\s\S]*?min-height: 44px;/);
   assert.match(css, /\.footer-column li a,\s*\.footer-column > a,\s*\.footer-legal a \{[\s\S]*?min-height: 28px;/);
 });
 
@@ -67,5 +67,5 @@ test("animations avoid transition-all and layout properties", () => {
   assert.doesNotMatch(css, /transition-all/);
   assert.doesNotMatch(css, /transition: (width|height|max-height)\b/);
   assert.doesNotMatch(css, /transition:[^;]*\b(width|height|max-height) 0\./);
-  assert.match(css, /\.site-nav\.is-condensed \{[\s\S]*?clip-path:/);
+  assert.match(css, /\.is-condensed::before \{\s*transform: scaleY/);
 });

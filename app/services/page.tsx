@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { client } from "@/client.config";
 import { services } from "@/content/services";
 import { CtaBand } from "@/components/CtaBand";
@@ -63,6 +64,9 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                 </div>
+                <Link href={`/services/${s.slug}`} prefetch={false} className="service-more">
+                  {p.learnMore}: {s.name}
+                </Link>
               </div>
               {i % 2 === 1 && image}
             </div>

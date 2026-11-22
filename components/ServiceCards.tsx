@@ -26,7 +26,7 @@ export function ServiceCards() {
       <div className="portfolio-grid">
         {services.map((svc, i) => (
           <Reveal key={svc.slug} delay={(i % 3) * motionTiming.stagger}>
-            <Link href={`/services#${svc.slug}`} className="service-card has-brackets">
+            <Link href={`/services/${svc.slug}`} prefetch={false} className="service-card has-brackets">
               <div className="portfolio-item">
                 <CornerBrackets />
                 <DeferredImage

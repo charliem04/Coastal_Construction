@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/env-check.mjs && node scripts/images.mjs --check && next build && node scripts/csp.mjs && node scripts/seo.mjs",
+    "build": "node scripts/env-check.mjs && node scripts/images.mjs --check && next build && node scripts/prune-drafts.mjs && node scripts/csp.mjs && node scripts/seo.mjs",
     "images": "node scripts/images.mjs",
     "typecheck": "tsc --noEmit",
     "test": "node --test \"tests/**/*.test.ts\"",

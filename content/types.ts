@@ -87,3 +87,79 @@ export type ProjectPair = {
   beforeAlt: string;
   afterAlt: string;
 };
+
+/** A question and answer on a service, guide, or cost page. */
+export type Qa = { q: string; a: string };
+
+/** The extra content on a service's own page. */
+export type ServiceDetail = {
+  slug: string;
+  seoTitle: string;
+  seoDescription: string;
+  lead: string;
+  needs: string[];
+  steps: { title: string; body: string }[];
+  planning: string[];
+  faqs: Qa[];
+  guides: string[];
+};
+
+export type GuideSource = { label: string; url: string };
+
+export type Guide = {
+  slug: string;
+  category: string;
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+  intro: string;
+  questions: Qa[];
+  services: string[];
+  sources: GuideSource[];
+};
+
+/** Hidden from the public build until `published` is true. */
+export type Parish = {
+  slug: string;
+  name: string;
+  seat: string;
+  published: boolean;
+  seoTitle: string;
+  seoDescription: string;
+  intro: string;
+  conditions: string[];
+  commonJobs: string[];
+  permitNotes: string[];
+  projectSlugs: string[];
+};
+
+export type ProjectStudy = {
+  slug: string;
+  published: boolean;
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+  service: string;
+  location: string;
+  problem: string;
+  work: string;
+  equipment: string[];
+  result: string;
+  before: PhotoName;
+  after: PhotoName;
+  beforeAlt: string;
+  afterAlt: string;
+};
+
+export type CostGuide = {
+  slug: string;
+  service: string;
+  published: boolean;
+  title: string;
+  seoTitle: string;
+  seoDescription: string;
+  intro: string;
+  factors: string[];
+  /** Real local ranges from the owner. Empty keeps the page unpublished. */
+  priceRows: { label: string; range: string }[];
+};
