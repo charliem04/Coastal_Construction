@@ -1443,3 +1443,10 @@
     }
   }
 }
+
+/* ── Page transition ────────────────────────────────────────────────── */
+@layer components {
+  .page-transition {
+    @apply pointer-events-none fixed inset-0 z-[3000] hidden h-full w-full;
+  }
+}
