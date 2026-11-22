@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { guides } from "../content/guides.ts";
+import { activeAlerts, nextHours, peakHour } from "../lib/weatherNow.ts";
 import { blendAt, cycleLength, FRAME_AGES, frameUrl, placeOnView, STEP_MS } from "../lib/radar.ts";
 
 const read = (path: string) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -46,4 +47,29 @@ test("only the radar feed is allowed for live images and data", () => {
   assert.match(csp, /img-src 'self' data: https:\/\/mesonet\.agron\.iastate\.edu"/);
   assert.match(csp, /connect-src[^\n]*https:\/\/mesonet\.agron\.iastate\.edu/);
   assert.match(read("app/sitemap.ts"), /monthly\("\/weather", 0\.7\)/);
+});
+
+test("the conditions rail skips past hours and finds the peak rain chance", () => {
+  const period = (hour: number, chance: number | null) => ({
+    startTime: `2026-11-22T${String(hour).padStart(2, "0")}:00:00-06:00`,
+    endTime: `2026-11-22T${String(hour + 1).padStart(2, "0")}:00:00-06:00`,
+    temperature: 64,
+    windSpeed: "0 mph",
+    shortForecast: "Clear",
+    probabilityOfPrecipitation: { value: chance },
+  });
+  const hours = nextHours([period(1, 90), period(2, null), period(3, 40), period(4, 40)], new Date("2026-11-22T08:30:00Z"));
+  assert.deepEqual(hours.map((h) => h.chance), [0, 40, 40]);
+  assert.equal(hours[0].wind, "Calm");
+  assert.equal(peakHour(hours)?.label, "3 AM");
+});
+
+test("the conditions rail lists the most severe alert first and never hides a failed check", () => {
+  const list = activeAlerts([
+    { properties: { id: "a", event: "Flood Advisory", severity: "Minor" } },
+    { properties: { id: "b", event: "Tornado Warning", severity: "Extreme" } },
+  ]);
+  assert.equal(list[0].event, "Tornado Warning");
+  assert.match(read("components/content/ConditionsRail.tsx"), /Could not check alerts/);
+  assert.match(read("scripts/csp.mjs"), /connect-src[^\n]*https:\/\/api\.weather\.gov/);
 });

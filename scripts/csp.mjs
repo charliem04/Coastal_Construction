@@ -138,9 +138,10 @@ export function buildCsp(provider) {
     "font-src 'self'",
     // The quote form posts here from the browser (lib/submitContact.ts).
     // When the form provider switches to Haptic Forms, its endpoint goes here.
+    // mesonet and api.weather.gov: live radar status, forecast, and alerts on /weather.
     // cloudflareinsights.com: where the analytics beacon reports page views
     // and Core Web Vitals.
-    `connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com https://mesonet.agron.iastate.edu${list(p["connect-src"])}`,
+    `connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com https://mesonet.agron.iastate.edu https://api.weather.gov${list(p["connect-src"])}`,
     // Google Maps: the service-area map on the home page.
     `frame-src https://www.google.com${list(p["frame-src"])}`,
     "frame-ancestors 'none'",
