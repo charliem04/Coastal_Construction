@@ -1677,3 +1677,16 @@
     }
   }
 }
+
+/* Full-width centred boxes, so a font swap can't resize and move them. */
+@layer components {
+  .hero-content {
+    @apply w-full;
+  }
+  @media (max-width: 968px) {
+    .site-nav .nav-brand,
+    .site-nav .nav-links {
+      @apply w-full justify-center;
+    }
+  }
+}
