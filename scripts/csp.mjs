@@ -92,6 +92,11 @@ const LINK_ONLY = new Set([
   "https://www.frontiersin.org",
   "https://iberiaparishgovernment.com",
   "https://www.breauxbridgela.net",
+  "https://www.osha.gov",
+  "https://extension.psu.edu",
+  "https://www.deq.louisiana.gov",
+  "https://www.nhc.noaa.gov",
+  "https://www.weather.gov",
   // Framework strings baked into React/Next error messages.
   "https://nextjs.org",
   "https://react.dev",
@@ -126,7 +131,8 @@ export function buildCsp(provider) {
     // React, Framer Motion and Cal.com's embed write style attributes.
     "style-src 'self' 'unsafe-inline'",
     // data: for inlined SVG. Every photo is served from /images.
-    "img-src 'self' data:",
+    // radar.weather.gov: the live radar image on /weather.
+    "img-src 'self' data: https://radar.weather.gov",
     // Self-hosted Anton and Barlow Condensed (app/fonts); no font CDN.
     "font-src 'self'",
     // The quote form posts here from the browser (lib/submitContact.ts).
