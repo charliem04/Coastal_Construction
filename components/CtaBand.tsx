@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { fill, phoneHref } from "@/lib/phone";
+import { Reveal } from "./Reveal";
+import { TickRule } from "./survey/TickRule";
 
 /**
  * The red closing band on services, about and the 404: a heading, a
@@ -21,9 +23,11 @@ export function CtaBand({
 }) {
   return (
     <section className="cta-section">
-      <h2>{heading}</h2>
-      <p>{body}</p>
-      <div className="cta-buttons-group">
+      <TickRule className="cta-ticks" />
+      <Reveal>
+        <h2>{heading}</h2>
+        <p>{body}</p>
+        <div className="cta-buttons-group">
         <Link href={primary.href} className="cta-button">
           {primary.label}
         </Link>
@@ -38,6 +42,7 @@ export function CtaBand({
           </Link>
         ))}
       </div>
+      </Reveal>
     </section>
   );
 }

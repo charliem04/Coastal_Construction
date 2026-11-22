@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { Highlight } from "@/components/Highlight";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
+import { Reveal } from "@/components/Reveal";
 import { phoneDisplay, phoneHref } from "@/lib/phone";
 import { pageMetadata } from "@/lib/seo";
 
@@ -121,13 +122,15 @@ export default function ContactPage() {
 
 function InfoCard({ title, lines }: { title: string; lines: readonly string[] }) {
   return (
-    <div className="info-card">
-      <h3>{title}</h3>
+    <Reveal className="h-full">
+      <div className="info-card h-full">
+        <h3>{title}</h3>
       {lines.map((l) => (
         <p key={l} className="info-detail">
           {l}
         </p>
       ))}
     </div>
+    </Reveal>
   );
 }
