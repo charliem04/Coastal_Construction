@@ -97,6 +97,7 @@ const LINK_ONLY = new Set([
   "https://www.deq.louisiana.gov",
   "https://www.nhc.noaa.gov",
   "https://www.weather.gov",
+  "https://radar.weather.gov", // fallback link if the live radar fails
   // Framework strings baked into React/Next error messages.
   "https://nextjs.org",
   "https://react.dev",
@@ -131,15 +132,16 @@ export function buildCsp(provider) {
     // React, Framer Motion and Cal.com's embed write style attributes.
     "style-src 'self' 'unsafe-inline'",
     // data: for inlined SVG. Every photo is served from /images.
-    // radar.weather.gov: the live radar image on /weather.
-    "img-src 'self' data: https://radar.weather.gov",
+    // mesonet.agron.iastate.edu: live radar frames and map tiles on /weather.
+    "img-src 'self' data: https://mesonet.agron.iastate.edu",
     // Self-hosted Anton and Barlow Condensed (app/fonts); no font CDN.
     "font-src 'self'",
     // The quote form posts here from the browser (lib/submitContact.ts).
     // When the form provider switches to Haptic Forms, its endpoint goes here.
+    // mesonet and api.weather.gov: live radar status, forecast, and alerts on /weather.
     // cloudflareinsights.com: where the analytics beacon reports page views
     // and Core Web Vitals.
-    `connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com${list(p["connect-src"])}`,
+    `connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com https://mesonet.agron.iastate.edu https://api.weather.gov${list(p["connect-src"])}`,
     // Google Maps: the service-area map on the home page.
     `frame-src https://www.google.com${list(p["frame-src"])}`,
     "frame-ancestors 'none'",

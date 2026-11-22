@@ -1,5 +1,6 @@
 import { client } from "@/client.config";
 import { Breadcrumbs, ContentSchema, LinkGrid } from "@/components/content/ContentParts";
+import { ConditionsRail } from "@/components/content/ConditionsRail";
 import { RadarPanel } from "@/components/content/RadarPanel";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHeader } from "@/components/PageHeader";
@@ -41,7 +42,10 @@ export default function WeatherPage() {
           </p>
           <section className="content-section">
             <h2>Current Radar</h2>
-            <RadarPanel />
+            <div className="radar-layout">
+              <RadarPanel />
+              <ConditionsRail />
+            </div>
           </section>
           <section className="content-section">
             <h2>What Wet Weather Changes</h2>

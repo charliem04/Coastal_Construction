@@ -2409,6 +2409,140 @@
     @apply underline underline-offset-4 hover:text-white;
     color: theme("colors.brand.light");
   }
+  .radar-layout {
+    @apply grid items-stretch gap-5;
+    grid-template-columns: minmax(0, 720px) minmax(280px, 1fr);
+  }
+  .conditions-rail {
+    @apply flex min-w-0 flex-col border border-surface-800 bg-surface-900;
+  }
+  .conditions-rail section {
+    @apply border-b border-surface-800 p-4;
+  }
+  #main .conditions-rail h3 {
+    @apply m-0 font-label text-base uppercase text-gray-300;
+    letter-spacing: 0.04em;
+  }
+  .conditions-rail p {
+    @apply m-0 font-body text-base text-gray-200;
+  }
+  .conditions-rail .conditions-muted {
+    @apply text-sm text-gray-300;
+  }
+  .conditions-rail .conditions-temp {
+    @apply mt-1 font-display text-5xl leading-none text-white;
+    font-variant-numeric: tabular-nums;
+  }
+  .conditions-now .conditions-temp + p {
+    @apply mt-2;
+  }
+  .conditions-alerts[data-active="true"] {
+    background: rgb(220 38 38 / 0.14);
+    box-shadow: inset 3px 0 0 theme("colors.brand.DEFAULT");
+  }
+  .conditions-alerts p,
+  .conditions-alerts ul {
+    @apply mt-2;
+  }
+  .conditions-alerts ul {
+    @apply m-0 mt-2 flex list-none flex-col gap-2 p-0;
+  }
+  .conditions-alerts li,
+  .conditions-rail .conditions-clear {
+    @apply flex items-start gap-2 text-white;
+  }
+  .conditions-alerts svg {
+    @apply mt-1 h-4 w-4 shrink-0;
+  }
+  .conditions-alerts li svg {
+    color: theme("colors.brand.light");
+  }
+  .conditions-clear svg {
+    color: #4ade80;
+  }
+  .conditions-alerts li span {
+    @apply flex flex-col font-body;
+  }
+  .conditions-alerts small {
+    @apply text-sm text-gray-300;
+  }
+  .conditions-alerts a,
+  .conditions-link {
+    @apply underline underline-offset-2;
+    color: theme("colors.brand.light");
+  }
+  .conditions-alerts > a {
+    @apply mt-2 inline-block font-body text-sm;
+  }
+  .conditions-rain {
+    @apply flex flex-1 flex-col;
+  }
+  .conditions-rain-head {
+    @apply flex flex-col gap-1;
+  }
+  .conditions-rail .conditions-rain-head p {
+    @apply min-h-6 text-white;
+    font-variant-numeric: tabular-nums;
+  }
+  .rain-chart {
+    @apply mt-3 flex items-stretch border-b border-gray-600;
+    flex: 1 1 auto;
+    min-height: 96px;
+    gap: 2px;
+  }
+  .rain-chart {
+    position: relative;
+    border-top: 1px solid rgb(255 255 255 / 0.12);
+    background: linear-gradient(rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.12)) 0 50% / 100% 1px no-repeat;
+  }
+  .rain-chart::before,
+  .rain-chart::after {
+    @apply pointer-events-none absolute right-0 bg-surface-900 pl-1 font-label text-xs text-gray-300;
+    line-height: 1;
+  }
+  .rain-chart::before {
+    content: "100%";
+    top: 3px;
+  }
+  .rain-chart::after {
+    content: "50%";
+    top: calc(50% + 3px);
+  }
+  .rain-hit {
+    @apply flex min-w-0 flex-1 cursor-default items-end;
+  }
+  .rain-hit[data-focus="true"] {
+    background: rgb(255 255 255 / 0.07);
+  }
+  .rain-hit i {
+    @apply block w-full;
+    background: #1d9bf0;
+    border-radius: 4px 4px 0 0;
+  }
+  .rain-axis {
+    @apply mt-1 flex justify-between font-label text-xs uppercase text-gray-300;
+    letter-spacing: 0.04em;
+  }
+  .conditions-link {
+    @apply flex min-h-11 items-center px-4 py-3 font-body text-sm;
+  }
+  .conditions-link:hover,
+  .conditions-alerts a:hover {
+    @apply text-white;
+  }
+  .conditions-link:focus-visible,
+  .conditions-alerts a:focus-visible {
+    outline: 2px solid theme("colors.brand.light");
+    outline-offset: -2px;
+  }
+  @media (max-width: 1023px) {
+    .radar-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .radar-layout .radar-panel {
+      max-width: none;
+    }
+  }
   .radar-panel {
     @apply m-0 max-w-[720px] border border-surface-800 bg-surface-900;
   }
@@ -2447,24 +2581,120 @@
     @apply border-brand;
   }
   .radar-view {
-    @apply relative bg-surface-950;
-    aspect-ratio: 600 / 550;
+    @apply relative overflow-hidden bg-surface-950;
+    aspect-ratio: 4 / 3;
   }
-  .radar-view img {
-    @apply block h-full w-full object-contain;
+  .radar-map,
+  .radar-places {
+    @apply pointer-events-none absolute inset-0;
   }
-  .radar-view[data-status="loading"] img {
-    opacity: 0.55;
+  .radar-map img {
+    @apply absolute block max-w-none;
+    filter: brightness(0) invert(1);
+  }
+  .radar-map .radar-county {
+    opacity: 0.13;
+  }
+  .radar-map .radar-state {
+    opacity: 0.6;
+  }
+  .radar-view canvas {
+    @apply absolute inset-0 block h-full w-full;
+    opacity: 0.92;
+  }
+  .radar-view[data-status="loading"] canvas {
+    opacity: 0;
+  }
+  .radar-places span {
+    @apply absolute whitespace-nowrap font-label text-xs uppercase text-white;
+    padding-left: 8px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    transform: translateY(-50%);
+    text-shadow: 0 1px 2px #000, 0 0 4px #000;
+  }
+  .radar-places span::before {
+    @apply absolute left-0 bg-white;
+    content: "";
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    transform: translateY(-50%);
+    box-shadow: 0 0 0 1px #000;
+  }
+  .radar-places span[data-side="left"] {
+    padding-left: 0;
+    padding-right: 8px;
+    transform: translate(-100%, -50%);
+  }
+  .radar-places span[data-side="left"]::before {
+    left: auto;
+    right: 0;
+  }
+  .radar-time {
+    @apply absolute right-2 top-2 bg-surface-950 px-2 py-1 font-label text-base text-white;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+  .radar-time:empty {
+    display: none;
   }
   .radar-view > p {
     @apply m-0 flex h-full items-center justify-center p-6 text-center font-body text-gray-200;
     display: block;
-    padding-top: 40%;
+    padding-top: 34%;
   }
   .radar-view a,
   .radar-panel figcaption a {
     @apply underline underline-offset-2;
     color: theme("colors.brand.light");
+  }
+  .radar-controls {
+    @apply flex flex-wrap items-center gap-3 border-t border-surface-800 px-4 py-3;
+  }
+  .radar-controls button {
+    @apply min-h-11 min-w-20 cursor-pointer border border-surface-800 bg-surface-950 px-4 font-label text-base uppercase text-white;
+    letter-spacing: 0.04em;
+    transition: border-color 0.15s, color 0.15s, transform 0.1s;
+  }
+  .radar-controls button:hover:not(:disabled) {
+    @apply border-brand text-brand-light;
+  }
+  .radar-controls button:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .radar-controls button:focus-visible,
+  .radar-controls input:focus-visible {
+    outline: 2px solid theme("colors.brand.light");
+    outline-offset: 2px;
+  }
+  .radar-controls button:disabled,
+  .radar-controls input:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .radar-controls input {
+    @apply h-11 min-w-0 flex-1 cursor-pointer;
+    flex-basis: 140px;
+    accent-color: theme("colors.brand.DEFAULT");
+  }
+  .radar-legend {
+    @apply flex items-center gap-2 font-label text-xs uppercase text-gray-300;
+    letter-spacing: 0.04em;
+  }
+  .radar-legend i {
+    @apply block h-2 w-20;
+    background: linear-gradient(90deg, #04e9e7, #019ff4, #02fd02, #008e00, #fdf802, #fd9500, #fd0000, #bc0000, #f800fd);
+  }
+  @media (max-width: 480px) {
+    .radar-places span[data-major="false"] {
+      display: none;
+    }
+    .radar-legend {
+      @apply w-full;
+    }
+    .radar-legend i {
+      @apply flex-1;
+    }
   }
   .radar-panel figcaption {
     @apply border-t border-surface-800 px-4 py-3 font-body text-sm text-gray-300;
