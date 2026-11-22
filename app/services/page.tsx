@@ -54,7 +54,7 @@ export default function ServicesPage() {
                   <ul>
                     {s.features.map((f, n) => (
                       <li key={f}>
-                        <Reveal as="div" className="inline" delay={n * 0.05}>
+                        <Reveal as="div" className="block" delay={n * 0.05}>
                           {f}
                         </Reveal>
                       </li>

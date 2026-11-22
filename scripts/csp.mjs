@@ -109,7 +109,7 @@ export function buildCsp(provider) {
     "style-src 'self' 'unsafe-inline'",
     // data: for inlined SVG. Every photo is served from /images.
     "img-src 'self' data:",
-    // No web fonts: the type is the system Arial / Arial Black.
+    // Self-hosted Anton and Barlow Condensed (app/fonts); no font CDN.
     "font-src 'self'",
     // The quote form posts here from the browser (lib/submitContact.ts).
     // When the form provider switches to Haptic Forms, its endpoint goes here.

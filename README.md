@@ -20,6 +20,7 @@ npm run dev                  # http://localhost:3000
 | `npm run build`          | Builds the site into `out/`, with the image, CSP and SEO checks      |
 | `npm run images`         | Re-cuts photos from `images-src/` into `public/images/` (see below)  |
 | `npm run typecheck`      | TypeScript check only                                                |
+| `npm test`               | Logic and regression tests (needs Node 22.18 or newer)              |
 | `npm run preview`        | Builds and updates a named **preview** (stable URL); production untouched |
 | `npm run preview:deploy` | Builds and uploads a **preview** version; production untouched       |
 | `npm run deploy`         | Builds and **replaces the live site** (see docs/CLOUDFLARE.md first) |
