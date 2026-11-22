@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client } from "@/client.config";
 import { Breadcrumbs, ContentSchema, LinkGrid } from "@/components/content/ContentParts";
 import { CtaBand } from "@/components/CtaBand";
@@ -32,6 +33,13 @@ export default function GuidesPage() {
                   .filter((g) => g.category === category)
                   .map((g) => ({ href: `/guides/${g.slug}`, label: g.title, note: `${g.questions.length} answers` }))}
               />
+              {category === "Weather & Wet Ground" && (
+                <p className="guide-hub-link">
+                  <Link href="/weather" prefetch={false}>
+                    Check Acadiana radar and wet-weather planning
+                  </Link>
+                </p>
+              )}
             </section>
           ))}
         </div>

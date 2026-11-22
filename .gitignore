@@ -25,3 +25,6 @@ Thumbs.db
 
 # Cloudflare local state
 .wrangler/
+
+# Private owner documents
+*Owner Fact Sheet*.docx

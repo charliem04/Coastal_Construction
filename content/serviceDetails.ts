@@ -27,7 +27,7 @@ export const serviceDetails: ServiceDetail[] = [
       { q: "Do you handle drainage around the pad?", a: "Drainage planning is part of pad work. We look at how water moves across the property so the pad does not simply push the problem somewhere else." },
       { q: "Can you bring the fill material?", a: "Yes. We deliver dirt, limestone, gravel, and sand, so material and site work can be coordinated together." },
     ],
-    guides: ["house-pad-construction", "building-pad-flood-zone", "how-much-fill-dirt", "acadiana-soil-guide"],
+    guides: ["house-pad-construction", "building-pad-flood-zone", "how-much-fill-dirt", "acadiana-soil-guide", "compacting-fill-wet-weather"],
   },
   {
     slug: "pond-construction",
@@ -48,7 +48,7 @@ export const serviceDetails: ServiceDetail[] = [
       { q: "Can you build an irrigation reservoir?", a: "Yes. We build farm ponds, recreational fishing ponds, and irrigation reservoirs." },
       { q: "Why does a pond need a spillway?", a: "Heavy rain has to leave the pond somewhere. A planned overflow helps keep water from cutting through the bank or flooding the wrong area." },
     ],
-    guides: ["how-to-build-a-pond", "pond-wont-hold-water", "do-i-need-a-wetlands-permit", "acadiana-soil-guide"],
+    guides: ["how-to-build-a-pond", "pond-wont-hold-water", "do-i-need-a-wetlands-permit", "acadiana-soil-guide", "rain-delays-dirt-work"],
   },
   {
     slug: "culvert-installation",
@@ -90,7 +90,7 @@ export const serviceDetails: ServiceDetail[] = [
       { q: "How tall should a private levee be?", a: "Height depends on the water level you are managing, the site, and any engineering or permit requirements. It should not be guessed." },
       { q: "Can you repair an existing levee?", a: "Yes. We can evaluate visible erosion or slumping and rebuild damaged sections with compacted earthwork." },
     ],
-    guides: ["private-levee-guide", "do-i-need-a-wetlands-permit", "building-pad-flood-zone"],
+    guides: ["private-levee-guide", "do-i-need-a-wetlands-permit", "building-pad-flood-zone", "hurricane-season-dirt-work"],
   },
   {
     slug: "land-leveling",
@@ -111,7 +111,7 @@ export const serviceDetails: ServiceDetail[] = [
       { q: "Can land leveling fix standing water?", a: "Often, if there is somewhere for the water to go. If the outlet is too high or blocked, the drainage plan may need more than grading." },
       { q: "Do you level agricultural fields?", a: "Yes. We handle residential lots, construction sites, and agricultural fields." },
     ],
-    guides: ["land-grading-leveling", "fix-yard-drainage", "acadiana-soil-guide"],
+    guides: ["land-grading-leveling", "fix-yard-drainage", "acadiana-soil-guide", "how-soon-after-rain-dirt-work"],
   },
   {
     slug: "material-delivery",
@@ -153,7 +153,7 @@ export const serviceDetails: ServiceDetail[] = [
       { q: "What happens to the debris?", a: "We remove and properly dispose of cleared debris as part of the agreed scope." },
       { q: "Do I need a permit to clear land?", a: "It depends on the location and work. Parish rules and wetlands regulations can apply, so check before clearing." },
     ],
-    guides: ["land-clearing-guide", "do-i-need-a-wetlands-permit", "bushhogging-guide"],
+    guides: ["land-clearing-guide", "do-i-need-a-wetlands-permit", "bushhogging-guide", "protect-job-site-from-rain"],
   },
   {
     slug: "bushhogging",

@@ -27,6 +27,7 @@ function indexablePages(): Page[] {
     monthly("/contact", 0.8),
     monthly("/about", 0.7),
     ...serviceDetails.map((s) => monthly(`/services/${s.slug}`, 0.9)),
+    monthly("/weather", 0.7),
     monthly("/guides", 0.7),
     ...guides.map((g) => monthly(`/guides/${g.slug}`, 0.6)),
     ...(areas.length ? [monthly("/service-areas", 0.7), ...areas.map((p) => monthly(`/service-areas/${p.slug}`, 0.8))] : []),

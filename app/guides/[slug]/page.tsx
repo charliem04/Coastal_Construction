@@ -36,6 +36,7 @@ export default function GuidePage({ params }: Props) {
   const moreGuides = guides
     .filter((x) => x.slug !== g.slug && x.category === g.category)
     .map((x) => ({ href: `/guides/${x.slug}`, label: x.title }));
+  if (g.category === "Weather & Wet Ground") moreGuides.unshift({ href: "/weather", label: "Acadiana Radar and Weather" });
   const cta = client.servicesPage.cta;
 
   return (
