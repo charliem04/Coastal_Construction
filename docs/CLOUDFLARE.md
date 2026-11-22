@@ -30,28 +30,31 @@ been deleted.
 
 Pushes build and deploy on Cloudflare automatically:
 
-| Trigger | Branches | Build | Deploy |
+| Type | Branches | Build | Deploy |
 | --- | --- | --- | --- |
-| Deploy default branch | `main` | `npm run build` | `npx wrangler deploy`: **goes live** |
-| Deploy non-production branches | all except `main` and `cloudflare/workers-autoconfig` | `npm run build` | `npx wrangler versions upload`: preview URL only (see the build log) |
+| Production | `main` | `npm run build` | `npx wrangler deploy`: **goes live** |
+| Worker Previews | every other branch | `npm run build` | `npx wrangler preview`: a stable preview URL per branch |
 
-So **merging to `main` is going live.** Both triggers skip pushes that only
-touch `docs/` or `*.md` files.
+So **merging to `main` is going live.** Pushes that only touch `docs/` or
+`*.md` files don't build. Each branch appears in the environment dropdown
+next to the Worker's name in the dashboard, and its Preview is deleted when
+the branch is deleted. This Worker moved to Worker Previews on 22 Nov 2026;
+Cloudflare doesn't allow switching back to the old preview model.
 
-`NEXT_PUBLIC_WEB3FORMS_KEY` is a build variable on the **`main` trigger
-only** (Workers & Pages → `coastalconstructionofla` → Settings → Build →
+`NEXT_PUBLIC_WEB3FORMS_KEY` is a build variable on **production only**
+(Workers & Pages → `coastalconstructionofla` → Settings → Build →
 Variables and secrets). It is a public key and isn't rotated; if it ever
 changes (say, a new inbox), change it there and push (or retry the latest
 `main` build). If it's ever missing from `main`, `npm run build` stops at
 `scripts/env-check.mjs` instead of shipping a form with nowhere to send.
 
 **Preview forms are off on purpose**, so a test can't email the client. The
-non-production trigger has no form key and sets `ALLOW_MISSING_FORM_KEY=1`,
+Preview build settings have no form key and set `ALLOW_MISSING_FORM_KEY=1`,
 so previews build normally and the form tells the visitor to call instead.
-Don't add the key to that trigger. Older uploaded versions keep the key at
-their own version URLs. `cloudflare/workers-autoconfig` is the old static
-site with no `package.json`, so it is excluded from the non-production
-trigger; its preview was uploaded by hand with the key removed.
+Don't add the key to them. Older uploaded versions keep the key at their
+own version URLs. `cloudflare/workers-autoconfig` is the old static site
+with no `package.json`, so any push to it fails to build; its old aliased
+preview was uploaded by hand with the key removed.
 
 ### Done (20 Nov 2026, verified from outside)
 
