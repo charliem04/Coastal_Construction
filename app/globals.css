@@ -263,23 +263,8 @@
   .portfolio-item img {
     @apply h-full w-full object-cover transition-transform duration-500 ease-site;
   }
-  .portfolio-overlay {
-    @apply absolute bottom-0 left-0 right-0 p-8 transition-transform duration-300 ease-site;
-    background: linear-gradient(to top, rgb(0 0 0 / 0.9) 0%, transparent 100%);
-    transform: translateY(100%);
-  }
   .portfolio-item:hover img {
     transform: scale(1.1);
-  }
-  .portfolio-item:hover .portfolio-overlay,
-  a:focus-visible .portfolio-overlay {
-    transform: translateY(0);
-  }
-  .portfolio-overlay h3 {
-    @apply mb-2 text-d-3 uppercase text-brand;
-  }
-  .portfolio-overlay p {
-    @apply font-body font-normal text-gray-300;
   }
   .service-cta-buttons {
     @apply mt-12 flex flex-wrap justify-center gap-8;
@@ -782,34 +767,6 @@
       @apply text-[0.8rem];
     }
 
-    /* Overlays always showing on touch screens, with a tap hint. */
-    .portfolio-overlay {
-      transform: translateY(0);
-      background: linear-gradient(to top, rgb(0 0 0 / 0.9) 0%, rgb(0 0 0 / 0.6) 40%, transparent 100%);
-    }
-    .portfolio-item:hover .portfolio-overlay {
-      background: linear-gradient(to top, rgb(220 38 38 / 0.9) 0%, rgb(220 38 38 / 0.6) 40%, transparent 100%);
-    }
-    .portfolio-overlay::after {
-      content: "TAP TO LEARN MORE";
-      @apply absolute bottom-2 right-4 text-[0.7rem] font-black uppercase;
-      color: rgb(220 38 38 / 0.9);
-      letter-spacing: 1px;
-      animation: tap-pulse 2s ease-in-out infinite;
-    }
-    @keyframes tap-pulse {
-      0%,
-      100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.5;
-      }
-    }
-    .portfolio-item:active {
-      transform: scale(0.98);
-    }
-
     .hero h1 {
       @apply text-[2.5rem];
     }
@@ -1202,6 +1159,122 @@
     }
     .site-nav.is-condensed .nav-links {
       padding-bottom: 0;
+    }
+  }
+}
+
+/* ── Home sections ──────────────────────────────────────────────────── */
+@layer components {
+  .service-card {
+    @apply block h-full border border-surface-800 bg-surface-900 text-inherit no-underline;
+    transition: transform 0.3s var(--ease-punch), border-color 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover,
+  .service-card:focus-visible {
+    @apply border-brand;
+    transform: translateY(-6px);
+    box-shadow: 0 16px 34px rgb(0 0 0 / 0.55);
+  }
+  .service-card .portfolio-item img {
+    transition: transform 0.7s var(--ease-punch), filter 0.4s;
+  }
+  .service-card:hover .portfolio-item img {
+    transform: scale(1.06);
+    filter: saturate(1.12);
+  }
+  .service-card-body {
+    @apply relative px-6 pb-6 pt-5;
+  }
+  .service-card-body h3 {
+    @apply pr-8 text-xl uppercase text-white;
+    letter-spacing: 1px;
+  }
+  .service-card-body p {
+    @apply font-body text-[0.95rem] font-normal text-gray-300;
+  }
+  .service-card-arrow {
+    @apply absolute right-5 top-5 text-brand;
+    transition: transform 0.25s var(--ease-punch);
+  }
+  .service-card:hover .service-card-arrow {
+    transform: translateX(5px);
+  }
+
+  .about {
+    @apply bg-surface-900 text-white;
+  }
+  .about-text p {
+    @apply text-gray-300;
+  }
+  .about-highlight {
+    box-shadow: 12px 12px 0 #000;
+  }
+  .about-highlight .stat-label {
+    @apply text-red-100;
+  }
+  .reviews-scroll-container::before {
+    background: linear-gradient(to right, theme("colors.surface.900"), transparent) !important;
+  }
+  .reviews-scroll-container::after {
+    background: linear-gradient(to left, theme("colors.surface.900"), transparent) !important;
+  }
+
+  .survey-frame {
+    @apply relative p-2;
+  }
+  .survey-frame-line {
+    @apply pointer-events-none absolute inset-0 h-full w-full overflow-visible;
+  }
+  .survey-frame-line rect {
+    fill: none;
+    stroke: theme("colors.brand.DEFAULT");
+    stroke-width: 2;
+  }
+  .survey-stake {
+    @apply pointer-events-none absolute z-[2] h-3 w-3 rounded-full border-2 border-white bg-black;
+  }
+  .survey-stake.is-tl {
+    left: -5px;
+    top: -5px;
+  }
+  .survey-stake.is-tr {
+    right: -5px;
+    top: -5px;
+  }
+  .survey-stake.is-bl {
+    bottom: -5px;
+    left: -5px;
+  }
+  .survey-stake.is-br {
+    bottom: -5px;
+    right: -5px;
+  }
+
+  .transition-banner {
+    @apply pb-14;
+  }
+  .banner-ticks {
+    @apply absolute bottom-0 left-0 right-0;
+    background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.62) 0 1px, transparent 1px 22px);
+    border-bottom: 1px solid #000;
+  }
+
+  .cta-button,
+  .cta-button-outline,
+  .cta-button-secondary,
+  .method-button {
+    transition: transform 0.25s var(--ease-punch), background-color 0.25s, color 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .cta-button:hover,
+  .cta-button-outline:hover,
+  .cta-button-secondary:hover,
+  .method-button:hover {
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 968px) {
+    .about-highlight {
+      box-shadow: 7px 7px 0 #000;
     }
   }
 }
