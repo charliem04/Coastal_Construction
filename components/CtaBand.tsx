@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fill, phoneHref } from "@/lib/phone";
+import { ExcavationDivider } from "./ExcavationDivider";
 import { Reveal } from "./Reveal";
 import { TickRule } from "./survey/TickRule";
 
@@ -13,6 +14,7 @@ export function CtaBand({
   primary,
   call,
   extra,
+  dirtDivider,
 }: {
   heading: string;
   body: string;
@@ -20,29 +22,38 @@ export function CtaBand({
   /** "Call {phone}" — omitted on the 404. */
   call?: string;
   extra?: { href: string; label: string }[];
+  /** The dirt divider on the banner's top edge, on the section color above it. */
+  dirtDivider?: "surface-950" | "surface-900";
 }) {
   return (
-    <section className="cta-section">
-      <TickRule className="cta-ticks" />
-      <Reveal>
-        <h2>{heading}</h2>
-        <p>{body}</p>
-      </Reveal>
-      <div className="cta-buttons-group">
-        <Link href={primary.href} className="cta-button">
-          {primary.label}
-        </Link>
-        {call && (
-          <a href={phoneHref} className="cta-button-outline">
-            {fill(call)}
-          </a>
-        )}
-        {extra?.map((x) => (
-          <Link key={x.href} href={x.href} className="cta-button-outline">
-            {x.label}
+    <>
+      {dirtDivider && (
+        <div className={`cta-dig is-${dirtDivider}`}>
+          <ExcavationDivider variant="band" />
+        </div>
+      )}
+      <section className="cta-section">
+        {!dirtDivider && <TickRule className="cta-ticks" />}
+        <Reveal>
+          <h2>{heading}</h2>
+          <p>{body}</p>
+        </Reveal>
+        <div className="cta-buttons-group">
+          <Link href={primary.href} className="cta-button">
+            {primary.label}
           </Link>
-        ))}
-      </div>
-    </section>
+          {call && (
+            <a href={phoneHref} className="cta-button-outline">
+              {fill(call)}
+            </a>
+          )}
+          {extra?.map((x) => (
+            <Link key={x.href} href={x.href} className="cta-button-outline">
+              {x.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

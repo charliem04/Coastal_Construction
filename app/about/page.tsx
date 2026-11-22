@@ -82,7 +82,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CtaBand
+      <CtaBanddirtDivider="surface-900"
         heading={a.cta.heading}
         body={a.cta.body}
         primary={{ href: "/contact", label: a.cta.primary }}
