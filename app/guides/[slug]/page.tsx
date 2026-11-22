@@ -36,7 +36,8 @@ export default function GuidePage({ params }: Props) {
   const moreGuides = guides
     .filter((x) => x.slug !== g.slug && x.category === g.category)
     .map((x) => ({ href: `/guides/${x.slug}`, label: x.title }));
-  if (g.category === "Weather & Wet Ground") moreGuides.unshift({ href: "/weather", label: "Acadiana Radar and Weather" });
+  if (g.category === "Weather & Wet Ground") moreGuides.unshift({ href: "/weather", label: "Acadiana Radar and Weather" }, { href: "/hurricane-prep", label: "Hurricane Prep" });
+  if (g.category === "Flood & Permits") moreGuides.unshift({ href: "/check-your-land", label: "Check Your Land" });
   const cta = client.servicesPage.cta;
 
   return (

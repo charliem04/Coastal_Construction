@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { client } from "@/client.config";
+import { LinkGrid } from "@/components/content/ContentParts";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Highlight } from "@/components/Highlight";
 import { CountUpStat } from "@/components/CountUpStat";
@@ -12,6 +13,7 @@ import { ServiceArea } from "@/components/ServiceArea";
 import { ServiceCards } from "@/components/ServiceCards";
 import { SectionMarker } from "@/components/survey/SectionMarker";
 import { TickRule } from "@/components/survey/TickRule";
+import { siteTools } from "@/content/tools";
 import { fill, phoneHref } from "@/lib/phone";
 import { pageMetadata } from "@/lib/seo";
 
@@ -21,7 +23,7 @@ const w = client.home.whyChoose;
 const banner = client.home.banner;
 const cta = client.home.cta;
 
-/** Home: hero → service cards → how we work → before/after → why choose → service area → banner → "Ready to get started?" */
+/** Home: hero → service cards → how we work → before/after → why choose → service area → free tools → banner → "Ready to get started?" */
 export default function Home() {
   return (
     <>
@@ -66,6 +68,14 @@ export default function Home() {
       </section>
 
       <ServiceArea />
+
+      <section className="home-tools" aria-labelledby="home-tools-title">
+        <Reveal>
+          <h2 id="home-tools-title">Free Tools for Your Property</h2>
+          <p>Check flood and soil records, plan a land purchase, or watch the weather before work starts.</p>
+          <LinkGrid links={siteTools} />
+        </Reveal>
+      </section>
 
       <section className="transition-banner">
         <Reveal className="transition-content">

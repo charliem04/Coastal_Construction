@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client } from "@/client.config";
 import { Breadcrumbs, ContentSchema, LinkGrid } from "@/components/content/ContentParts";
 import { ConditionsRail } from "@/components/content/ConditionsRail";
@@ -58,6 +59,11 @@ export default function WeatherPage() {
           <section className="content-section">
             <h2>Weather Guides</h2>
             <LinkGrid links={weatherGuides} />
+            <p className="guide-hub-link">
+              <Link href="/hurricane-prep" prefetch={false}>
+                See the tropical outlook and hurricane prep checklist
+              </Link>
+            </p>
           </section>
         </div>
       </div>

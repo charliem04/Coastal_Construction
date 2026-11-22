@@ -44,7 +44,7 @@ test("radar requests the right frames and places Lafayette in view", () => {
 
 test("only the radar feed is allowed for live images and data", () => {
   const csp = read("scripts/csp.mjs");
-  assert.match(csp, /img-src 'self' data: https:\/\/mesonet\.agron\.iastate\.edu"/);
+  assert.match(csp, /img-src 'self' data: https:\/\/mesonet\.agron\.iastate\.edu https:\/\/www\.nhc\.noaa\.gov"/);
   assert.match(csp, /connect-src[^\n]*https:\/\/mesonet\.agron\.iastate\.edu/);
   assert.match(read("app/sitemap.ts"), /monthly\("\/weather", 0\.7\)/);
 });
