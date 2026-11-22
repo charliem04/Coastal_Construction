@@ -1450,3 +1450,115 @@
     @apply pointer-events-none fixed inset-0 z-[3000] hidden h-full w-full;
   }
 }
+
+/* ── How We Work, before-and-after, 404 ─────────────────────────────── */
+@layer components {
+  .process {
+    @apply bg-black px-8 py-24;
+  }
+  .process .section-subtitle {
+    @apply mb-14;
+  }
+  .process-steps {
+    @apply relative mx-auto grid max-w-content list-none grid-cols-4 gap-8 p-0;
+  }
+  .process-line {
+    @apply absolute left-0 right-0 top-[23px];
+  }
+  .process-stake {
+    @apply relative z-[1] mb-5 flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand bg-black font-display text-base text-white;
+  }
+  .process-steps h3 {
+    @apply mb-2 text-xl uppercase text-white;
+    letter-spacing: 1px;
+  }
+  .process-steps p {
+    @apply font-body text-base font-normal text-gray-300;
+  }
+
+  .before-after-section {
+    @apply bg-surface-950 px-8 py-24;
+  }
+  .before-after-list {
+    @apply mx-auto grid max-w-[900px] gap-10;
+  }
+  .before-after-stage {
+    @apply relative overflow-hidden border border-surface-800;
+    aspect-ratio: 16 / 10;
+  }
+  .before-after-stage img {
+    @apply absolute inset-0 h-full w-full object-cover;
+  }
+  .before-after-top {
+    @apply absolute inset-0;
+  }
+  .before-after-label {
+    @apply pointer-events-none absolute top-3 bg-black/80 px-3 py-1 font-body text-xs font-bold uppercase text-white;
+    letter-spacing: 2px;
+  }
+  .before-after-label.is-before {
+    left: 12px;
+  }
+  .before-after-label.is-after {
+    right: 12px;
+  }
+  .before-after-handle {
+    @apply pointer-events-none absolute bottom-0 top-0 z-[2] w-[3px] -translate-x-1/2 bg-brand;
+  }
+  .before-after-handle::after {
+    content: "";
+    @apply absolute left-1/2 top-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-brand;
+  }
+  .before-after-stage input {
+    @apply absolute inset-0 z-[3] m-0 h-full w-full cursor-ew-resize opacity-0;
+    touch-action: pan-y;
+  }
+  .before-after-stage:has(input:focus-visible) {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+  }
+  .before-after figcaption {
+    @apply mt-3 font-display text-base uppercase text-white;
+  }
+  .before-after figcaption span {
+    @apply ml-2 font-body text-sm font-normal normal-case text-gray-400;
+  }
+
+  .not-found-stake {
+    @apply flex justify-center bg-surface-900 py-10;
+  }
+  .not-found-stake svg {
+    @apply h-28 w-28;
+  }
+
+  @media (max-width: 968px) {
+    .process {
+      @apply px-6 py-16;
+    }
+    .process-steps {
+      @apply grid-cols-1 gap-8;
+    }
+    .process-line {
+      left: 27px;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      height: auto;
+      border: 0;
+      background: theme("colors.brand.DEFAULT");
+    }
+    .process-steps li {
+      @apply pl-[76px];
+    }
+    .process-stake {
+      @apply absolute left-0 mb-0;
+    }
+    .process-steps li > div {
+      @apply relative min-h-14;
+    }
+    .process-stake {
+      left: -76px;
+    }
+  }
+}

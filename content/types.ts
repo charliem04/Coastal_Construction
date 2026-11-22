@@ -77,3 +77,13 @@ export type Faq = {
   q: string;
   a: string;
 };
+
+/** A real before-and-after job, shown by components/BeforeAfter. */
+export type ProjectPair = {
+  service: string;
+  location: string;
+  before: PhotoName;
+  after: PhotoName;
+  beforeAlt: string;
+  afterAlt: string;
+};

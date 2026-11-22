@@ -227,6 +227,25 @@ export const client = {
       viewAll: "View All Services",
       seeArea: "See Our Service Area",
     },
+    /** New copy for the owner's review before launch. */
+    process: {
+      title: "HOW WE [WORK]",
+      subtitle: "A straightforward process from first look to finished ground",
+      steps: [
+        { title: "Assess", body: "We review your property, project goals, and site conditions." },
+        { title: "Clear", body: "We remove brush, debris, or structures to prepare the work area." },
+        { title: "Grade", body: "We shape and level the ground with drainage in mind." },
+        { title: "Finish", body: "We complete the site so it is ready for what comes next." },
+      ],
+    },
+    /** Shown only once content/projects.ts has real photo pairs. */
+    beforeAfter: {
+      title: "BEFORE & [AFTER]",
+      subtitle: "Real results from real job sites",
+      before: "Before",
+      after: "After",
+      sliderLabel: "Compare before and after",
+    },
     whyChoose: {
       heading: "WHY CHOOSE [COASTAL?]",
       paragraphs: [
@@ -474,7 +493,7 @@ export const client = {
 
   // ── 404 ───────────────────────────────────────────────────────────
   notFound: {
-    heading: "4[0]4",
+    heading: "You've Hit [Unmarked Ground]",
     body: "That page got cleared off the lot. Let's get you back on solid ground.",
     ctaHeading: "WHERE TO NEXT?",
     ctaBody: "Here are the pages most folks are looking for",

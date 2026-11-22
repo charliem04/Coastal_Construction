@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { client } from "@/client.config";
+import { BeforeAfter } from "@/components/BeforeAfter";
 import { Highlight } from "@/components/Highlight";
 import { CountUpStat } from "@/components/CountUpStat";
 import { Hero } from "@/components/Hero";
+import { HowWeWork } from "@/components/HowWeWork";
 import { JsonLd } from "@/components/JsonLd";
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Reviews";
@@ -19,13 +21,15 @@ const w = client.home.whyChoose;
 const banner = client.home.banner;
 const cta = client.home.cta;
 
-/** Home: hero → service cards → why choose → service area → banner → "Ready to get started?" */
+/** Home: hero → service cards → how we work → before/after → why choose → service area → banner → "Ready to get started?" */
 export default function Home() {
   return (
     <>
       <JsonLd page="home" />
       <Hero />
       <ServiceCards />
+      <HowWeWork />
+      <BeforeAfter />
 
       <section className="about" id="about">
         <div className="about-content">
