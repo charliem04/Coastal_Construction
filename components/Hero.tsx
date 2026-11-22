@@ -1,15 +1,16 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { client } from "@/client.config";
+import { headlineWords } from "@/lib/headlineWords";
 import { photo } from "@/lib/photo";
-import { Highlight } from "./Highlight";
+import { ExcavationDivider } from "./ExcavationDivider";
 
 const h = client.home.hero;
 
 /**
- * Full-screen hero. The photo was a CSS background on the old site;
- * here it is a real <img> (preloaded, responsive, sized) under the same
- * 60% black scrim and red diagonal wash, so it looks the same and the
- * browser loads the right size for the screen.
+ * Full-screen hero: logo, headline, subhead, quote button. The entrance
+ * is CSS, so nothing here waits for hydration, and the photo is visible
+ * from first paint.
  */
 export function Hero() {
   return (
@@ -18,20 +19,33 @@ export function Hero() {
       <Image {...photo("hero-dirt-work")} alt="" className="hero-photo" sizes="100vw" priority />
       <div className="hero-scrim" aria-hidden="true" />
       <div className="hero-content">
-        <Image {...photo("logo")} alt={h.logoAlt} className="hero-logo" sizes="300px" loading="eager" />
-        <div className="logo">
-          <Highlight text={h.wordmark} />
-          <span className="logo-subtitle">{h.subtitle}</span>
-        </div>
-        <p className="tagline">{h.tagline}</p>
+        <Image
+          {...photo("logo")}
+          alt={h.logoAlt}
+          className="hero-logo hero-in"
+          style={{ "--d": "0ms" } as CSSProperties}
+          sizes="300px"
+          loading="eager"
+        />
         <h1>
-          <Highlight text={h.headline} />
+          {headlineWords(h.headline).map(({ word, red }, i) => (
+            <span key={word}>
+              <span className="hero-word">
+                <span className={red ? "hero-red" : undefined} style={{ "--i": i } as CSSProperties}>
+                  {word}
+                </span>
+              </span>{" "}
+            </span>
+          ))}
         </h1>
-        <p className="hero-sub">{h.subhead}</p>
-        <a href="#contact" className="cta-button">
+        <p className="hero-sub hero-in" style={{ "--d": "520ms" } as CSSProperties}>
+          {h.subhead}
+        </p>
+        <a href="#contact" className="cta-button hero-in" style={{ "--d": "640ms" } as CSSProperties}>
           {h.cta}
         </a>
       </div>
+      <ExcavationDivider />
     </section>
   );
 }

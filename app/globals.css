@@ -21,6 +21,7 @@
 @layer base {
   :root {
     --ease-punch: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --nav-offset: 124px;
   }
 
   html {
@@ -218,18 +219,6 @@
   .hero-logo {
     @apply mb-8 h-auto max-w-[300px];
   }
-  .logo {
-    @apply mb-4 text-5xl;
-    letter-spacing: 2px;
-    line-height: 1.6;
-  }
-  .logo-subtitle {
-    @apply mt-2 block font-body text-base font-semibold uppercase text-gray-400;
-    letter-spacing: 3px;
-  }
-  /* The old .tagline rule (1.5rem, gray-300) never applied: .hero p
-     outranked it. This is what actually rendered. */
-  .tagline,
   .hero-sub {
     @apply mb-12 font-body text-[1.3rem] font-normal text-gray-400;
   }
@@ -953,9 +942,6 @@
     .hero h1 {
       @apply text-[2rem];
     }
-    .logo {
-      @apply text-[2rem];
-    }
   }
 }
 
@@ -1031,5 +1017,88 @@
     z-index: -1;
     background: url("/contours.svg") center / 900px;
     opacity: 0.11;
+  }
+}
+
+/* ── Tight hero and the dirt divider ────────────────────────────────── */
+@layer components {
+  .hero {
+    --dig-height: clamp(84px, 13vh, 132px);
+    min-height: calc(100svh - var(--nav-offset));
+    padding-bottom: calc(var(--dig-height) + 40px);
+  }
+  .hero .hero-logo {
+    @apply mb-5;
+    width: clamp(112px, 20vh, 210px);
+  }
+  .hero h1 {
+    @apply mb-5;
+    font-size: clamp(1.8rem, 7.2vw, 5.75rem);
+    line-height: 1.04;
+    letter-spacing: 2px;
+  }
+  .hero .hero-sub {
+    @apply mb-8;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: theme("colors.gray.300");
+  }
+  .hero-word {
+    @apply inline-block overflow-hidden align-bottom;
+    padding-bottom: 0.05em;
+  }
+  .hero-word > span {
+    display: inline-block;
+    animation: hero-rise 0.85s var(--ease-punch) both;
+    animation-delay: calc(0.15s + var(--i) * 0.09s);
+  }
+  .hero-in {
+    animation: hero-fade 0.7s var(--ease-punch) both;
+    animation-delay: var(--d);
+  }
+  .hero-photo {
+    animation: hero-settle 1.8s var(--ease-punch) both;
+  }
+  @keyframes hero-rise {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes hero-fade {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes hero-settle {
+    from {
+      scale: 1.06;
+    }
+    to {
+      scale: 1;
+    }
+  }
+
+  .dig-divider {
+    @apply pointer-events-none absolute left-0 right-0;
+    bottom: -1px;
+    height: var(--dig-height);
+    z-index: 2;
+  }
+  .dig-divider svg {
+    @apply absolute inset-0 h-full w-full;
+  }
+  .dig-seam {
+    @apply absolute bottom-0 left-0 right-0 h-[11px];
+    background: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.32) 0 1px, transparent 1px 24px);
+    border-bottom: 2px solid theme("colors.brand.DEFAULT");
+    transform: scaleX(0);
+    transform-origin: left;
   }
 }

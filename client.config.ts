@@ -207,9 +207,6 @@ export const client = {
   home: {
     hero: {
       logoAlt: "Coastal Construction Services Logo",
-      wordmark: "[COASTAL] CONSTRUCTION [SERVICES]",
-      subtitle: "of Louisiana",
-      tagline: "Southern Louisiana's Dirt Work Specialists",
       headline: "BUILDING [STRONGER] FOUNDATIONS",
       subhead: "Expert dirt construction services across the area of Acadiana",
       cta: "Get A Quote",
