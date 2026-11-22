@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { guides } from "../content/guides.ts";
+import { blendAt, cycleLength, FRAME_AGES, frameUrl, placeOnView, STEP_MS } from "../lib/radar.ts";
 
 const read = (path: string) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
@@ -16,13 +17,33 @@ test("the weather cluster is complete and sourced", () => {
 
 test("the radar stays light and defers to official warnings", () => {
   const radar = read("components/content/RadarPanel.tsx");
-  assert.match(radar, /loading="lazy"/);
-  assert.match(radar, /useState\(false\)/);
-  assert.match(radar, /onError/);
+  assert.match(radar, /IntersectionObserver/);
+  assert.match(radar, /prefers-reduced-motion/);
+  assert.match(radar, /setStatus\("error"\)/);
   assert.match(radar, /warnings and safety decisions/);
 });
 
-test("only the weather page's radar origin is allowed for images", () => {
-  assert.match(read("scripts/csp.mjs"), /img-src 'self' data: https:\/\/radar\.weather\.gov"/);
+test("radar playback covers the hour in five-minute frames and blends every step", () => {
+  assert.equal(FRAME_AGES.length, 12);
+  assert.ok(FRAME_AGES.every((age, i) => i === 0 || FRAME_AGES[i - 1] - age === 5));
+  assert.deepEqual(blendAt(STEP_MS * 2.5, 12), { from: 2, to: 3, mix: 0.5 });
+  assert.deepEqual(blendAt(STEP_MS * 11 + 10, 12), { from: 11, to: 11, mix: 0 });
+  const wrap = blendAt(cycleLength(12) - 1, 12);
+  assert.equal(wrap.from, 11);
+  assert.equal(wrap.to, 0);
+  assert.equal(blendAt(cycleLength(12), 12).from, 0);
+});
+
+test("radar requests the right frames and places Lafayette in view", () => {
+  assert.match(frameUrl(0, "k"), /layers=nexrad-n0q-900913&/);
+  assert.match(frameUrl(5, "k"), /layers=nexrad-n0q-900913-m05m&/);
+  const { x, y } = placeOnView(30.2241, -92.0198);
+  assert.ok(x > 45 && x < 60 && y > 40 && y < 60);
+});
+
+test("only the radar feed is allowed for live images and data", () => {
+  const csp = read("scripts/csp.mjs");
+  assert.match(csp, /img-src 'self' data: https:\/\/mesonet\.agron\.iastate\.edu"/);
+  assert.match(csp, /connect-src[^\n]*https:\/\/mesonet\.agron\.iastate\.edu/);
   assert.match(read("app/sitemap.ts"), /monthly\("\/weather", 0\.7\)/);
 });

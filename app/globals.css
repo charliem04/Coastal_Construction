@@ -2447,24 +2447,120 @@
     @apply border-brand;
   }
   .radar-view {
-    @apply relative bg-surface-950;
-    aspect-ratio: 600 / 550;
+    @apply relative overflow-hidden bg-surface-950;
+    aspect-ratio: 4 / 3;
   }
-  .radar-view img {
-    @apply block h-full w-full object-contain;
+  .radar-map,
+  .radar-places {
+    @apply pointer-events-none absolute inset-0;
   }
-  .radar-view[data-status="loading"] img {
-    opacity: 0.55;
+  .radar-map img {
+    @apply absolute block max-w-none;
+    filter: brightness(0) invert(1);
+  }
+  .radar-map .radar-county {
+    opacity: 0.13;
+  }
+  .radar-map .radar-state {
+    opacity: 0.6;
+  }
+  .radar-view canvas {
+    @apply absolute inset-0 block h-full w-full;
+    opacity: 0.92;
+  }
+  .radar-view[data-status="loading"] canvas {
+    opacity: 0;
+  }
+  .radar-places span {
+    @apply absolute whitespace-nowrap font-label text-xs uppercase text-white;
+    padding-left: 8px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    transform: translateY(-50%);
+    text-shadow: 0 1px 2px #000, 0 0 4px #000;
+  }
+  .radar-places span::before {
+    @apply absolute left-0 bg-white;
+    content: "";
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    transform: translateY(-50%);
+    box-shadow: 0 0 0 1px #000;
+  }
+  .radar-places span[data-side="left"] {
+    padding-left: 0;
+    padding-right: 8px;
+    transform: translate(-100%, -50%);
+  }
+  .radar-places span[data-side="left"]::before {
+    left: auto;
+    right: 0;
+  }
+  .radar-time {
+    @apply absolute right-2 top-2 bg-surface-950 px-2 py-1 font-label text-base text-white;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+  }
+  .radar-time:empty {
+    display: none;
   }
   .radar-view > p {
     @apply m-0 flex h-full items-center justify-center p-6 text-center font-body text-gray-200;
     display: block;
-    padding-top: 40%;
+    padding-top: 34%;
   }
   .radar-view a,
   .radar-panel figcaption a {
     @apply underline underline-offset-2;
     color: theme("colors.brand.light");
+  }
+  .radar-controls {
+    @apply flex flex-wrap items-center gap-3 border-t border-surface-800 px-4 py-3;
+  }
+  .radar-controls button {
+    @apply min-h-11 min-w-20 cursor-pointer border border-surface-800 bg-surface-950 px-4 font-label text-base uppercase text-white;
+    letter-spacing: 0.04em;
+    transition: border-color 0.15s, color 0.15s, transform 0.1s;
+  }
+  .radar-controls button:hover:not(:disabled) {
+    @apply border-brand text-brand-light;
+  }
+  .radar-controls button:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .radar-controls button:focus-visible,
+  .radar-controls input:focus-visible {
+    outline: 2px solid theme("colors.brand.light");
+    outline-offset: 2px;
+  }
+  .radar-controls button:disabled,
+  .radar-controls input:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .radar-controls input {
+    @apply h-11 min-w-0 flex-1 cursor-pointer;
+    flex-basis: 140px;
+    accent-color: theme("colors.brand.DEFAULT");
+  }
+  .radar-legend {
+    @apply flex items-center gap-2 font-label text-xs uppercase text-gray-300;
+    letter-spacing: 0.04em;
+  }
+  .radar-legend i {
+    @apply block h-2 w-20;
+    background: linear-gradient(90deg, #04e9e7, #019ff4, #02fd02, #008e00, #fdf802, #fd9500, #fd0000, #bc0000, #f800fd);
+  }
+  @media (max-width: 480px) {
+    .radar-places span[data-major="false"] {
+      display: none;
+    }
+    .radar-legend {
+      @apply w-full;
+    }
+    .radar-legend i {
+      @apply flex-1;
+    }
   }
   .radar-panel figcaption {
     @apply border-t border-surface-800 px-4 py-3 font-body text-sm text-gray-300;
