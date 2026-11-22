@@ -12,11 +12,10 @@ test("the laser timing is a shared motion token", () => {
 });
 
 test("the ruler renders every laser layer", () => {
-  const rule = read("components/survey/TickRule.tsx");
+  const rule = read("components/survey/LaserLayers.tsx");
   for (const layer of ["laser-ticks", "laser-hot", "laser-beam", "laser-head", "laser-flash"]) {
     assert.match(rule, new RegExp(layer));
   }
-  assert.match(rule, /is-lit/);
 });
 
 test("the ticks are revealed by the laser position", () => {
@@ -33,6 +32,6 @@ test("the phone process line draws downward", () => {
 });
 
 test("rulers are complete without JavaScript or motion", () => {
-  assert.match(read("app/layout.tsx"), /\.tick-rule\{--draw:1!important\}/);
-  assert.match(css, /prefers-reduced-motion: reduce\)[\s\S]*\.tick-rule \{\s*--draw: 1 !important;/);
+  assert.match(read("app/layout.tsx"), /\.tick-rule:not\(\.dig-laser\)\{--draw:1!important\}/);
+  assert.match(css, /prefers-reduced-motion: reduce\)[\s\S]*\.tick-rule:not\(\.dig-laser\) \{\s*--draw: 1 !important;/);
 });

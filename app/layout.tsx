@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           back. Static and ours — see scripts/csp.mjs.
         */}
         <noscript>
-          <style dangerouslySetInnerHTML={{ __html: "[data-reveal]{opacity:1!important;transform:none!important}.survey-frame-line rect{stroke-dasharray:none!important;stroke-dashoffset:0!important}.tick-rule{--draw:1!important}" }} />
+          <style dangerouslySetInnerHTML={{ __html: "[data-reveal]{opacity:1!important;transform:none!important}.survey-frame-line rect{stroke-dasharray:none!important;stroke-dashoffset:0!important}.tick-rule:not(.dig-laser){--draw:1!important}" }} />
         </noscript>
       </head>
       <body>

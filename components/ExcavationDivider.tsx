@@ -7,9 +7,10 @@
  * a scroll never re-renders React.
  */
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, type CSSProperties } from "react";
 import { BAND_COLORS, DIG_LAYERS, bandProgress, digProgress, layerOffset, layerPath, seamProgress } from "@/lib/digProgress";
 import { useStillness } from "@/lib/useStillness";
+import { LaserLayers } from "./survey/LaserLayers";
 
 export function ExcavationDivider({ variant = "hero" }: { variant?: "hero" | "band" }) {
   const root = useRef<HTMLDivElement>(null);
@@ -22,7 +23,9 @@ export function ExcavationDivider({ variant = "hero" }: { variant?: "hero" | "ba
     paths.current.forEach((path, i) =>
       path?.setAttribute("transform", `translate(0 ${layerOffset(i, progress).toFixed(1)})`)
     );
-    if (seam.current) seam.current.style.transform = `scaleX(${seamProgress(progress)})`;
+    const draw = seamProgress(progress);
+    seam.current?.style.setProperty("--draw", String(draw));
+    seam.current?.classList.toggle("is-lit", draw === 1);
   }, []);
 
   const update = useCallback(
@@ -62,7 +65,9 @@ export function ExcavationDivider({ variant = "hero" }: { variant?: "hero" | "ba
           />
         ))}
       </svg>
-      <div ref={seam} className="dig-seam" />
+      <div ref={seam} className="tick-rule dig-laser" style={{ "--draw": 0 } as CSSProperties}>
+        <LaserLayers />
+      </div>
     </div>
   );
 }

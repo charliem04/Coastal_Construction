@@ -3,6 +3,7 @@
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { useRef } from "react";
 import { laserEase, motionTiming } from "@/lib/motion";
+import { LaserLayers } from "./LaserLayers";
 
 /**
  * A measured line drawn by a red laser level: the beam races across,
@@ -25,11 +26,7 @@ export function TickRule({ className = "" }: { className?: string }) {
         transition={{ duration: motionTiming.laser, ease: [...laserEase] }}
         onAnimationComplete={() => root.current?.classList.add("is-lit")}
       >
-        <span className="laser-ticks" />
-        <span className="laser-hot" />
-        <span className="laser-beam" />
-        <span className="laser-head" />
-        <span className="laser-flash" />
+        <LaserLayers />
       </m.div>
     </LazyMotion>
   );
