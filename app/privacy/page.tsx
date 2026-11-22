@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const h2 = "mb-3 mt-10 text-2xl uppercase text-brand";
 const p = "mt-3 font-body text-[1.1rem] leading-[1.8] text-gray-300";
-const link = "text-brand underline hover:text-brand-light";
+const link = "text-brand-text underline hover:text-brand-light active:text-white";
 
 export default function Privacy() {
   return (

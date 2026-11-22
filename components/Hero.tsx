@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 import { client } from "@/client.config";
 import { headlineWords } from "@/lib/headlineWords";
@@ -41,9 +42,9 @@ export function Hero() {
         <p className="hero-sub hero-in" style={{ "--d": "520ms" } as CSSProperties}>
           {h.subhead}
         </p>
-        <a href="#contact" className="cta-button hero-in" style={{ "--d": "640ms" } as CSSProperties}>
+        <Link href="/contact#contact-form" className="cta-button hero-in" style={{ "--d": "640ms" } as CSSProperties}>
           {h.cta}
-        </a>
+        </Link>
       </div>
       <ExcavationDivider />
     </section>

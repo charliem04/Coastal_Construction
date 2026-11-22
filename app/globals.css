@@ -145,7 +145,7 @@
   .cta-button,
   .cta-button-outline,
   .cta-button-secondary {
-    @apply inline-block px-12 py-6 text-[1.3rem] uppercase no-underline transition-all duration-300 ease-site;
+    @apply inline-block px-12 py-6 text-[1.3rem] uppercase no-underline;
     letter-spacing: 2px;
   }
   .cta-button {
@@ -168,7 +168,7 @@
     box-shadow: 0 10px 30px rgb(220 38 38 / 0.4);
   }
   .method-button {
-    @apply inline-block cursor-pointer border-none bg-brand px-8 py-4 font-label text-base uppercase text-white no-underline transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark;
+    @apply inline-block cursor-pointer border-none bg-brand px-8 py-4 font-label text-base uppercase text-white no-underline hover:-translate-y-0.5 hover:bg-brand-dark;
     letter-spacing: 1px;
   }
   /* The <button> ones (Cal.com) had the browser's normal line-height; the
@@ -599,7 +599,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
   .contact-method-card {
-    @apply border-2 border-surface-800 bg-surface-900 px-8 py-12 text-center transition-all duration-300 ease-site hover:-translate-y-[5px] hover:border-brand;
+    @apply border-2 border-surface-800 bg-surface-900 px-8 py-12 text-center hover:-translate-y-[5px] hover:border-brand;
   }
   .contact-method-card:hover {
     box-shadow: 0 10px 30px rgb(220 38 38 / 0.2);
@@ -673,7 +673,7 @@
   }
   /* Arial and normal line-height: the browser default the old button had. */
   .submit-button {
-    @apply inline-block font-body leading-[normal] cursor-pointer border-none bg-brand px-16 py-6 text-[1.2rem] font-black uppercase text-white transition-all duration-300 ease-site hover:-translate-y-0.5 hover:bg-brand-dark disabled:cursor-progress disabled:bg-brand-dark;
+    @apply inline-block font-body leading-[normal] cursor-pointer border-none bg-brand px-16 py-6 text-[1.2rem] font-black uppercase text-white hover:-translate-y-0.5 hover:bg-brand-dark disabled:cursor-progress disabled:bg-brand-dark;
     letter-spacing: 2px;
   }
   .submit-button:hover {
@@ -935,17 +935,19 @@
     position: relative;
   }
   .corner-bracket {
-    @apply pointer-events-none absolute z-[2] h-[18px] w-[18px] border-solid border-white opacity-75;
+    @apply pointer-events-none absolute z-[2] h-[30px] w-[30px] border-solid border-white opacity-75;
     border-width: 0;
-    transition: width 0.3s var(--ease-punch), height 0.3s var(--ease-punch), border-color 0.3s, opacity 0.3s;
+    transition: clip-path 0.3s var(--ease-punch), border-color 0.3s, opacity 0.3s;
   }
   .corner-bracket.is-a {
+    clip-path: inset(0 12px 12px 0);
     left: 10px;
     top: 10px;
     border-left-width: 1px;
     border-top-width: 1px;
   }
   .corner-bracket.is-b {
+    clip-path: inset(12px 0 0 12px);
     right: 10px;
     bottom: 10px;
     border-right-width: 1px;
@@ -953,7 +955,8 @@
   }
   .has-brackets:hover .corner-bracket,
   .has-brackets:focus-within .corner-bracket {
-    @apply h-[30px] w-[30px] border-brand opacity-100;
+    @apply border-brand opacity-100;
+    clip-path: inset(0);
   }
 
   .band-contours {
@@ -1047,43 +1050,79 @@
 
 /* ── Nav: fixed flow height, condensing bar, scroll progress ────────── */
 @layer components {
+  :root {
+    --nav-condensed: 76px;
+  }
   .site-nav-shell {
     @apply pointer-events-none sticky top-0 z-[1000];
     height: var(--nav-offset);
   }
+  /* Condensing clips and moves the bar, so scrolling never recalculates layout. */
   .site-nav {
     @apply pointer-events-auto absolute left-0 right-0 top-0 flex-nowrap py-0;
     height: var(--nav-offset);
-    transition: height 0.3s var(--ease-punch), box-shadow 0.3s;
+    clip-path: inset(0);
+    transition: clip-path 0.3s var(--ease-punch);
+  }
+  .site-nav::after {
+    content: "";
+    @apply pointer-events-none absolute left-0 right-0 h-px;
+    top: calc(var(--nav-condensed) - 1px);
+    background: rgb(255 255 255 / 0.09);
+    opacity: 0;
+    transition: opacity 0.3s;
   }
   .site-nav.is-condensed {
-    height: 76px;
-    box-shadow: 0 1px 0 rgb(255 255 255 / 0.09);
+    clip-path: inset(0 0 calc(var(--nav-offset) - var(--nav-condensed)) 0);
+  }
+  .site-nav.is-condensed::after {
+    opacity: 1;
+  }
+  .nav-brand,
+  .nav-links,
+  .nav-actions,
+  .nav-subtitle {
+    transition: transform 0.3s var(--ease-punch), opacity 0.2s, visibility 0.2s;
+  }
+  .nav-brand {
+    transform-origin: left center;
+  }
+  .is-condensed .nav-brand {
+    transform: translateY(calc((var(--nav-condensed) - var(--nav-offset)) / 2)) scale(0.63);
+  }
+  .is-condensed .nav-links,
+  .is-condensed .nav-actions {
+    transform: translateY(calc((var(--nav-condensed) - var(--nav-offset)) / 2));
+  }
+  .is-condensed .nav-subtitle {
+    opacity: 0;
   }
   .nav-logo-img {
     height: 92px;
     width: 92px;
-    transition: width 0.3s var(--ease-punch), height 0.3s var(--ease-punch);
   }
-  .is-condensed .nav-logo-img {
-    height: 58px;
-    width: 58px;
+  .site-nav .nav-subtitle {
+    font-size: 0.75rem;
+    display: block;
   }
-  .nav-logo {
-    transition: font-size 0.3s var(--ease-punch);
+  .site-nav .nav-links {
+    margin-left: auto;
   }
-  .is-condensed .nav-logo {
-    font-size: 1rem;
+  .site-nav .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
   }
-  .is-condensed .nav-subtitle {
-    display: none;
+  .site-nav .nav-links a::after,
+  .site-nav .nav-links a[aria-current="page"]::after {
+    bottom: 0;
   }
   .nav-links a:not([aria-current="page"]) {
     position: relative;
   }
   .nav-links a:not([aria-current="page"])::after {
     content: "";
-    @apply absolute -bottom-2 left-0 right-0 h-[3px] bg-brand;
+    @apply absolute left-0 right-0 h-[3px] bg-brand;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.3s var(--ease-punch);
@@ -1093,15 +1132,64 @@
     transform: scaleX(1);
     transform-origin: left;
   }
+  .nav-actions {
+    @apply ml-7 flex flex-none items-center gap-4;
+  }
+  .nav-call,
+  .nav-quote {
+    @apply inline-flex h-11 items-center justify-center whitespace-nowrap font-label text-[1.05rem] uppercase text-white no-underline;
+    letter-spacing: 0.06em;
+  }
+  .nav-call {
+    @apply gap-2 hover:text-brand-light;
+    transition: color 0.2s;
+  }
+  .nav-call-icon {
+    @apply h-5 w-5;
+  }
+  .nav-call-short {
+    display: none;
+  }
+  .nav-quote {
+    @apply bg-brand px-5 hover:bg-brand-dark active:bg-brand-dark;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+  .nav-quote:active {
+    transform: translateY(1px);
+  }
+  .nav-call:focus-visible,
+  .nav-quote:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 2px;
+  }
   .scroll-progress {
     @apply pointer-events-none fixed left-0 right-0 top-0 z-[1001] h-[3px] bg-brand;
     transform: scaleX(0);
     transform-origin: left;
   }
 
+  @media (max-width: 1180px) {
+    .nav-call-number {
+      display: none;
+    }
+    .nav-call-short {
+      display: inline;
+    }
+    .site-nav .nav-links {
+      gap: 1.25rem;
+    }
+    .nav-actions {
+      @apply ml-5 gap-3;
+    }
+  }
+
   @media (max-width: 968px) {
     :root {
       --nav-offset: 104px;
+      --nav-condensed: 46px;
+    }
+    .nav-actions {
+      display: none;
     }
     .site-nav {
       @apply flex-col items-center justify-center gap-1 px-3;
@@ -1109,9 +1197,8 @@
     .site-nav .nav-brand {
       flex: 0 0 auto;
       gap: 0.6rem;
-      overflow: hidden;
-      max-height: 56px;
-      transition: max-height 0.3s var(--ease-punch), opacity 0.2s, visibility 0.2s;
+      height: 56px;
+      transform-origin: center;
     }
     .site-nav .nav-logo-img {
       height: 50px;
@@ -1122,29 +1209,23 @@
       font-size: 0.82rem;
       line-height: 1.2;
     }
-    .site-nav .nav-subtitle {
-      display: block;
-      font-size: 0.55rem;
-    }
     .site-nav .nav-links {
       flex: 0 0 auto;
       flex-wrap: nowrap;
       gap: clamp(0.8rem, 5vw, 1.5rem);
-      padding-bottom: 0.45rem;
+      height: 32px;
+      margin-left: 0;
     }
     .site-nav .nav-links a {
       font-size: 0.75rem;
     }
-    .site-nav.is-condensed {
-      height: 46px;
-    }
     .site-nav.is-condensed .nav-brand {
-      max-height: 0;
       opacity: 0;
       visibility: hidden;
+      transform: translateY(-12px);
     }
     .site-nav.is-condensed .nav-links {
-      padding-bottom: 0;
+      transform: translateY(-59px);
     }
   }
 }
@@ -1867,5 +1948,89 @@
     width: 28px;
     height: 28px;
     margin-left: -14px;
+  }
+}
+
+/* ── Post-refresh audit: contrast, targets, spacing, jump links ─────── */
+@layer components {
+  .form-row {
+    row-gap: 0;
+    margin-bottom: 0;
+  }
+  .nav-links a:hover,
+  .site-nav .nav-links a[aria-current="page"],
+  .nav-logo .hero-red,
+  .service-area-cta a,
+  .parish-category h3,
+  .value-item h3,
+  .form-group label,
+  .info-card h3,
+  .info-detail a,
+  .cta-button-secondary:not(:hover) {
+    color: theme("colors.brand.text");
+  }
+  .about-highlight .stat-label {
+    color: #fff;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: theme("colors.gray.400");
+  }
+  .submit-button {
+    transition: transform 0.25s var(--ease-punch), background-color 0.25s, box-shadow 0.25s;
+  }
+  .cta-button:active,
+  .cta-button-outline:active,
+  .cta-button-secondary:active,
+  .method-button:active,
+  .submit-button:active {
+    transform: translateY(1px);
+  }
+  .contact-method-card {
+    transition: transform 0.3s var(--ease-punch), box-shadow 0.3s, border-color 0.3s;
+  }
+  .contact-form-section {
+    scroll-margin-top: var(--nav-condensed);
+  }
+  .footer-column li a,
+  .footer-column > a,
+  .footer-legal a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+  }
+
+  .service-jump {
+    @apply border-b border-surface-800 bg-black px-8 py-7 text-center;
+  }
+  .service-jump p {
+    @apply mb-3 font-label text-sm uppercase text-gray-300;
+    letter-spacing: 0.16em;
+  }
+  .service-jump ul {
+    @apply mx-auto flex max-w-wide list-none flex-wrap justify-center gap-2 p-0;
+  }
+  .service-jump a {
+    @apply inline-flex min-h-11 items-center justify-center border border-surface-800 bg-surface-900 px-4 font-label text-base uppercase text-white no-underline hover:border-brand hover:text-brand-light;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .service-jump a:active {
+    transform: translateY(1px);
+  }
+  @media (max-width: 620px) {
+    .service-jump {
+      @apply px-4 py-5;
+    }
+    .service-jump ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .service-jump li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+    .service-jump a {
+      @apply w-full px-2 text-[0.95rem];
+    }
   }
 }

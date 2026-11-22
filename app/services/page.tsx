@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
+import { ServiceJump } from "@/components/ServiceJump";
 import { CornerBrackets } from "@/components/survey/CornerBrackets";
 import { photo } from "@/lib/photo";
 import { pageMetadata } from "@/lib/seo";
@@ -22,6 +23,7 @@ export default function ServicesPage() {
     <>
       <JsonLd page="services" />
       <PageHeader heading={p.heading} subtitle={p.subtitle} />
+      <ServiceJump />
 
       {services.map((s, i) => {
         const image = (

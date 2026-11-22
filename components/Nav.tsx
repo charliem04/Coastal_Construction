@@ -12,8 +12,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { client } from "@/client.config";
+import { quoteHref } from "@/lib/mobileBar";
+import { phoneDisplay, phoneHref } from "@/lib/phone";
 import { photo } from "@/lib/photo";
 import { Highlight } from "./Highlight";
+import { PhoneIcon } from "./icons";
 
 export function Nav() {
   const path = usePathname();
@@ -50,6 +53,16 @@ export function Nav() {
             </li>
           ))}
         </ul>
+        <div className="nav-actions">
+          <a href={phoneHref} className="nav-call">
+            <PhoneIcon className="nav-call-icon" />
+            <span className="nav-call-number">{phoneDisplay}</span>
+            <span className="nav-call-short">{client.mobileBar.call}</span>
+          </a>
+          <Link href={quoteHref(path)} className="nav-quote">
+            {client.mobileBar.quote}
+          </Link>
+        </div>
       </nav>
     </div>
   );

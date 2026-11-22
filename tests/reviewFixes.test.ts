@@ -34,7 +34,7 @@ test("the reviews ribbon matches the dark band", () => {
 });
 
 test("the condensed phone nav removes hidden links from the tab order", () => {
-  assert.match(css, /\.site-nav\.is-condensed \.nav-brand \{\s*max-height: 0;\s*opacity: 0;\s*visibility: hidden;/);
+  assert.match(css, /\.site-nav\.is-condensed \.nav-brand \{\s*opacity: 0;\s*visibility: hidden;/);
 });
 
 test("closing call and quote buttons never wait for a reveal", () => {

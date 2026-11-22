@@ -13,6 +13,7 @@ import type { Config } from "tailwindcss";
  *   brand-dark   #b91c1c  hover / pressed red
  *   brand-light  #fca5a5  small text on a red ground (stat labels, review
  *                         authors)
+ *   brand-text   #f87171  small red text on dark grounds (passes AA)
  *   surface-950  #0a0a0a  the darkest bands (services, service area, forms)
  *   surface-900  #1a1a1a  page background, cards on the darkest bands
  *   surface-800  #2a2a2a  hairlines and card borders on dark
@@ -48,7 +49,7 @@ const config: Config = {
     },
     extend: {
       colors: {
-        brand: { DEFAULT: "#dc2626", dark: "#b91c1c", light: "#fca5a5" },
+        brand: { DEFAULT: "#dc2626", dark: "#b91c1c", light: "#fca5a5", text: "#f87171" },
         surface: { 950: "#0a0a0a", 900: "#1a1a1a", 800: "#2a2a2a" },
         success: "#22c55e",
       },

@@ -298,6 +298,7 @@ export const client = {
   servicesPage: {
     heading: "OUR [SERVICES]",
     subtitle: "Expert dirt work solutions tailored to your project needs",
+    jumpLabel: "Jump to a service",
     featuresHeading: "What We Offer:",
     cta: {
       heading: "READY TO GET STARTED?",
