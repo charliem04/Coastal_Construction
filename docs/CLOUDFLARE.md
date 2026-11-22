@@ -33,7 +33,7 @@ Pushes build and deploy on Cloudflare automatically:
 | Trigger | Branches | Build | Deploy |
 | --- | --- | --- | --- |
 | Deploy default branch | `main` | `npm run build` | `npx wrangler deploy`: **goes live** |
-| Deploy non-production branches | all except `main` | `npm run build` | `npx wrangler versions upload`: preview URL only (see the build log) |
+| Deploy non-production branches | all except `main` and `cloudflare/workers-autoconfig` | `npm run build` | `npx wrangler versions upload`: preview URL only (see the build log) |
 
 So **merging to `main` is going live.** Both triggers skip pushes that only
 touch `docs/` or `*.md` files.
@@ -50,8 +50,8 @@ non-production trigger has no form key and sets `ALLOW_MISSING_FORM_KEY=1`,
 so previews build normally and the form tells the visitor to call instead.
 Don't add the key to that trigger. Older uploaded versions keep the key at
 their own version URLs. `cloudflare/workers-autoconfig` is the old static
-site with no `package.json`, so its Git builds fail; its preview was
-uploaded by hand with the key removed.
+site with no `package.json`, so it is excluded from the non-production
+trigger; its preview was uploaded by hand with the key removed.
 
 ### Done (20 Nov 2026, verified from outside)
 
