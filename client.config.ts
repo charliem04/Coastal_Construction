@@ -190,6 +190,13 @@ export const client = {
     ],
     skip: "Skip to content",
   },
+  /** The numbered labels above major sections (components/survey). */
+  markers: {
+    services: "Services",
+    process: "How We Work",
+    why: "Why Coastal",
+    area: "Coverage",
+  },
   footer: {
     /** "© {year} …" — the year is the build year. */
     line: "Coastal Construction Services of Louisiana. All rights reserved. | Serving the Acadiana area with pride.",
