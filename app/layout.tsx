@@ -5,6 +5,7 @@ import { client } from "@/client.config";
 import { CalEmbed } from "@/components/CalEmbed";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
 export const metadata: Metadata = {
   metadataBase: new URL(client.siteUrl),
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a className="skip-link" href="#main">
           {client.nav.skip}
         </a>
+        <ScrollProgress />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

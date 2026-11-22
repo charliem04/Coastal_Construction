@@ -520,7 +520,7 @@
   /* ── Services page ──────────────────────────────────────────────── */
   .service-detail {
     @apply mx-auto max-w-wide px-8 py-16;
-    scroll-margin-top: 150px; /* clears the sticky nav */
+    scroll-margin-top: calc(var(--nav-offset) + 1rem); /* clears the sticky nav */
   }
   .service-detail.is-even {
     @apply bg-surface-950;
@@ -566,7 +566,7 @@
     grid-template-columns: 350px 1fr;
   }
   .owner-photo-section {
-    @apply sticky top-[180px] bg-surface-950 p-8 text-center;
+    @apply sticky top-[calc(var(--nav-offset)+1rem)] bg-surface-950 p-8 text-center;
   }
   .owner-photo {
     @apply mb-6 w-full border-4 border-brand object-cover;
@@ -644,7 +644,7 @@
 
   .contact-form-section {
     @apply bg-surface-900 px-8 py-24;
-    scroll-margin-top: 150px;
+    scroll-margin-top: calc(var(--nav-offset) + 1rem);
   }
   .form-container {
     @apply mx-auto max-w-[800px];
@@ -1100,5 +1100,108 @@
     border-bottom: 2px solid theme("colors.brand.DEFAULT");
     transform: scaleX(0);
     transform-origin: left;
+  }
+}
+
+/* ── Nav: fixed flow height, condensing bar, scroll progress ────────── */
+@layer components {
+  .site-nav-shell {
+    @apply pointer-events-none sticky top-0 z-[1000];
+    height: var(--nav-offset);
+  }
+  .site-nav {
+    @apply pointer-events-auto absolute left-0 right-0 top-0 flex-nowrap py-0;
+    height: var(--nav-offset);
+    transition: height 0.3s var(--ease-punch), box-shadow 0.3s;
+  }
+  .site-nav.is-condensed {
+    height: 76px;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.09);
+  }
+  .nav-logo-img {
+    height: 92px;
+    width: 92px;
+    transition: width 0.3s var(--ease-punch), height 0.3s var(--ease-punch);
+  }
+  .is-condensed .nav-logo-img {
+    height: 58px;
+    width: 58px;
+  }
+  .nav-logo {
+    transition: font-size 0.3s var(--ease-punch);
+  }
+  .is-condensed .nav-logo {
+    font-size: 1rem;
+  }
+  .is-condensed .nav-subtitle {
+    display: none;
+  }
+  .nav-links a:not([aria-current="page"]) {
+    position: relative;
+  }
+  .nav-links a:not([aria-current="page"])::after {
+    content: "";
+    @apply absolute -bottom-2 left-0 right-0 h-[3px] bg-brand;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s var(--ease-punch);
+  }
+  .nav-links a:not([aria-current="page"]):hover::after,
+  .nav-links a:not([aria-current="page"]):focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .scroll-progress {
+    @apply pointer-events-none fixed left-0 right-0 top-0 z-[1001] h-[3px] bg-brand;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  @media (max-width: 968px) {
+    :root {
+      --nav-offset: 104px;
+    }
+    .site-nav {
+      @apply flex-col items-center justify-center gap-1 px-3;
+    }
+    .site-nav .nav-brand {
+      flex: 0 0 auto;
+      gap: 0.6rem;
+      overflow: hidden;
+      max-height: 56px;
+      transition: max-height 0.3s var(--ease-punch), opacity 0.2s;
+    }
+    .site-nav .nav-logo-img {
+      height: 50px;
+      width: 50px;
+    }
+    .site-nav .nav-logo {
+      display: block;
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+    .site-nav .nav-subtitle {
+      display: block;
+      font-size: 0.55rem;
+    }
+    .site-nav .nav-links {
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+      gap: clamp(0.8rem, 5vw, 1.5rem);
+      padding-bottom: 0.45rem;
+    }
+    .site-nav .nav-links a {
+      font-size: 0.75rem;
+    }
+    .site-nav.is-condensed {
+      height: 46px;
+    }
+    .site-nav.is-condensed .nav-brand {
+      max-height: 0;
+      opacity: 0;
+    }
+    .site-nav.is-condensed .nav-links {
+      padding-bottom: 0;
+    }
   }
 }
