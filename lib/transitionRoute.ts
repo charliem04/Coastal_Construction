@@ -28,3 +28,16 @@ export function shouldRunTransition(input: TransitionInput): boolean {
   if (url.origin !== input.origin) return false;
   return normalise(url.pathname) !== normalise(input.currentPath);
 }
+
+/** A plain click on a link to the page the visitor is already on. */
+export function isCurrentPageClick(input: Omit<TransitionInput, "reducedMotion">): boolean {
+  if (input.download || input.button !== 0) return false;
+  if (input.metaKey || input.ctrlKey || input.shiftKey || input.altKey) return false;
+  if (input.target && input.target !== "_self") return false;
+  try {
+    const url = new URL(input.href, input.origin);
+    return url.origin === input.origin && normalise(url.pathname) === normalise(input.currentPath);
+  } catch {
+    return false;
+  }
+}

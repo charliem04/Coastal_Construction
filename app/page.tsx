@@ -79,7 +79,8 @@ export default function Home() {
         <Reveal>
           <h2>{cta.heading}</h2>
           <p>{cta.body}</p>
-          <div className="contact-cta-buttons">
+        </Reveal>
+        <div className="contact-cta-buttons">
             <Link href="/contact" className="cta-button">
               {cta.contact}
             </Link>
@@ -87,7 +88,6 @@ export default function Home() {
               {fill(cta.call)}
             </a>
           </div>
-        </Reveal>
       </section>
     </>
   );

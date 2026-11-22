@@ -10,7 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { BLADE, latestPending, pushAt } from "@/lib/bladeTimeline";
 import { drawBlade } from "@/lib/drawBlade";
-import { shouldRunTransition } from "@/lib/transitionRoute";
+import { isCurrentPageClick, shouldRunTransition } from "@/lib/transitionRoute";
 
 /** Longest the dirt waits for a slow route before clearing anyway. */
 const MAX_WAIT = 1500;
@@ -97,7 +97,7 @@ export function PageTransition() {
       if (e.defaultPrevented) return;
       const link = (e.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
       if (!link) return;
-      const run = shouldRunTransition({
+      const click = {
         href: link.href,
         origin: window.location.origin,
         currentPath: window.location.pathname,
@@ -108,6 +108,14 @@ export function PageTransition() {
         altKey: e.altKey,
         target: link.target || undefined,
         download: link.hasAttribute("download"),
+      };
+      // Choosing the current page during the cover cancels the queued trip.
+      if (active && !pushedRef.current && isCurrentPageClick(click)) {
+        finish();
+        return;
+      }
+      const run = shouldRunTransition({
+        ...click,
         reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
       });
       if (!run) return;
@@ -124,10 +132,9 @@ export function PageTransition() {
       begin(destination);
     };
 
-    // Back/Forward never plays the blade. If it lands before the push, it
-    // also cancels that push, so the visitor stays where they asked to go.
+    // Back/Forward never plays the blade, and clears one already running.
     const onPopState = () => {
-      if (active && !pushedRef.current) finish();
+      if (active) finish();
     };
 
     document.addEventListener("click", onClick, true);

@@ -27,7 +27,8 @@ export function CtaBand({
       <Reveal>
         <h2>{heading}</h2>
         <p>{body}</p>
-        <div className="cta-buttons-group">
+      </Reveal>
+      <div className="cta-buttons-group">
         <Link href={primary.href} className="cta-button">
           {primary.label}
         </Link>
@@ -42,7 +43,6 @@ export function CtaBand({
           </Link>
         ))}
       </div>
-      </Reveal>
     </section>
   );
 }
