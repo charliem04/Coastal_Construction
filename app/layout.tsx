@@ -4,6 +4,7 @@ import "./globals.css";
 import { client } from "@/client.config";
 import { CalEmbed } from "@/components/CalEmbed";
 import { Footer } from "@/components/Footer";
+import { MobileCallBar } from "@/components/MobileCallBar";
 import { Nav } from "@/components/Nav";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <MobileCallBar />
         {/* Cal.com's embed loader — fetched only on a page with a booking button. */}
         <CalEmbed />
       </body>

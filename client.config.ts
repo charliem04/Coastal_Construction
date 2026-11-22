@@ -190,6 +190,11 @@ export const client = {
     ],
     skip: "Skip to content",
   },
+  /** The fixed bar on phones and tablets (components/MobileCallBar). */
+  mobileBar: {
+    call: "Call",
+    quote: "Get a Quote",
+  },
   /** The numbered labels above major sections (components/survey). */
   markers: {
     services: "Services",

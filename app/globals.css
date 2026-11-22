@@ -1402,3 +1402,44 @@
     }
   }
 }
+
+/* ── Mobile call bar ────────────────────────────────────────────────── */
+@layer components {
+  .mobile-call-bar {
+    display: none;
+  }
+  @media (max-width: 968px) {
+    body {
+      padding-bottom: calc(56px + env(safe-area-inset-bottom));
+    }
+    .mobile-call-bar {
+      @apply fixed bottom-0 left-0 right-0 z-[1100] grid grid-cols-2 bg-black;
+      padding-bottom: env(safe-area-inset-bottom);
+      box-shadow: 0 -1px 0 rgb(255 255 255 / 0.14);
+      transition: transform 0.2s var(--ease-punch), visibility 0.2s;
+    }
+    .mobile-call-bar.is-hidden {
+      transform: translateY(100%);
+      visibility: hidden;
+    }
+    .mobile-call,
+    .mobile-quote {
+      @apply flex h-14 items-center justify-center gap-2 font-display text-sm uppercase text-white no-underline;
+      letter-spacing: 1px;
+    }
+    .mobile-call {
+      @apply bg-brand;
+    }
+    .mobile-call-icon {
+      @apply h-5 w-5;
+    }
+    .mobile-call-icon .icon-red {
+      stroke: #fff;
+    }
+    .mobile-call:focus-visible,
+    .mobile-quote:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: -5px;
+    }
+  }
+}
